@@ -2,7 +2,7 @@
 //  CJTextComponentConfigModel.swift
 //  CJViewCreatorSDK
 //
-//  Created by qian on 2024/12/12.
+//  Created by qian on 2024/12/15.
 //
 
 import Foundation

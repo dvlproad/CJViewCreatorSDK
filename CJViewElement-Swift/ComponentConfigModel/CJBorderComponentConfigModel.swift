@@ -2,7 +2,7 @@
 //  CJBorderComponentConfigModel.swift
 //  CJViewCreatorSDK
 //
-//  Created by qian on 2024/12/13.
+//  Created by qian on 2024/12/15.
 //
 
 import Foundation

@@ -43,8 +43,16 @@ Pod::Spec.new do |s|
     ss.source_files = "CJViewElement-Swift/ElementModel/**/*.{swift}"
   end
   
-  s.subspec 'View' do |ss|
-    ss.source_files = "CJViewElement-Swift/ElementView/**/*.{swift}"
+#  s.subspec 'View' do |ss|
+#    ss.source_files = "CJViewElement-Swift/ElementView/**/*.{swift}"
+#  end
+  s.subspec 'CommonSettingRow' do |ss|
+    ss.source_files = "CJViewElement-Swift/CommonSettingRow/**/*.{swift}"
+  end
+  
+  s.subspec 'SquareResultView' do |ss|
+    ss.source_files = "CJViewElement-Swift/SquareResultView/**/*.{swift}"
+#    ss.dependency "CJDataVientianeSDK_Swift"#,   :path => '../../../../CJDataVientianeSDK'
   end
   
   s.subspec 'ComponentConfigModel' do |ss|
