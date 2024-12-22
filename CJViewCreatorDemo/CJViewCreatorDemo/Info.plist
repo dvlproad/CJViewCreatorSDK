@@ -3,6 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
-	<array/>
+	<array>
+		<string>font_01.ttf</string>
+		<string>font_02ttf</string>
+		<string>font_03.ttf</string>
+		<string>font_04.ttf</string>
+		<string>font_05.ttf</string>
+		<string>font_06.ttf</string>
+		<string>font_07.ttf</string>
+	</array>
 </dict>
 </plist>
