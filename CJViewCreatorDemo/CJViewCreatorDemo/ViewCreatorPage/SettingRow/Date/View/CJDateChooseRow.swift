@@ -48,7 +48,19 @@ struct CJDateChooseRow: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             
             isPresentedDatePicker = true
-            CJUIKitToastUtil.showMessage("请完善选择日期的弹窗操作")
+//            CJUIKitToastUtil.showMessage("请完善选择日期的弹窗操作")
+            
+            let id = UUID()
+            let sheet = LunarDatePickerSheet(originalDate: date, isLunarDate: dateStringIsLunarType, isShowLunarDate: isPickerSupportLunar, completion: { date in
+                self.date = date
+                self.onChangeOfDate(date)
+            }, isLunarChanged: { isLunar in
+                self.dateStringIsLunarType = isLunar
+                self.onChangeOfDateStringIsLunarType(isLunar)
+            }, isValidateHandler: isValidateHandler, isPresented: $isPresentedDatePicker) {
+                actionClosure(.removeActionSheet(id: id))
+            }
+            actionClosure(.actionSheet(id: id, sheet: AnyView(sheet))) // TODO: 为什么要收集这个
         }
 //        .withGlobalOverlay() // 添加全局的 DatePickerOverlay
     }
