@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CJViewElement_Swift
 
 public struct CJFontSettingRow: View {
     public let models: [CJFontDataModel]

@@ -28,7 +28,22 @@ struct CJToolView: View {
 //                                // 为每个component创建视图
 //                                Text("Component:  $component)")
 //                            }
-//                            let bindDateModel: Binding<CJCommemorationDateModel> = Binding(get: { (model as! CQWidgetModel).datesChooseModel.values }, set: { (model as! CQWidgetModel).datesChooseModel.values = $0 })
+//                            let bindDateModel: Binding<CJCommemorationComponentConfigModel> = Binding(get: { (model as! CQWidgetModel).datesChooseModel.values }, set: { (model as! CQWidgetModel).datesChooseModel.values = $0 })
+                            CJDatesSettingView(
+                                title: "我是新的日期标题",
+                                minCount: 1,
+                                maxCount: 3,
+                                dateChooseModels: Binding(get: { commemorationComponents }, set: { commemorationComponents = $0 }),
+                                onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
+//                                    completeBlock?(newTextDateModels)
+                                    
+//                                    model.isSelected = !model.isSelected
+                                },
+                                actionClosure: { actionType in
+//                                    viewModel.actionClosure(actionType)
+//                                    popMenus.append(<#T##Element#>)
+                                }
+                            )
                         }
                         
                         if singleTextComponents.count > 0 {

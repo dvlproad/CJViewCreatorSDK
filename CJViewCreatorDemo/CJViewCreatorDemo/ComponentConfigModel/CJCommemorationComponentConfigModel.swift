@@ -17,7 +17,7 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         super.init()
     }
     
-    convenience public init(title: String, date: Date, cycleType: CommemorationCycleType, shouldContainToday: Bool, family: WidgetFamily, index: Int = 0) {
+    convenience public init(title: String, date: Date, cycleType: CJCommemorationCycleType, shouldContainToday: Bool, family: WidgetFamily, index: Int = 0) {
         var titleLayoutModel = CJTextLayoutModel()
         var dateLayoutModel = CJTextLayoutModel()
         var countdownLayoutModel = CJTextLayoutModel()
@@ -34,7 +34,7 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         self.init(title: title, date: date, cycleType: cycleType, shouldContainToday: shouldContainToday, titleLayoutModel: titleLayoutModel, dateLayoutModel: dateLayoutModel, countdownLayoutModel: countdownLayoutModel, dayUnitLayoutModel:dayUnitLayoutModel)
     }
     
-    public init(title: String, date: Date, cycleType: CommemorationCycleType, shouldContainToday: Bool, titleLayoutModel: CJTextLayoutModel, dateLayoutModel: CJTextLayoutModel, countdownLayoutModel: CJTextLayoutModel, dayUnitLayoutModel: CJTextLayoutModel) {
+    public init(title: String, date: Date, cycleType: CJCommemorationCycleType, shouldContainToday: Bool, titleLayoutModel: CJTextLayoutModel, dateLayoutModel: CJTextLayoutModel, countdownLayoutModel: CJTextLayoutModel, dayUnitLayoutModel: CJTextLayoutModel) {
         let data = CJCommemorationDataModel(title:title, date: date, cycleType: cycleType, shouldContainToday: shouldContainToday)
         
         let layout = CJCommemorationLayoutModel()
@@ -149,7 +149,7 @@ public class CJCommemorationDataModel: CJCommemorationDateModel {
         super.init()
     }
     
-    public init(title: String, date: Date, cycleType: CommemorationCycleType, shouldContainToday: Bool) {
+    public init(title: String, date: Date, cycleType: CJCommemorationCycleType, shouldContainToday: Bool) {
         self.title = title
 
         super.init(date: date, cycleType: cycleType, shouldContainToday: shouldContainToday)
@@ -175,7 +175,7 @@ public class CJCommemorationDataModel: CJCommemorationDateModel {
 }
 
 public class CJCommemorationDateModel: CJDateModel {
-    var cycleType: CommemorationCycleType   // 按什么周期过纪念日（每周、每月、每年、不重复）
+    var cycleType: CJCommemorationCycleType   // 按什么周期过纪念日（每周、每月、每年、不重复）
     var includeTodayIsOn: Bool                // 是否包含当天
     // MARK: Get
     var includeTodayChangeEnable : Bool {
@@ -189,7 +189,7 @@ public class CJCommemorationDateModel: CJDateModel {
         super.init()
     }
     
-    fileprivate init(date: Date, isLunarStringType: Bool = false, cycleType: CommemorationCycleType, shouldContainToday: Bool) {
+    fileprivate init(date: Date, isLunarStringType: Bool = false, cycleType: CJCommemorationCycleType, shouldContainToday: Bool) {
         self.cycleType = cycleType
         self.includeTodayIsOn = shouldContainToday
         
@@ -199,7 +199,7 @@ public class CJCommemorationDateModel: CJDateModel {
     // MARK: - Codable
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cycleType = try container.decode(CommemorationCycleType.self, forKey: .cycleType)
+        self.cycleType = try container.decode(CJCommemorationCycleType.self, forKey: .cycleType)
         self.includeTodayIsOn = try container.decodeIfPresent(Bool.self, forKey: .includeTodayIsOn) ?? false
         
         try super.init(from: decoder)
