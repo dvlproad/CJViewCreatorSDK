@@ -1,0 +1,6 @@
+framework module CJDataVientianeSDK_Swift {
+  umbrella header "CJDataVientianeSDK-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

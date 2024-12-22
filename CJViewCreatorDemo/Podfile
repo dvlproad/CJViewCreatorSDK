@@ -1,0 +1,56 @@
+platform :ios, '17.0'
+use_frameworks!
+#use_modular_headers!
+
+# [CocoaPod使用--Podfile](https://blog.csdn.net/holdsky/article/details/87270013)
+#use_frameworks!  #将依赖库以framework形式引入
+#模块化头文件 （Modular Headers）
+#use_modular_headers! （全局）
+#:modular_headers => true (单个Pod，优先级高于全局)
+#:modular_headers => fasle (单个Pod，优先级高于全局)
+#例如
+#pod 'AFNetworking', :modular_headers => true
+
+
+
+inhibit_all_warnings!
+# pod的本地索引文件：~/Library/Caches/CocoaPods/search_index.json
+
+# ENABLE_USER_SCRIPT_SANDBOXING 设置为 NO
+post_install do |installer|
+    
+    puts 'Determining pod project minimal deployment target'
+    
+    pods_project = installer.pods_project
+    deployment_target_key = 'IPHONEOS_DEPLOYMENT_TARGET'
+    deployment_targets = pods_project.build_configurations.map{ |config| config.build_settings[deployment_target_key] }
+    minimal_deployment_target = deployment_targets.min_by{ |version| Gem::Version.new(version) }
+    # 所得 minimal_deployment_target 为本文件顶部设置的 platform :ios, '9.0' ，下面打印的log可在执行pod install的终端上查看
+
+    puts 'Minimal deployment target is ' + minimal_deployment_target.to_s # 添加了 .to_s，将值转换为字符串
+    puts 'Setting each pod deployment target to ' + minimal_deployment_target.to_s # 添加了 .to_s，将值转换为字符串
+
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            # 修复[File not found: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/arc/libarclite_iphoneos.a](https://stackoverflow.com/questions/75574268/missing-file-libarclite-iphoneos-a-xcode-14-3)
+            config.build_settings[deployment_target_key] = minimal_deployment_target
+        end
+    end
+end
+
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://gitee.com/dvlproad/dvlproadSpecs'  #这里要增加的是这条私有仓库的地址，而不是那些私有仓库里的库的地址，即如果你是增加'https://gitee.com/dvlproad/CJCustomView.git'那就错了。（之前自己犯过一次错）
+
+inhibit_all_warnings! #inhibit_warnings参数能够有效的抑制CocoaPods引入的第三方代码库产生的warning。
+
+target 'CJViewCreatorDemo' do
+    pod 'CQDemoKit',          '~> 0.6.9',          :subspecs => ['BaseVC']
+    pod 'CJBaseUIKit',   :path => '../../../CJDataVientianeSDK',          :subspecs => ['UIColor']
+    pod 'CJDataVientianeSDK-Swift',   :path => '../../../CJDataVientianeSDK'
+    pod 'CJViewElement-Swift',        :path => '../'
+#    pod 'SDWebImage',         '~> 5.20.0'
+    pod 'SDWebImage', '5.19.7'
+    pod 'SDWebImageWebPCoder', '0.14.6'
+    pod 'SDWebImageSwiftUI', '3.1.1'
+    pod 'SnapKit'
+end

@@ -79,7 +79,7 @@ public class CJTextLayoutModel: CJBaseLayoutModel {
 
 // MARK: 组件Data数据类
 public class CJTextDataModel: CJBaseModel {
-    var text: String = ""
+    public var text: String = ""
     
     // MARK: - Equatable
     public static func == (lhs: CJTextDataModel, rhs: CJTextDataModel) -> Bool {

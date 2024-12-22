@@ -1,0 +1,15 @@
+{
+    "text": "纪念1",
+    "left": 23,
+    "top": 19,
+    "width": 200,
+    "height": 20,
+    "lineLimit": 1,
+    "fontSize": 15,
+    "fontWeight": "bold",
+    "foregroundColor": "#FFFFFF",
+    "backgroundColor": "#33FFFFFF",
+    "textAlignment": 0,
+    "multilineTextAlignment": 0,
+    "minimumScaleFactor": 0.4
+}

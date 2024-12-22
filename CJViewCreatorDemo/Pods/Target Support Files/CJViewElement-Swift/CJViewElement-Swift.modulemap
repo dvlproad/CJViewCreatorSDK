@@ -1,0 +1,6 @@
+framework module CJViewElement_Swift {
+  umbrella header "CJViewElement-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

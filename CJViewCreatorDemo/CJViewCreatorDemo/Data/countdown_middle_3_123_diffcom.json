@@ -1,0 +1,295 @@
+{
+    "id": "countdown_middle_3_123",
+    "title": "countdown_middle_3_123",
+    "contents": "countdown_middle_3_123",
+    "components": [
+        {
+            "id": "normal_single_text",
+            "componentType": "normal_single_text",
+            "data": {
+                "text": "我是单行文本"
+            },
+            "layout": {
+                "text": "临时文本",
+                "left": 83,
+                "top": 69,
+                "width": 130,
+                "height": 30,
+                "lineLimit": 1,
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "font": {
+                    "name": "AlimamaShuHeiTi-Bold",
+                    "egImage": "fontImage_1"
+                },
+                "foregroundColor": "#FF00FF",
+                "backgroundColor": "#33FFFFFF",
+                "background": {
+                    "colorModel": {
+                        "startPoint": "topLeading",
+                        "endPoint": "bottomTrailing",
+                        "colorStrings": ["#33FFFFFF"]
+                    },
+                    "imageModel": {
+                        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStQVL1IzigsXoa5l82KX2BJ0UXnu-l6OkJa0Lpu3KsYqCwf6ESZBBLmobeKSAErXyKelr_bw&s",
+                        "imagePath": "colorPalette"
+                    },
+                    "borderRadius": 15.0,
+                    "border": {
+                        "color": "#FF00FF",
+                        "width": 2.0
+                    }
+                },
+                
+                "textAlignment": "center",
+                "multilineTextAlignment": "center",
+                "minimumScaleFactor": 0.4
+            }
+        },
+        {
+            "id": "countdown_middle_3_1",
+            "componentType": "commemoration",
+            "data": {
+                "title": "纪念1",
+                "date": "2025-01-01",
+                "cycleType": "year"
+            },
+            "layout": {
+                "titleLayoutModel": {
+                    "text": "纪念1",
+                    "left": 23,
+                    "top": 19,
+                    "width": 200,
+                    "height": 20,
+                    "lineLimit": 1,
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading",
+                    "multilineTextAlignment": "leading",
+                    "minimumScaleFactor": 0.4
+                },
+                "dateLayoutModel": {
+                    "text": "2025-01-01",
+                    "left": 23,
+                    "top": 39,
+                    "width": 200,
+                    "height": 8,
+                    "lineLimit": 1,
+                    "fontSize": 8,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading"
+                },
+                "countdownLayoutModel": {
+                    "text": "1314",
+                    "left": 219,
+                    "top": 16,
+                    "width": 70,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 18,
+                    "fontWeight": "heavy",
+                    "foregroundColor": "#FFFFFF",
+                    "backgroundColor": "#33FFFFFF",
+                    "borderCornerRadius": 16.0,
+                    "textAlignment": "center",
+                    "multilineTextAlignment": "center",
+                    "minimumScaleFactor": 0.5
+                },
+                "dayUnitLayoutModel": {
+                    "text": "天",
+                    "left": 300,
+                    "top": 16,
+                    "width": 14,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 14,
+                    "fontWeight": "regular",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "trailing",
+                    "multilineTextAlignment": "trailing",
+                    "minimumScaleFactor": 0.5
+                }
+            }
+        },
+        {
+            "id": "countdown_middle_3_2",
+            "componentType": "commemoration",
+            "data": {
+                "title": "纪念2",
+                "date": "2025-05-01",
+                "cycleType": "year"
+            },
+            "layout": {
+                "titleLayoutModel": {
+                    "text": "纪念2",
+                    "left": 23,
+                    "top": 65,
+                    "width": 200,
+                    "height": 20,
+                    "lineLimit": 1,
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading",
+                    "multilineTextAlignment": "leading",
+                    "minimumScaleFactor": 0.4
+                },
+                "dateLayoutModel": {
+                    "text": "2025-01-01",
+                    "left": 23,
+                    "top": 85,
+                    "width": 200,
+                    "height": 8,
+                    "lineLimit": 1,
+                    "fontSize": 8,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading"
+                },
+                "countdownLayoutModel": {
+                    "text": "1314",
+                    "left": 219,
+                    "top": 64,
+                    "width": 70,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 18,
+                    "fontWeight": "heavy",
+                    "foregroundColor": "#FFFFFF",
+                    "backgroundColor": "#33FFFFFF",
+                    "borderCornerRadius": 16.0,
+                    "textAlignment": "center",
+                    "multilineTextAlignment": "center",
+                    "minimumScaleFactor": 0.5
+                },
+                "dayUnitLayoutModel": {
+                    "text": "天",
+                    "left": 300,
+                    "top": 64,
+                    "width": 14,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 14,
+                    "fontWeight": "regular",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "trailing",
+                    "multilineTextAlignment": "trailing",
+                    "minimumScaleFactor": 0.5
+                }
+            }
+        },
+        {
+            "id": "countdown_middle_3_3",
+            "componentType": "commemoration",
+            "data": {
+                "title": "纪念3",
+                "date": "2025-10-01",
+                "cycleType": "year"
+            },
+            "layout": {
+                "titleLayoutModel": {
+                    "text": "纪念3",
+                    "left": 23,
+                    "top": 112,
+                    "width": 200,
+                    "height": 20,
+                    "lineLimit": 1,
+                    "fontSize": 15,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading",
+                    "multilineTextAlignment": "leading",
+                    "minimumScaleFactor": 0.4
+                },
+                "dateLayoutModel": {
+                    "text": "2025-01-01",
+                    "left": 23,
+                    "top": 132,
+                    "width": 200,
+                    "height": 8,
+                    "lineLimit": 1,
+                    "fontSize": 8,
+                    "fontWeight": "bold",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "leading"
+                },
+                "countdownLayoutModel": {
+                    "text": "1314",
+                    "left": 219,
+                    "top": 110,
+                    "width": 70,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 18,
+                    "fontWeight": "heavy",
+                    "foregroundColor": "#FFFFFF",
+                    "backgroundColor": "#33FFFFFF",
+                    "borderCornerRadius": 16.0,
+                    "textAlignment": "center",
+                    "multilineTextAlignment": "center",
+                    "minimumScaleFactor": 0.5
+                },
+                "dayUnitLayoutModel": {
+                    "text": "天",
+                    "left": 300,
+                    "top": 110,
+                    "width": 14,
+                    "height": 32,
+                    "lineLimit": 1,
+                    "fontSize": 14,
+                    "fontWeight": "regular",
+                    "foregroundColor": "#FFFFFF",
+                    "textAlignment": "trailing",
+                    "multilineTextAlignment": "trailing",
+                    "minimumScaleFactor": 0.5
+                }
+            }
+        },
+        {
+            "id": "background",
+            "componentType": "background",
+            "data": {
+                "text": "我是背景颜色"
+            },
+            "layout": {
+                "text": "临时文本",
+                "left": 83,
+                "top": 69,
+                "width": 200,
+                "height": 30,
+                "lineLimit": 1,
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "foregroundColor": "#FF00FF",
+                "backgroundColor": "#33FFFFFF",
+                "textAlignment": "leading",
+                "multilineTextAlignment": "leading",
+                "minimumScaleFactor": 0.4
+            }
+        },
+        {
+            "id": "border",
+            "componentType": "border",
+            "data": {
+                "text": "我是边框颜色"
+            },
+            "layout": {
+                "text": "临时文本",
+                "left": 83,
+                "top": 69,
+                "width": 200,
+                "height": 30,
+                "lineLimit": 1,
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "foregroundColor": "#FF00FF",
+                "backgroundColor": "#33FFFFFF",
+                "textAlignment": "leading",
+                "multilineTextAlignment": "leading",
+                "minimumScaleFactor": 0.4
+            }
+        }
+    ]
+}

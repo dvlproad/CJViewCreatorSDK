@@ -1,0 +1,26 @@
+{
+  "name": "CJDataVientianeSDK-Swift",
+  "version": "0.0.1",
+  "summary": "Swift/OC帮助类",
+  "homepage": "https://github.com/dvlproad/CJUIKit.git",
+  "license": "MIT",
+  "authors": "dvlproad",
+  "description": "A longer description of CJDataVientianeSDK-Swift in Markdown format.\n\n* Think: Why did you write this? What is the focus? What does it do?\n* CocoaPods will be using this to generate tags, and improve search results.\n* Try to keep it short, snappy and to the point.\n* Finally, don't worry about the indent, CocoaPods strips it!",
+  "platforms": {
+    "ios": "9.0"
+  },
+  "swift_versions": "5.0",
+  "source": {
+    "git": "https://github.com/dvlproad/CJUIKit.git",
+    "tag": "CJDataVientianeSDK-Swift_0.1.1"
+  },
+  "frameworks": "UIKit",
+  "requires_arc": true,
+  "subspecs": [
+    {
+      "name": "Date",
+      "source_files": "CJDataVientianeSDK-Swift/Date/**/*.{swift}"
+    }
+  ],
+  "swift_version": "5.0"
+}

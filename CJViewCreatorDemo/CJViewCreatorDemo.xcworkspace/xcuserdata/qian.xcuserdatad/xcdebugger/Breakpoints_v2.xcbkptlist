@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "2CE923FB-1648-43E0-BC63-7CAD627B6747"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2DCF4D1A-1C29-4B70-BD48-C6AEB38C1A40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "getDefaultDataByLayoutId(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2DCF4D1A-1C29-4B70-BD48-C6AEB38C1A40 - 4c15fedd23e1bcd1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.getDefaultDataByLayoutId(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "684">
+               </Location>
+               <Location
+                  uuid = "2DCF4D1A-1C29-4B70-BD48-C6AEB38C1A40 - 4c15fedd23e1bcd1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.getDefaultDataByLayoutId(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "580">
+               </Location>
+               <Location
+                  uuid = "2DCF4D1A-1C29-4B70-BD48-C6AEB38C1A40 - 4c15fedd23e1bcd1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.getDefaultDataByLayoutId(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "560">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65025189-CBD4-4462-9701-2B216692BEE7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "fromJson(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "65025189-CBD4-4462-9701-2B216692BEE7 - 3ddb7cf4bf63088"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "300"
+                  endingLineNumber = "300"
+                  offsetFromSymbolStart = "840">
+               </Location>
+               <Location
+                  uuid = "65025189-CBD4-4462-9701-2B216692BEE7 - fd7b5c0f6b112425"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.fromJson(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "299"
+                  endingLineNumber = "299"
+                  offsetFromSymbolStart = "2436">
+               </Location>
+               <Location
+                  uuid = "65025189-CBD4-4462-9701-2B216692BEE7 - fd7b5c0f6b1124e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.fromJson(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "305"
+                  endingLineNumber = "305"
+                  offsetFromSymbolStart = "2436">
+               </Location>
+               <Location
+                  uuid = "65025189-CBD4-4462-9701-2B216692BEE7 - fd7b5c0f6b112446"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.fromJson(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "302"
+                  endingLineNumber = "302"
+                  offsetFromSymbolStart = "2436">
+               </Location>
+               <Location
+                  uuid = "65025189-CBD4-4462-9701-2B216692BEE7 - fd7b5c0f6b11216e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static CJViewCreatorDemo.CCAllComponentConfigModel.fromJson(Swift.String) -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "2436">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DB7C26E-80BC-4600-B9E0-16FC65A114EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/Background/WidgetSettingBackgroundRow.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8D26B77-8B56-452E-9658-C68BE30DC13B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CJCodableExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "KeyedDecodingContainer"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "F8D26B77-8B56-452E-9658-C68BE30DC13B - 36d55b22d6b4e51a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift.KeyedDecodingContainer.decodeCGFloat(forKey: &#x3c4;_0_0) throws -&gt; CoreGraphics.CGFloat"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CJCodableExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "152">
+               </Location>
+               <Location
+                  uuid = "F8D26B77-8B56-452E-9658-C68BE30DC13B - 7e3e2cd2b28f4082"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () throws -&gt; CoreGraphics.CGFloat in implicit closure #1 () throws -&gt; CoreGraphics.CGFloat in Swift.KeyedDecodingContainer.decodeCGFloat(forKey: &#x3c4;_0_0) throws -&gt; CoreGraphics.CGFloat"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CJCodableExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "204">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48 - 2d0e4cba27c99571"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.encode(to: Swift.Encoder) throws -&gt; ()"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "396"
+                  endingLineNumber = "396"
+                  offsetFromSymbolStart = "552">
+               </Location>
+               <Location
+                  uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48 - 3ddb7cf4bf60428"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "396"
+                  endingLineNumber = "396"
+                  offsetFromSymbolStart = "4460">
+               </Location>
+               <Location
+                  uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48 - 3ddb7cf4bf605ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "402"
+                  endingLineNumber = "402"
+                  offsetFromSymbolStart = "4460">
+               </Location>
+               <Location
+                  uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48 - 3ddb7cf4bf6044d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "399"
+                  endingLineNumber = "399"
+                  offsetFromSymbolStart = "4424">
+               </Location>
+               <Location
+                  uuid = "A932426B-F9B9-4A87-A970-7D54B8237A48 - 3ddb7cf4bf63965"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCAllComponentConfigModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCAllComponentConfigModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCAllComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "375"
+                  endingLineNumber = "375"
+                  offsetFromSymbolStart = "4436">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0CCD1D6C-AECC-41AE-A386-BCDCEA2C7E21"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCTextComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0CCD1D6C-AECC-41AE-A386-BCDCEA2C7E21 - b6194c5e3e9e782f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCTextLayoutModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCTextLayoutModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCTextComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "836">
+               </Location>
+               <Location
+                  uuid = "0CCD1D6C-AECC-41AE-A386-BCDCEA2C7E21 - b6194c5e3e9e786d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CJViewCreatorDemo.CCTextLayoutModel.init(from: Swift.Decoder) throws -&gt; CJViewCreatorDemo.CCTextLayoutModel"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCTextComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1048">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "327785BC-42D3-46BE-A5BA-A89EB258F24C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "CCTextsView2"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F77A005-1096-407E-B6E5-C196C5FCFED9"
+            shouldBeEnabled = "No"
+            condition = "index == 0"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "6F77A005-1096-407E-B6E5-C196C5FCFED9 - 318d9452fd083de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; CJViewCreatorDemo.CCTextView in closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, CJViewCreatorDemo.CCTextView&gt; in CJViewCreatorDemo.CCTextsView2.body.getter : some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "6F77A005-1096-407E-B6E5-C196C5FCFED9 - 318d9452fd08242"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int) -&gt; CJViewCreatorDemo.CCTextView in closure #1 (SwiftUI.GeometryProxy) -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, CJViewCreatorDemo.CCTextView&gt; in CJViewCreatorDemo.CCTextsView2.body.getter : some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AAD31767-9BD1-4554-867C-5ECECF5850D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "AAD31767-9BD1-4554-867C-5ECECF5850D0 - c5492b125b251e28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (CJViewCreatorDemo.CCAllComponentConfigModel, CJViewCreatorDemo.CCAllComponentConfigModel) -&gt; () in CJViewCreatorDemo.CCTextsView2.body.getter : some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "AAD31767-9BD1-4554-867C-5ECECF5850D0 - c5492b125b251e28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (CJViewCreatorDemo.CCAllComponentConfigModel, CJViewCreatorDemo.CCAllComponentConfigModel) -&gt; () in CJViewCreatorDemo.CCTextsView2.body.getter : some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CCTextsView2.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3EAF7ED2-38B9-4B45-A1D5-223D700CBD2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCBaseComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "layout(_:overlayView:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAE50471-4D8F-4925-87D8-AAD7FD6E2A33"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ComponentConfigModel/CCBaseComponentConfigModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "layout(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FAE50471-4D8F-4925-87D8-AAD7FD6E2A33 - 9be6ce80774793e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.layout(CJViewCreatorDemo.CCBaseLayoutModel) -&gt; some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCBaseComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "924">
+               </Location>
+               <Location
+                  uuid = "FAE50471-4D8F-4925-87D8-AAD7FD6E2A33 - 9be6ce80774793e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.layout(CJViewCreatorDemo.CCBaseLayoutModel) -&gt; some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCBaseComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "972">
+               </Location>
+               <Location
+                  uuid = "FAE50471-4D8F-4925-87D8-AAD7FD6E2A33 - 9be6ce8077478cae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftUI.View.layout(CJViewCreatorDemo.CCBaseLayoutModel) -&gt; some"
+                  moduleName = "CJViewCreatorDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qian/Project/Reference/CJViewCreatorSDK/CJViewCreatorDemo/CJViewCreatorDemo/ComponentConfigModel/CCBaseComponentConfigModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "900">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DB4E3579-1135-42D6-A0C0-3B1715055DF9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CJViewCreatorDemo/ViewCreatorPage/SquareResultView/CJSquareView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
