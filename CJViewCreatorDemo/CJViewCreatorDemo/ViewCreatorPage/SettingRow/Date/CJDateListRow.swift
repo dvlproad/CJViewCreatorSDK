@@ -88,7 +88,8 @@ struct CJDateListRow: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10-2*2) {
                         ForEach(0..<items.count, id:\.self) { index in
-                            let item = items[index].data
+                            let itemModel: CJCommemorationComponentConfigModel = items[index]
+                            let item: CJCommemorationDataModel = itemModel.data
                             
                             CountdownLabel(
                                 title: item.title,
@@ -101,9 +102,7 @@ struct CJDateListRow: View {
                                         CJUIKitToastUtil.showMessage("最少添加\(minCount)个")
                                         return
                                     }
-                                    if let index = items.firstIndex(where: { $0.data.id == item.id }) {
-                                        items.remove(at: index)
-                                    }
+                                    items.remove(at: index)
                                     
                                     var newSelectedIndex = -1
                                     if items.isEmpty {

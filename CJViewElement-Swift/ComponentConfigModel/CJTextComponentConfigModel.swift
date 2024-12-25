@@ -22,13 +22,6 @@ public class CJTextComponentConfigModel: CJBaseComponentConfigModel<CJTextDataMo
     }
     
     // MARK: - Codable
-    enum CodingKeys: String, CodingKey {
-        case id
-        case componentType
-        case data
-        case layout
-    }
-    
     required public init(from decoder: Decoder) throws {
 //        try super.init(from: decoder)
         super.init()
@@ -55,8 +48,28 @@ public class CJTextComponentConfigModel: CJBaseComponentConfigModel<CJTextDataMo
 // MARK: 组件Layout布局类
 public class CJTextLayoutModel: CJBaseLayoutModel {
     public var text: String = ""
-    required init() {
+    required public init() {
         super.init()
+    }
+    
+    override public init(left: CGFloat,
+                         top: CGFloat,
+                         width: CGFloat,
+                         height: CGFloat,
+                         lineLimit: Int = 1,
+                         fontSize: CGFloat,
+                         fontWeight: FontWeight,
+                         font: CJFontDataModel,
+                         foregroundColor: String,
+                         backgroundColor: String,
+                         textAlignment: CJTextAlignment,
+                         multilineTextAlignment: CJTextAlignment,
+                         minimumScaleFactor: CGFloat,
+                         borderCornerRadius: CGFloat,
+                         background: CJBoxDecorationModel
+    ) {
+        super.init(left: left, top: top, width: width, height: height, lineLimit: lineLimit, fontSize: fontSize, fontWeight: fontWeight, font: font, foregroundColor: foregroundColor, backgroundColor: backgroundColor, textAlignment: textAlignment, multilineTextAlignment: multilineTextAlignment, minimumScaleFactor: minimumScaleFactor, borderCornerRadius: borderCornerRadius, background: background)
+        self.text = ""
     }
     
     // MARK: - Codable

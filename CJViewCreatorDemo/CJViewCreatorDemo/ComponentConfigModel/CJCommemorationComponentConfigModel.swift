@@ -286,17 +286,13 @@ public class CJCommemorationDateModel: CJDateModel {
 
 
 
-public class CJDateModel: CJBaseModel, ObservableObject, Hashable, Identifiable {
+public class CJDateModel: CJBaseModel {
     var date: Date                  // 日期
     var dateStringIsLunarType: Bool // 日期展示是否要用农历形式
-    
-    public var id: UUID = UUID()
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+
 
     static public func == (lhs: CJDateModel, rhs: CJDateModel) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.date == rhs.date && lhs.dateStringIsLunarType == rhs.dateStringIsLunarType
     }
     
     

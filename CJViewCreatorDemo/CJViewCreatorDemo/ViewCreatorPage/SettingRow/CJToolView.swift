@@ -35,9 +35,39 @@ struct CJToolView: View {
                                 maxCount: 3,
                                 dateChooseModels: Binding(get: { commemorationComponents }, set: { commemorationComponents = $0 }),
                                 onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
-//                                    completeBlock?(newTextDateModels)
+                                    // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。
+                                    // 2.    添加：将 newTextDateModels 中 id 不在 components 中的项添加到 components。
+                                    var typeComponents = model.anyComponentModel.commemorationComponents
+                                    // 1. 获取所有的 id 集合
+                                    let componentsIds = Set(typeComponents.map { $0.id })
+                                    let newTextIds = Set(newTextDateModels.map { $0.id })
+
+                                    // 2. 找出需要删除的 id 和需要添加的 id
+                                    let idsToDelete = componentsIds.subtracting(newTextIds)
+                                    let idsToAdd = newTextIds.subtracting(componentsIds)
+
+                                    // 3. 删除 components 中的无效项
+                                    typeComponents.removeAll { idsToDelete.contains($0.id) }
+
+                                    // 4. 添加 newTextDateModels 中的新项到 components
+                                    let itemsToAdd = newTextDateModels.filter { idsToAdd.contains($0.id) }
+                                    typeComponents.append(contentsOf: itemsToAdd.map { $0 })
+
+                                    debugPrint("idsToDelete:\(idsToDelete)")
+                                    debugPrint("idsToAdd:\(idsToAdd)")
+                                    debugPrint("typeComponents:\(typeComponents)")
                                     
-//                                    model.isSelected = !model.isSelected
+                                    
+                                    // 移除符合条件的组件，并添加新增的
+                                    model.anyComponentModel.components.removeAll { component in
+                                        if component.componentType == .commemoration,
+                                           let commemComponent = component as? CJCommemorationComponentConfigModel {
+                                            return idsToDelete.contains(commemComponent.id)
+                                        }
+                                        return false
+                                    }
+                                    model.anyComponentModel.components.append(contentsOf: itemsToAdd.map { $0 })
+                                    onChangeOfElementModel(model)
                                 },
                                 actionClosure: { actionType in
 //                                    viewModel.actionClosure(actionType)
@@ -52,6 +82,52 @@ struct CJToolView: View {
                             CJTextSettingRow(title: "文字", text: $singleTextComponents[0].data.text, placeHolder: "请输入内容", lineLimit: 1, textFieldWidth: 320, textFieldHeight: 40, textDidChange: { newText in
                                 
                             })
+                            
+                            CJTextsSettingView(
+                                title: "我是新的日期标题",
+                                minCount: 1,
+                                maxCount: 3,
+                                dateChooseModels: Binding(get: { singleTextComponents }, set: { singleTextComponents = $0 }),
+                                onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
+                                    // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。
+                                    // 2.    添加：将 newTextDateModels 中 id 不在 components 中的项添加到 components。
+                                    var typeComponents = model.anyComponentModel.singleTextComponents
+                                    // 1. 获取所有的 id 集合
+                                    let componentsIds = Set(typeComponents.map { $0.id })
+                                    let newTextIds = Set(newTextDateModels.map { $0.id })
+
+                                    // 2. 找出需要删除的 id 和需要添加的 id
+                                    let idsToDelete = componentsIds.subtracting(newTextIds)
+                                    let idsToAdd = newTextIds.subtracting(componentsIds)
+
+                                    // 3. 删除 components 中的无效项
+                                    typeComponents.removeAll { idsToDelete.contains($0.id) }
+
+                                    // 4. 添加 newTextDateModels 中的新项到 components
+                                    let itemsToAdd = newTextDateModels.filter { idsToAdd.contains($0.id) }
+                                    typeComponents.append(contentsOf: itemsToAdd.map { $0 })
+
+                                    debugPrint("idsToDelete:\(idsToDelete)")
+                                    debugPrint("idsToAdd:\(idsToAdd)")
+                                    debugPrint("typeComponents:\(typeComponents)")
+                                    
+                                    
+                                    // 移除符合条件的组件，并添加新增的
+                                    model.anyComponentModel.components.removeAll { component in
+                                        if component.componentType == .normal_single_text,
+                                           let commemComponent = component as? CJTextComponentConfigModel {
+                                            return idsToDelete.contains(commemComponent.id)
+                                        }
+                                        return false
+                                    }
+                                    model.anyComponentModel.components.append(contentsOf: itemsToAdd.map { $0 })
+                                    onChangeOfElementModel(model)
+                                },
+                                actionClosure: { actionType in
+//                                    viewModel.actionClosure(actionType)
+//                                    popMenus.append(<#T##Element#>)
+                                }
+                            )
                                     
                         }
                         

@@ -51,24 +51,41 @@ public class CJBaseLayoutModel: CJBaseModel {
         self.background = CJBoxDecorationModel()
     }
     
-    /*
+    
     // 初始化
-    init(x: CGFloat, top: CGFloat, width: CGFloat, height: CGFloat, lineLimit: Int, fontSize: Double, fontWeight: FontWeight, foregroundColor: String, backgroundColor: String, textAlignment: CJTextAlignment, multilineTextAlignment: CJTextAlignment, minimumScaleFactor: Double) {
-        self.left = x
+    init(left: CGFloat,
+         top: CGFloat,
+         width: CGFloat,
+         height: CGFloat,
+         lineLimit: Int,
+         fontSize: CGFloat,
+         fontWeight: FontWeight,
+         font: CJFontDataModel,
+         foregroundColor: String,
+         backgroundColor: String,
+         textAlignment: CJTextAlignment,
+         multilineTextAlignment: CJTextAlignment,
+         minimumScaleFactor: CGFloat,
+         borderCornerRadius: CGFloat,
+         background: CJBoxDecorationModel
+    ) {
+        self.left = left
         self.top = top
         self.width = width
         self.height = height
         self.lineLimit = lineLimit
         self.fontSize = fontSize
         self.fontWeight = fontWeight
+        self.font = font
         self.foregroundColor = foregroundColor
         self.backgroundColor = backgroundColor
         self.textAlignment = textAlignment
         self.multilineTextAlignment = multilineTextAlignment
         self.minimumScaleFactor = minimumScaleFactor
-        self.borderCornerRadius = 0
+        self.borderCornerRadius = borderCornerRadius
+        self.background = background
     }
-    */
+    
     
     // 自定义编码键
     enum CodingKeys: String, CodingKey {
