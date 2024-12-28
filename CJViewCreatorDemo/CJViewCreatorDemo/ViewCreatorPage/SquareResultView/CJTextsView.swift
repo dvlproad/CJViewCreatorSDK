@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import CJViewElement_Swift
+import CJViewGR_Swift
 
 struct CJTextsView: View {
     @Binding var anyComponentModel: CJAllComponentConfigModel
@@ -24,9 +25,46 @@ struct CJTextsView: View {
             
             // 在 ForEach 中使用 index 来获取绑定
             ForEach(0..<updatedTextModels.count, id: \.self) { index in
-//                let textModel = textModels[index]
+//                let textModel = textModels[index]x
                 //                Text(textModel.text)
                 CJTextView(text: $textModels[index].text, layoutModel: $textModels[index])
+                    .overlay(content: {
+//                        CJGRCornerView(zoom: 1)
+                        Rectangle()
+                            .stroke(Color.cyan, lineWidth: index == 0 ? 2*2 : 0)  // 添加蓝色的边框
+                            .padding(-2*2)
+                            .offset(x: textModels[index].left, y: textModels[index].top)
+                    })
+//                    .overlay(content: {
+//                        Color.yellow
+//                    })
+                
+//                Text("Hello, World!")
+//                            .padding()
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.red, lineWidth: 5) // 第一个边框
+//                            )
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: 10)
+//                                    .stroke(Color.blue, lineWidth: 2) // 第二个边框，叠加在第一个之上
+//                            )
+//                
+//                Text("hello my world")
+//                    .overlay(content: {
+//                        Color.yellow
+//                    })
+//                    .overlay(content: {
+//                        CJGRCornerView(zoom: 0.50)
+//                    })
+//                    .addGRButtons(onDelete:{
+//                        
+//                    }, onUpdate: {
+//                        
+//                    }, onMinimize: {
+//                        
+//                    })
+
             }
         })
         .onAppear {

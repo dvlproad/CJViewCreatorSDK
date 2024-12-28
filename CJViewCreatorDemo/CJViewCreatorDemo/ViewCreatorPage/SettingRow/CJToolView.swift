@@ -53,9 +53,9 @@ struct CJToolView: View {
                                     let itemsToAdd = newTextDateModels.filter { idsToAdd.contains($0.id) }
                                     typeComponents.append(contentsOf: itemsToAdd.map { $0 })
 
-                                    debugPrint("idsToDelete:\(idsToDelete)")
-                                    debugPrint("idsToAdd:\(idsToAdd)")
-                                    debugPrint("typeComponents:\(typeComponents)")
+                                    //debugPrint("idsToDelete:\(idsToDelete)")
+                                    //debugPrint("idsToAdd:\(idsToAdd)")
+                                    //debugPrint("typeComponents:\(typeComponents)")
                                     
                                     
                                     // 移除符合条件的组件，并添加新增的
@@ -107,9 +107,9 @@ struct CJToolView: View {
                                     let itemsToAdd = newTextDateModels.filter { idsToAdd.contains($0.id) }
                                     typeComponents.append(contentsOf: itemsToAdd.map { $0 })
 
-                                    debugPrint("idsToDelete:\(idsToDelete)")
-                                    debugPrint("idsToAdd:\(idsToAdd)")
-                                    debugPrint("typeComponents:\(typeComponents)")
+                                    //debugPrint("idsToDelete:\(idsToDelete)")
+                                    //debugPrint("idsToAdd:\(idsToAdd)")
+                                    //debugPrint("typeComponents:\(typeComponents)")
                                     
                                     
                                     // 移除符合条件的组件，并添加新增的
@@ -202,11 +202,11 @@ struct CJToolView: View {
                     dismissMenu()
                 }).simultaneously(with: DragGesture()
                     .onChanged { _ in
-                        print("Scroll onChanged")
+                        debugPrint("Scroll onChanged")
                         dismissMenu()
                     }
                     .onEnded { _ in
-                        print("Scroll ended")
+                        debugPrint("Scroll ended")
                     }))
             }
             .coordinateSpace(name: "CommonToolsView")

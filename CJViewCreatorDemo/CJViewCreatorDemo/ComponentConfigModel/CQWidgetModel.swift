@@ -14,7 +14,7 @@ class CQWidgetModel {
     var borderModel: CJBorderDataModel = CJBorderDataModel()
     
     init() {
-        let layoutId = "countdown_middle_3_123_diffcom"
+        let layoutId = "countdown_middle_3_123_children"
         self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
     }
     

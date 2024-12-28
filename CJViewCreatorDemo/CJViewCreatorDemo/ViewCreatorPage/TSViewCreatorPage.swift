@@ -12,7 +12,7 @@ import CJViewElement_Swift
 
 
 struct TSViewCreatorPage: View {
-    @State var model: CQWidgetModel = CQWidgetModel("countdown_middle_3_123_diffcom")
+    @State var model: CQWidgetModel = CQWidgetModel("countdown_middle_3_123_children")
     @State var backgroundModel: CJBoxDecorationModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#FF0000"))
     @State var anyComponentModel: CJAllComponentConfigModel = CJAllComponentConfigModel()
     @State var borderModel: CJBorderDataModel = CJBorderDataModel()
@@ -40,7 +40,7 @@ struct TSViewCreatorPage: View {
                 }
             }
         }).onAppear(){
-            model = CQWidgetModel("countdown_middle_3_123_diffcom")
+            model = CQWidgetModel("countdown_middle_3_123_children")
             backgroundModel = model.backgroundModel
             anyComponentModel = model.anyComponentModel
             borderModel = model.borderModel

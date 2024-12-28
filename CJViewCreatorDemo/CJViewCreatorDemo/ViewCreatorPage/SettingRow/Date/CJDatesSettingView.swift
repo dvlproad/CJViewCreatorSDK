@@ -62,7 +62,7 @@ struct CJDatesSettingView: View {
                 dateChooseModels = newItems
                 currentIndex = currentSelectedIndex
 //                currentTextDateModel = newItems[currentSelectedIndex]
-                print("currentSelectedIndex:\(currentSelectedIndex)")
+                //debugPrint("currentSelectedIndex:\(currentSelectedIndex)")
                 
                 self.updateUI(isCountUpdate: newCount != oldCount)
             })

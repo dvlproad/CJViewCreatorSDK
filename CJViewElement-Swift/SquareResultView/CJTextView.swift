@@ -19,6 +19,12 @@ public struct CJTextView: View {
     public var body: some View {
         let textView = Text(text)
             .property(layoutModel)
+//            .overlay(content: {
+////                        CJGRCornerView(zoom: 2)
+//                Rectangle()
+//                    .stroke(Color.black, lineWidth: text == "纪念1" ? 2 * 2 : 0)  // 添加蓝色的边框
+//                    .padding(-2 * 2)
+//            })
         
         if let overlayView = layoutModel.overlay?.colorModel?.linearGradientColor {
             textView

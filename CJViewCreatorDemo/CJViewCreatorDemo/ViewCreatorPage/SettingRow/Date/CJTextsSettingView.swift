@@ -62,7 +62,9 @@ struct CJTextsSettingView: View {
                 dateChooseModels = newItems
                 currentIndex = currentSelectedIndex
 //                currentTextDateModel = newItems[currentSelectedIndex]
-                print("currentSelectedIndex:\(currentSelectedIndex)")
+                //debugPrint("currentSelectedIndex:\(currentSelectedIndex)")
+                let item = newItems[currentSelectedIndex]
+                item.isEditing = true
                 
                 self.updateUI(isCountUpdate: newCount != oldCount)
             })
@@ -113,7 +115,7 @@ struct CJTextsSettingView: View {
                                                                                                                           endPoint: .bottomTrailing,
                                                                                                                           colorStrings: ["#F8AC9F","#F9EFE5"]
                                                                                                                          ), onChangeOfTextColorModel: { newTextColorModel in
-                    model.layout.overlay?.colorModel = newTextColorModel
+                    model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
                     self.updateUI()
                 })
                 

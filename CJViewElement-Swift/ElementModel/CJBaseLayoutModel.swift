@@ -28,7 +28,7 @@ public class CJBaseLayoutModel: CJBaseModel {
     
     // MARK: - Equatable
     public static func == (lhs: CJBaseLayoutModel, rhs: CJBaseLayoutModel) -> Bool {
-        return lhs.left == rhs.left && lhs.top == rhs.top && lhs.width == rhs.width && lhs.height == rhs.height && lhs.lineLimit == rhs.lineLimit && lhs.fontSize == rhs.fontSize && lhs.font == rhs.font && lhs.fontWeight == rhs.fontWeight && lhs.foregroundColor == rhs.foregroundColor && lhs.backgroundColor == rhs.backgroundColor && lhs.overlay == rhs.overlay && lhs.background == rhs.background
+        return lhs.left == rhs.left && lhs.top == rhs.top && lhs.width == rhs.width && lhs.height == rhs.height && lhs.lineLimit == rhs.lineLimit && lhs.fontSize == rhs.fontSize && lhs.font == rhs.font && lhs.fontWeight == rhs.fontWeight && lhs.foregroundColor == rhs.foregroundColor && lhs.backgroundColor == rhs.backgroundColor && lhs.overlay == rhs.overlay && lhs.background == rhs.background && lhs.textAlignment == rhs.textAlignment && lhs.multilineTextAlignment == rhs.multilineTextAlignment && lhs.minimumScaleFactor == rhs.minimumScaleFactor && lhs.borderCornerRadius == rhs.borderCornerRadius
     }
     
     // MARK: - Init

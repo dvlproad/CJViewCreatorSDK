@@ -38,6 +38,19 @@ class CJAllComponentConfigModel: CJBaseModel {
     var id: String = ""
     var components: [any CJBaseComponentConfigModelProtocol] = []
     
+    static func registerAllComponentType() {
+//        registerComponentType(CJCommemorationComponentConfigModel<CJCommemorationDataModel, CJCommemorationLayoutModel>.self,
+//                              forKey: CJComponentType.commemoration.rawValue)
+        registerComponentType(CJTextComponentConfigModel.self, forKey: CJComponentType.normal_single_text.rawValue)
+        registerComponentType(CJCommemorationComponentConfigModel.self, forKey: CJComponentType.commemoration.rawValue)
+        registerComponentType(CJBackgroundComponentConfigModel.self, forKey: CJComponentType.background.rawValue)
+        registerComponentType(CJFontComponentConfigModel.self, forKey: CJComponentType.font.rawValue)
+        registerComponentType(CJTextColorComponentConfigModel.self, forKey: CJComponentType.textColor.rawValue)
+        registerComponentType(CJBorderComponentConfigModel.self, forKey: CJComponentType.border.rawValue)
+        registerComponentType(CJUnknownComponentConfigModel.self, forKey: CJComponentType.unknown.rawValue)
+//        registeredComponentTypes[CJComponentType.commemoration.rawValue] = CJCommemorationComponentConfigModel.self
+    }
+    
     // MARK: - Equatable
     static func == (lhs: CJAllComponentConfigModel, rhs: CJAllComponentConfigModel) -> Bool {
         guard lhs.id == rhs.id else { return false }
@@ -97,7 +110,7 @@ class CJAllComponentConfigModel: CJBaseModel {
     
     
     static func getDefaultDataByLayoutId(_ layoutId: String) -> CJAllComponentConfigModel {
-        //let jsonFileName: String = "countdown_middle_3_123_diffcom"
+        //let jsonFileName: String = "countdown_middle_3_123_children"
         let jsonFileName = layoutId
         
         /*
@@ -172,6 +185,45 @@ class CJAllComponentConfigModel: CJBaseModel {
                let commemComponent = component as? CJCommemorationComponentConfigModel {
 //                commemComponent.updateData(referDate: Date(), isForDesktop: false)
                 commemorationComponents.append(commemComponent)
+                
+                if let children = commemComponent.childComponents {
+                    for index in 0 ..< (children.count) {
+                        let child = children[index]
+                        if child.componentType == .normal_single_text,
+                                  let realChildComponent = child as? CJTextComponentConfigModel {
+                            singleTextComponents.append(realChildComponent)
+                        }
+                    }
+                }
+//                singleTextComponents.append(
+//                    CJTextComponentConfigModel(
+//                        id: "",
+//                        data: CJTextDataModel(text: commemComponent.layout.titleLayoutModel.text), 
+//                        layout: commemComponent.layout.titleLayoutModel
+//                    )
+//                )
+//                singleTextComponents.append(
+//                    CJTextComponentConfigModel(
+//                        id: "",
+//                        data: CJTextDataModel(text: commemComponent.layout.dateLayoutModel.text),
+//                        layout: commemComponent.layout.dateLayoutModel
+//                    )
+//                )
+//                singleTextComponents.append(
+//                    CJTextComponentConfigModel(
+//                        id: "",
+//                        data: CJTextDataModel(text: commemComponent.layout.countdownLayoutModel.text),
+//                        layout: commemComponent.layout.countdownLayoutModel
+//                    )
+//                )
+//                singleTextComponents.append(
+//                    CJTextComponentConfigModel(
+//                        id: "",
+//                        data: CJTextDataModel(text: commemComponent.layout.dayUnitLayoutModel.text),
+//                        layout: commemComponent.layout.dayUnitLayoutModel
+//                    )
+//                )
+                
             } else if component.componentType == .normal_single_text,
                       let realComponent = component as? CJTextComponentConfigModel {
 //                realComponent.updateData(referDate: Date(), isForDesktop: false)
@@ -240,7 +292,7 @@ class CJAllComponentConfigModel: CJBaseModel {
             return model
             
         } catch {
-            debugPrint("CJAllComponentConfigModel 解码失败:\(error)")
+            debugPrint("❌CJAllComponentConfigModel 解码失败:\(error)")
             return CJAllComponentConfigModel()
         }
     }
@@ -252,12 +304,18 @@ class CJAllComponentConfigModel: CJBaseModel {
     }
     
     required init(from decoder: Decoder) throws {
+        CJAllComponentConfigModel.registerAllComponentType() // 避免 registeredComponentTypes 为设置
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         
 //        self.components = try container.decode([any CJBaseComponentConfigModelProtocol].self, forKey: .components)
         var componentsContainer = try container.nestedUnkeyedContainer(forKey: .components)
         var components: [any CJBaseComponentConfigModelProtocol] = []
+        
+        // 动态解码 childComponents
+        if let childDataArray = try? container.decode([DynamicCodableComponent].self, forKey: .components) {
+            components = childDataArray.compactMap { $0.base }
+        }
 
 //        var decodedComponents: [CJBaseModel] = []
 
@@ -271,7 +329,7 @@ class CJAllComponentConfigModel: CJBaseModel {
 //                throw DecodingError.dataCorruptedError(in: nestedComponents, debugDescription: "Unknown component type.")
 //            }
 //        }
-        
+        /*
         while !componentsContainer.isAtEnd {
             do {
                 let tempContainer = try componentsContainer.nestedContainer(keyedBy: CJTextComponentConfigModel.CodingKeys.self)
@@ -290,6 +348,9 @@ class CJAllComponentConfigModel: CJBaseModel {
                     let data: CJCommemorationDataModel = try tempContainer.decode(CJCommemorationDataModel.self, forKey: .data)
                     let layout: CJCommemorationLayoutModel = try tempContainer.decode(CJCommemorationLayoutModel.self, forKey: .layout)
                     let component = CJCommemorationComponentConfigModel(id: id, componentType: type, data: data, layout: layout)
+                    
+                    
+//                    let component: CJCommemorationComponentConfigModel = try componentsContainer.decode(CJCommemorationComponentConfigModel.self, forKey: .data)
                     
                     components.append(component)
                 case .background:
@@ -341,7 +402,7 @@ class CJAllComponentConfigModel: CJBaseModel {
                 print("❌Error decoding component: \(error)")
             }
         }
-
+        */
         self.components = components
     }
 

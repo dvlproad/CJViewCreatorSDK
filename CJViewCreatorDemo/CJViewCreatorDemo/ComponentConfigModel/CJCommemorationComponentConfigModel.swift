@@ -47,13 +47,14 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         self.updateData(referDate: date)
     }
     
-    override public init(id: String, componentType: CJComponentType, data: CJCommemorationDataModel, layout: CJCommemorationLayoutModel) {
-        super.init(id: id, componentType: componentType, data: data, layout: layout)
-    }
+//    override public init(id: String, componentType: CJComponentType, data: CJCommemorationDataModel, layout: CJCommemorationLayoutModel, childComponents: [any CJBaseComponentConfigModelProtocol]? = nil) {
+//        super.init(id: id, componentType: componentType, data: data, layout: layout)
+//    }
     
     // MARK: - Codable
     required public init(from decoder: Decoder) throws {
-        //try super.init(from: decoder)
+        try super.init(from: decoder)
+        /*
         super.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -71,6 +72,18 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         } catch {
             debugPrint("error:\(error)")
         }
+        
+        do {
+            // 动态解码 childComponents
+            let childDataArray = try container.decodeIfPresent([DynamicCodableComponent].self, forKey: .childComponents)
+            if childDataArray != nil {
+                childComponents = childDataArray!.compactMap { $0.base }
+            }
+            //debugPrint("CJCommemorationLayoutModel ✅\(layout)")
+        } catch {
+            debugPrint("❌Error: 动态解码 childComponents 失败, \(error)")
+        }
+        */
     }
     
     public func updateData(referDate: Date, isForDesktop: Bool = false) {

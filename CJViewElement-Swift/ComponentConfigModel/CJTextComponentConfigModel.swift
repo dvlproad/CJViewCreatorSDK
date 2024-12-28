@@ -23,7 +23,8 @@ public class CJTextComponentConfigModel: CJBaseComponentConfigModel<CJTextDataMo
     
     // MARK: - Codable
     required public init(from decoder: Decoder) throws {
-//        try super.init(from: decoder)
+        try super.init(from: decoder)
+        /*
         super.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -41,6 +42,7 @@ public class CJTextComponentConfigModel: CJBaseComponentConfigModel<CJTextDataMo
         } catch {
             debugPrint("error:\(error)")
         }
+        */
     }
 }
 
@@ -104,7 +106,7 @@ public class CJTextDataModel: CJBaseModel {
         
     }
     
-    init(text: String) {
+    public init(text: String) {
         self.text = text
     }
     

@@ -14,6 +14,9 @@ PODS:
   - CJViewElement-Swift/Extension (0.0.1)
   - CJViewElement-Swift/Model (0.0.1)
   - CJViewElement-Swift/SquareResultView (0.0.1)
+  - CJViewGR-Swift (0.0.1):
+    - CJViewGR-Swift/Extension (= 0.0.1)
+  - CJViewGR-Swift/Extension (0.0.1)
   - CQDemoKit/BaseUIKit (0.6.9):
     - Masonry
   - CQDemoKit/BaseUtil (0.6.9)
@@ -72,6 +75,7 @@ DEPENDENCIES:
   - CJBaseUIKit/UIColor (from `../../../CJDataVientianeSDK`)
   - CJDataVientianeSDK-Swift (from `../../../CJDataVientianeSDK`)
   - CJViewElement-Swift (from `../`)
+  - CJViewGR-Swift (from `../../../CJGRKit`)
   - CQDemoKit/BaseVC (~> 0.6.9)
   - SDWebImage (= 5.19.7)
   - SDWebImageSwiftUI (= 3.1.1)
@@ -95,11 +99,14 @@ EXTERNAL SOURCES:
     :path: "../../../CJDataVientianeSDK"
   CJViewElement-Swift:
     :path: "../"
+  CJViewGR-Swift:
+    :path: "../../../CJGRKit"
 
 SPEC CHECKSUMS:
   CJBaseUIKit: 1aae41e618536f39628c79a7461f48e6979b8a5e
   CJDataVientianeSDK-Swift: d0f03e9dfa4d20feab46805cd2dd2ed24c2a4675
   CJViewElement-Swift: c8ff58ffe0946ddeb1ce7f3df5991c5bb6fd5d34
+  CJViewGR-Swift: 84e6c40429e800d3b3e3657c5364e7b3896b62d4
   CQDemoKit: f7a6a6f2a7e3eea2a4a0684c654bfcf0360e6dca
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -108,6 +115,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 94c55f98d0bbaaca163f6f37d7d316afaeb26783
+PODFILE CHECKSUM: 2350c3024d00267abd8be48496bd798ffdbab7e9
 
 COCOAPODS: 1.16.2

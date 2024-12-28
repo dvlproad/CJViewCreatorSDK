@@ -58,7 +58,7 @@ struct ContentView: View {
         }.onAppear() {
             countModel = CountModel(count: 0)
 //            configModel = CQWidgetModel("countdown_middle_3_123_diffcom")
-            debugPrint("onAppear countModel:\(countModel)")
+//            debugPrint("onAppear countModel:\(countModel)")
 //            debugPrint("onAppear configModel:\(configModel)")
         }
     }
