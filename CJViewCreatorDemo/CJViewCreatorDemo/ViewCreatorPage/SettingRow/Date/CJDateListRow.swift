@@ -223,7 +223,7 @@ struct CJDateListRow_Previews: PreviewProvider {
     static var previews: some View {
         
         let dataAndLayoutModels: [CJCommemorationComponentConfigModel] = createDataAndLayoutModels()
-        let items = dataAndLayoutModels.map { $0.data }
+        //let items = dataAndLayoutModels.map { $0.data }
         
         CJDateListRow(minCount: 1, maxCount: 3, items: .constant(dataAndLayoutModels), currentIndex: 3, valueChangeBlock: { newItems, newSelectedIndex, oldCount, newCount in
             

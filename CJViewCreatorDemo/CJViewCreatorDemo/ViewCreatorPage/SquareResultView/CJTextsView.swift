@@ -16,7 +16,7 @@ struct CJTextsView: View {
 //    @Binding var textModels: [TextsModel]
 //    @State private var textModels: [CJTextLayoutModel] = []
     @Binding var dealUpdateUI: Int  // 为了不对model中的属性加修饰词，所以额外使用此变量
-    @State private var textModels: [CJTextLayoutModel] = []  // 使用 @State 保存 textModels
+    @State private var textModels: [CJTextComponentConfigModel] = []  // 使用 @State 保存 textModels
 
     var body: some View {
         GeometryReader(content: { geometry in
@@ -27,14 +27,20 @@ struct CJTextsView: View {
             ForEach(0..<updatedTextModels.count, id: \.self) { index in
 //                let textModel = textModels[index]x
                 //                Text(textModel.text)
-                CJTextView(text: $textModels[index].text, layoutModel: $textModels[index])
-                    .overlay(content: {
-//                        CJGRCornerView(zoom: 1)
-                        Rectangle()
-                            .stroke(Color.cyan, lineWidth: index == 0 ? 2*2 : 0)  // 添加蓝色的边框
-                            .padding(-2*2)
-                            .offset(x: textModels[index].left, y: textModels[index].top)
-                    })
+                let textView = CJTextView(text: $textModels[index].data.text, layoutModel: $textModels[index].layout)
+                if updatedTextModels[index].isEditing {
+                    textView
+                        .overlay(content: {
+                            CJGRCornerView(zoom: 1)
+                            //                            Rectangle()
+                            //                                .stroke(Color.cyan, lineWidth: updatedTextModels[index].isEditing ? 1 : 0)  // 添加蓝色的边框
+                            //                                .padding(0)
+                                .offset(x: textModels[index].layout.left, y: textModels[index].layout.top)
+                        })
+//                        .addGR()
+                } else {
+                    textView
+                }
 //                    .overlay(content: {
 //                        Color.yellow
 //                    })

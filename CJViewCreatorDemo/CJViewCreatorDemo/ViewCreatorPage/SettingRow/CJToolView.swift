@@ -146,9 +146,9 @@ struct CJToolView: View {
                         //
                         if existTextElement {
                             CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4"), onChangeOfFontModel: { newFontModel in
-                                let showingModels: [CJTextLayoutModel] = model.anyComponentModel.getAllLayoutModels()
+                                let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                 for showingModel in showingModels {
-                                    showingModel.font = newFontModel
+                                    showingModel.layout.font = newFontModel
                                 }
                                 onChangeOfElementModel(model)
                             })
@@ -158,21 +158,21 @@ struct CJToolView: View {
                                                                                                endPoint: .bottomTrailing,
                                                                                                colorStrings: ["#F8AC9F","#F9EFE5"]
                                                                                               ), onChangeOfTextColorModel: { newTextColorModel in
-                                let showingModels: [CJTextLayoutModel] = model.anyComponentModel.getAllLayoutModels()
+                                let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                 if newTextColorModel.colorStrings.count == 1 {
                                     for showingModel in showingModels {
-                                        showingModel.foregroundColor = newTextColorModel.colorStrings[0]
+                                        showingModel.layout.foregroundColor = newTextColorModel.colorStrings[0]
                                     }
                                     
                                 } else {
                                     let forgroundColorString = Color.clear.toHex()!
                                     for showingModel in showingModels {
-                                        showingModel.foregroundColor = forgroundColorString
-                                        var overlay: CJBoxDecorationModel? = showingModel.overlay
+                                        showingModel.layout.foregroundColor = forgroundColorString
+                                        let overlay: CJBoxDecorationModel? = showingModel.layout.overlay
                                         if overlay != nil {
                                             overlay?.colorModel = newTextColorModel
                                         } else {
-                                            showingModel.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
+                                            showingModel.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
                                         }
                                     }
                                 }

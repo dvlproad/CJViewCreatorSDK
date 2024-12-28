@@ -33,6 +33,28 @@ import CJViewElement_Swift
 //    }
 //}
 
+/// 视图元素收集工具
+public struct CJElementCollectUtil {
+    /// 所有的文本元素
+    static func getAllTextElements(component: any CJBaseComponentConfigModelProtocol) -> [CJTextComponentConfigModel] {
+        var models: [CJTextComponentConfigModel] = []
+
+        if component is CJTextComponentConfigModel {
+            let textDateModel: CJTextComponentConfigModel = component as! CJTextComponentConfigModel
+            models.append(textDateModel)
+        }
+        
+        if let children = component.childComponents {
+            for child in children {
+                let textElements = getAllTextElements(component: child)
+                models.append(contentsOf: textElements)
+            }
+        }
+        
+        return models
+    }
+}
+
 
 class CJAllComponentConfigModel: CJBaseModel {
     var id: String = ""
@@ -247,6 +269,7 @@ class CJAllComponentConfigModel: CJBaseModel {
     }
     
     // MARK: 获取组件中所有独立组件中可用于显示的视图供预览图处理
+    /*
     func getAllLayoutModels() -> [CJTextLayoutModel] {
         var models: [CJTextLayoutModel] = []
         let count = self.components.count
@@ -267,6 +290,20 @@ class CJAllComponentConfigModel: CJBaseModel {
         }
         return models
     }
+    */
+    func getAllLayoutModels() -> [CJTextComponentConfigModel] {
+        var models: [CJTextComponentConfigModel] = []
+        let count = self.components.count
+        for i in 0..<count {
+            let component: any CJBaseComponentConfigModelProtocol = self.components[i]
+            
+            let textElements = CJElementCollectUtil.getAllTextElements(component: component)
+            
+            models.append(contentsOf: textElements)
+        }
+        return models
+    }
+    
     
     static func fromJson(_ jsonString: String) -> CJAllComponentConfigModel {
         guard let jsonData = jsonString.data(using: .utf8) else { return CJAllComponentConfigModel() }

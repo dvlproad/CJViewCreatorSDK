@@ -16,7 +16,7 @@ struct CJDatesSettingView: View {
     var minCount: Int
     var maxCount: Int
     @Binding var dateChooseModels: [CJCommemorationComponentConfigModel]
-    @State var currentIndex = 0
+    @State var currentIndex = -1
 //    @State var currentTextDateModel: CJCommemorationDataModel
 //    @State var currentTextDateModel: CJCommemorationComponentConfigModel
     var onChangeOfDateChooseModels: ((_ newTextDateModels: [CJCommemorationComponentConfigModel], _ isCountUpdate: Bool) -> Void)
@@ -64,12 +64,17 @@ struct CJDatesSettingView: View {
 //                currentTextDateModel = newItems[currentSelectedIndex]
                 //debugPrint("currentSelectedIndex:\(currentSelectedIndex)")
                 
+                for i in 0 ..< newItems.count {
+                    let item = newItems[i]
+                    item.updateEditingState(isEditing: i == currentSelectedIndex ? true : false, updateChildrenIfExsit: true)
+                }
+                
                 self.updateUI(isCountUpdate: newCount != oldCount)
             })
             .padding(.horizontal, 21)
             
             let existData = dateChooseModels.count > 0
-            if existData {
+            if existData, currentIndex >= 0, currentIndex < dateChooseModels.count {
                 var currentTextDateModel = dateChooseModels[currentIndex].data
 //                let bindingText: Binding<String> = Binding(get: { currentTextDateModel.title }, set: { currentTextDateModel.title = $0 })
                 

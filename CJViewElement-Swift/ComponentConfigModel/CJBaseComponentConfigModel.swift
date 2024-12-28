@@ -68,6 +68,51 @@ extension CJBaseComponentConfigModel: CJBaseModel {
     }
 }
 
+/// 对 CJBaseModel 做类型擦除
+public struct CJAnyBaseModel: CJBaseModel {
+    public init() {
+        
+    }
+}
+
+public protocol CJBaseComponentEditProtocol {
+    var isEditing: Bool { get set }
+    
+    func updateEditingState(isEditing: Bool, updateChildrenIfExsit: Bool)
+}
+
+extension CJBaseComponentConfigModel: CJBaseComponentEditProtocol {
+//    public var isEditing: Bool {
+//        get {
+//            <#code#>
+//        }
+//        set {
+//            <#code#>
+//        }
+//    }
+//
+    /// 更新编辑装填，如果存在子视图是否也要将子视图一起更新为编辑状态（因为有些日历组件他包含多个文本元素）
+    public func updateEditingState(isEditing: Bool, updateChildrenIfExsit: Bool) {
+        self.isEditing = isEditing
+        if updateChildrenIfExsit, let children = childComponents {
+            for child in children {
+                // 知识点：无法仅仅使用 if child is CJBaseComponentConfigModel 就能判断出来，因为 CJBaseComponentConfigModel 这个类 是一个带有泛型参数的类。Swift 的类型系统在运行时是 泛型擦除（Generic Erasure） 的，这意味着在运行时，泛型的具体类型信息会丢失。但是，在类型检查时，编译器仍然要求泛型类型完全匹配。
+                //if let t_child = child as? CJTextComponentConfigModel { // 使用 as? 进行安全的类型转换
+                //if child is CJBaseComponentConfigModel<CJTextDataModel, CJTextLayoutModel>  {
+                //    let t_child = child as! CJBaseComponentConfigModel<CJTextDataModel, CJTextLayoutModel>
+                //    t_child.updateEditingState(isEditing: isEditing, updateChildrenIfExsit: updateChildrenIfExsit)
+                //}
+                
+                if child is CJBaseComponentEditProtocol {
+                    let t_child = child as! CJBaseComponentEditProtocol
+                    t_child.updateEditingState(isEditing: isEditing, updateChildrenIfExsit: updateChildrenIfExsit)
+                }
+            }
+        }
+    }
+    
+}
+
 open class CJBaseComponentConfigModel<DataType: CJBaseModel, LayoutType: CJBaseModel>: CJBaseComponentConfigModelProtocol {
     
     
@@ -79,8 +124,8 @@ open class CJBaseComponentConfigModel<DataType: CJBaseModel, LayoutType: CJBaseM
     public var childComponents: [any CJBaseComponentConfigModelProtocol]?
 //    var overlay: CJBoxDecorationModel?       // 文字元素可以在上面盖渐变色视图，再mask下，从而形成看起来好像是渐变颜色的效果
 //    var background: CJBoxDecorationModel?
-    public var isEditing: Bool = false          // 是否正在编辑中，编辑中的时候多个边框标记出来，以更好辨认
     
+    public var isEditing: Bool = false          // 是否正在编辑中，编辑中的时候多个边框标记出来，以更好辨认
     
     // MARK: - Init
     required public init() {

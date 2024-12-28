@@ -268,7 +268,97 @@
                     "multilineTextAlignment": "trailing",
                     "minimumScaleFactor": 0.5
                 }
-            }
+            },
+            "components": [
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "title",
+                        "text": "纪念2"
+                    },
+                    "layout": {
+                        "text": "纪念2",
+                        "left": 23,
+                        "top": 65,
+                        "width": 200,
+                        "height": 20,
+                        "lineLimit": 1,
+                        "fontSize": 15,
+                        "fontWeight": "bold",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "leading",
+                        "multilineTextAlignment": "leading",
+                        "minimumScaleFactor": 0.4
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_yyyyMMdd",
+                        "text": "2025-01-01"
+                    },
+                    "layout": {
+                        "text": "2025-01-01",
+                        "left": 23,
+                        "top": 85,
+                        "width": 200,
+                        "height": 8,
+                        "lineLimit": 1,
+                        "fontSize": 8,
+                        "fontWeight": "bold",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "leading"
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_countdown",
+                        "text": "1314"
+                    },
+                    "layout": {
+                        "text": "1314",
+                        "left": 219,
+                        "top": 64,
+                        "width": 70,
+                        "height": 32,
+                        "lineLimit": 1,
+                        "fontSize": 18,
+                        "fontWeight": "heavy",
+                        "foregroundColor": "#FFFFFF",
+                        "backgroundColor": "#33FFFFFF",
+                        "borderCornerRadius": 16.0,
+                        "textAlignment": "center",
+                        "multilineTextAlignment": "center",
+                        "minimumScaleFactor": 0.5
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_unit",
+                        "text": "天"
+                    },
+                    "layout": {
+                        "text": "天",
+                        "left": 300,
+                        "top": 64,
+                        "width": 14,
+                        "height": 32,
+                        "lineLimit": 1,
+                        "fontSize": 14,
+                        "fontWeight": "regular",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "trailing",
+                        "multilineTextAlignment": "trailing",
+                        "minimumScaleFactor": 0.5
+                    }
+                }
+            ]
         },
         {
             "id": "countdown_middle_3_3",
@@ -335,7 +425,97 @@
                     "multilineTextAlignment": "trailing",
                     "minimumScaleFactor": 0.5
                 }
-            }
+            },
+            "components": [
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "title",
+                        "text": "纪念3"
+                    },
+                    "layout": {
+                        "text": "纪念3",
+                        "left": 23,
+                        "top": 112,
+                        "width": 200,
+                        "height": 20,
+                        "lineLimit": 1,
+                        "fontSize": 15,
+                        "fontWeight": "bold",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "leading",
+                        "multilineTextAlignment": "leading",
+                        "minimumScaleFactor": 0.4
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_yyyyMMdd",
+                        "text": "2025-01-01"
+                    },
+                    "layout": {
+                        "text": "2025-01-01",
+                        "left": 23,
+                        "top": 132,
+                        "width": 200,
+                        "height": 8,
+                        "lineLimit": 1,
+                        "fontSize": 8,
+                        "fontWeight": "bold",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "leading"
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_countdown",
+                        "text": "1314"
+                    },
+                    "layout": {
+                        "text": "1314",
+                        "left": 219,
+                        "top": 110,
+                        "width": 70,
+                        "height": 32,
+                        "lineLimit": 1,
+                        "fontSize": 18,
+                        "fontWeight": "heavy",
+                        "foregroundColor": "#FFFFFF",
+                        "backgroundColor": "#33FFFFFF",
+                        "borderCornerRadius": 16.0,
+                        "textAlignment": "center",
+                        "multilineTextAlignment": "center",
+                        "minimumScaleFactor": 0.5
+                    }
+                },
+                {
+                    "id": "normal_single_text_children",
+                    "componentType": "normal_single_text",
+                    "data": {
+                        "textType": "date_unit",
+                        "text": "天"
+                    },
+                    "layout": {
+                        "text": "天",
+                        "left": 300,
+                        "top": 110,
+                        "width": 14,
+                        "height": 32,
+                        "lineLimit": 1,
+                        "fontSize": 14,
+                        "fontWeight": "regular",
+                        "foregroundColor": "#FFFFFF",
+                        "textAlignment": "trailing",
+                        "multilineTextAlignment": "trailing",
+                        "minimumScaleFactor": 0.5
+                    }
+                }
+            ]
         },
         {
             "id": "background",
