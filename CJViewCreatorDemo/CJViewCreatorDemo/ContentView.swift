@@ -41,6 +41,11 @@ struct ContentView: View {
                         layoutModel: .constant(initLayout)
                     ).frame(height: initLayout.height)
                     
+                    CJVEVerticalTextView(
+                        text: .constant("年年岁岁花相似"),
+                        maxLines: .constant(10),
+                        layoutModel: .constant(initLayout)
+                    ).frame(height: initLayout.height)
                     
                     CJVerticalTextView(text: "年年岁岁花相似", font: .custom("WenCang-Regular", size: 15), height: 200)
                     

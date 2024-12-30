@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+enum CJTextOrientationType {
+    case verticalPoeticCouplet  // 竖直的对联
+}
+
 public struct CJVerticalTextView: View {
     let text: String
     let font: Font
@@ -26,7 +30,7 @@ public struct CJVerticalTextView: View {
                     .font(font)
                     //.background(Color.randomColor)
                 if index != text.count - 1 {
-                    Spacer()
+                    Spacer(minLength: 0)    // 知识点：一定要设置 minLength 为 0，未设置时候可能导致因为要有Spacer而导致正文显示不下
                 }
             }
         }
