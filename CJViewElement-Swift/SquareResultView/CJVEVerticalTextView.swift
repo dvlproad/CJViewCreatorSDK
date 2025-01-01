@@ -53,7 +53,8 @@ public struct CJVEVerticalTextView: View {
     public var body: some View {
         let textView = CJVerticalTextView(
             text: validShowingText,
-            font: font,
+            font: font, 
+            minimumScaleFactor: layoutModel.minimumScaleFactor,
             height: layoutModel.height
         )
         
