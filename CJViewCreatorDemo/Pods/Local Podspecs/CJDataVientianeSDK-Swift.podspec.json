@@ -20,6 +20,10 @@
     {
       "name": "Date",
       "source_files": "CJDataVientianeSDK-Swift/Date/**/*.{swift}"
+    },
+    {
+      "name": "Insert",
+      "source_files": "CJDataVientianeSDK-Swift/Insert/**/*.{swift}"
     }
   ],
   "swift_version": "5.0"

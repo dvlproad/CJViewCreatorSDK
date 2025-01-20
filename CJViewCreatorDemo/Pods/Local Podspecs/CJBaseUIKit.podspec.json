@@ -98,9 +98,7 @@
       "name": "UITextView",
       "source_files": "CJBaseUIKit/UITextView/**/*.{h,m}",
       "dependencies": {
-        "CJBaseUIKit/UITextHeightCenterCJHelper": [
-
-        ]
+        "CJBaseUIKit/UITextHeightCenterCJHelper": []
       }
     },
     {
@@ -111,9 +109,7 @@
       "name": "UIToolbar",
       "source_files": "CJBaseUIKit/UIToolbar/**/*.{h,m}",
       "dependencies": {
-        "CJBaseUIKit/UIImage": [
-
-        ]
+        "CJBaseUIKit/UIImage": []
       }
     },
     {
@@ -130,9 +126,7 @@
       "source_files": "CJBaseUIKit/CJBaseTableViewCell/**/*.{h,m}",
       "resources": "CJBaseUIKit/CJBaseTableViewCell/**/*.{png}",
       "dependencies": {
-        "CJBaseUIKit/UIButton": [
-
-        ]
+        "CJBaseUIKit/UIButton": []
       }
     },
     {

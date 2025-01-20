@@ -122,7 +122,7 @@ public extension Color {
         }else if(blue < 0){
             blue = 0
         }
-        print("\(red)==\(green)")
+        //print("颜色值ARGB：\(alpha)==\(red)==\(green)==\(blue)")
         // 根据是否包含透明度来决定格式化字符串
         if includeAlpha {
             // 将RGBA值转换为十六进制字符串，包括透明度

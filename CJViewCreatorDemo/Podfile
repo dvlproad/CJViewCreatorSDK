@@ -45,9 +45,9 @@ inhibit_all_warnings! #inhibit_warnings参数能够有效的抑制CocoaPods引�
 
 target 'CJViewCreatorDemo' do
     pod 'CQDemoKit',          '~> 0.6.9',          :subspecs => ['BaseVC']
-    pod 'CJBaseUIKit',   :path => '../../../CJDataVientianeSDK',          :subspecs => ['UIColor']
-    pod 'CJDataVientianeSDK-Swift',   :path => '../../../CJDataVientianeSDK'
-    pod 'CJViewGR-Swift',             :path => '../../../CJGRKit'
+    pod 'CJBaseUIKit',                :path => '../../CJDataVientianeSDK',          :subspecs => ['UIColor']
+    pod 'CJDataVientianeSDK-Swift',   :path => '../../CJDataVientianeSDK'
+    pod 'CJViewGR-Swift',             :path => '../../CJGRKit'
     pod 'CJViewElement-Swift',        :path => '../'
 #    pod 'SDWebImage',         '~> 5.20.0'
     pod 'SDWebImage', '5.19.7'
