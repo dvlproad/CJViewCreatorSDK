@@ -79,9 +79,18 @@ struct CJToolView: View {
                         if singleTextComponents.count > 0 {
 //                            let textModel: CJTextComponentConfigModel = singleTextComponents[0]
 //                            let textDataModel: CJTextDataModel = textModel.data
-                            CJTextSettingRow(title: "文字", text: $singleTextComponents[0].data.text, placeHolder: "请输入内容", lineLimit: 1, textFieldWidth: 320, textFieldHeight: 40, textDidChange: { newText in
-                                
-                            })
+                            CJTextInputView(
+                                text: $singleTextComponents[0].data.text,
+                                placeHolder: "请输入内容",
+                                lineLimit: 1,
+                                textDidChange: { newText in
+                                    
+                                }
+                            )
+                            .frame(height: 40)
+                            .withCornerRadius(10.0, horizontalPadding: 10.0)
+                            .withLeadingTitle("文字", titleWidth: 40)
+                            .padding(.horizontal, 20)
                             
                             CJTextsSettingView(
                                 title: "我是新的日期标题",

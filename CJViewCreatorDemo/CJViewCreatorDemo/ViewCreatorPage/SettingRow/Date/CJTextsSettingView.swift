@@ -79,22 +79,20 @@ struct CJTextsSettingView: View {
                 let currentTextDateModel: CJTextDataModel = model.data
 //                let bindingText: Binding<String> = Binding(get: { currentTextDateModel.title }, set: { currentTextDateModel.title = $0 })
                 
-                let textFieldWidth = 320.0
-                let textFieldHeight = 40.0
-                CJTextSettingRow(
-                    title: "",
+                CJTextInputView(
                     text: Binding(get: { currentTextDateModel.text }, set: { currentTextDateModel.text = $0 }),
 //                    titleAlignment: TitleAlignment.leading,
                     placeHolder: "请输入内容",
                     lineLimit: 1,
-                    textFieldWidth: textFieldWidth,
-                    textFieldHeight: textFieldHeight,
                     textDidChange: { value in
                         currentTextDateModel.text = value
                         self.updateUI()
                     }
                 )
-                .padding(.horizontal, 21)
+                .frame(height: 40)
+                .withCornerRadius(10.0, horizontalPadding: 10.0)
+                .withLeadingTitle("文字", titleWidth: 40)
+                .padding(.horizontal, 20)
 
 //                let bindDateModel: Binding<CJTextDataModel> = Binding(get: { dateChooseModels[currentIndex].data }, set: { dateChooseModels[currentIndex].data = $0 })
 //                CJCommemorationDateSettingView(commemorationDateModel: bindDateModel, onChangeOfDateChooseModel: { newCommemorationDateModel in

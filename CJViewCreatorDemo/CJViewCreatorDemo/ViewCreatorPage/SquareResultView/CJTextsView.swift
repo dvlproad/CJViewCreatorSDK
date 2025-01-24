@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import CJViewElement_Swift
-import CJViewGR_Swift
+//import CJViewGR_Swift
 
 struct CJTextsView: View {
     @Binding var anyComponentModel: CJAllComponentConfigModel
@@ -31,10 +31,11 @@ struct CJTextsView: View {
                 if updatedTextModels[index].isEditing {
                     textView
                         .overlay(content: {
-                            CJGRCornerView(zoom: 1)
-                            //                            Rectangle()
-                            //                                .stroke(Color.cyan, lineWidth: updatedTextModels[index].isEditing ? 1 : 0)  // 添加蓝色的边框
-                            //                                .padding(0)
+//                            CJGRCornerView(zoom: 1)
+                            Rectangle()
+                                .stroke(Color.cyan, lineWidth: updatedTextModels[index].isEditing ? 1 : 0)  // 添加蓝色的边框
+                                .padding(0)
+                            
                                 .offset(x: textModels[index].layout.left, y: textModels[index].layout.top)
                         })
 //                        .addGR()

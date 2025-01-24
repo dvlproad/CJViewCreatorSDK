@@ -1,7 +1,5 @@
 PODS:
   - CJBaseUIKit/UIColor (0.8.0)
-  - CJDataVientianeSDK-Swift (0.0.1):
-    - CJDataVientianeSDK-Swift/Date (= 0.0.1)
   - CJDataVientianeSDK-Swift/Date (0.0.1)
   - CJViewElement-Swift (0.0.1):
     - CJViewElement-Swift/CommonSettingRow (= 0.0.1)
@@ -14,40 +12,37 @@ PODS:
   - CJViewElement-Swift/Extension (0.0.1)
   - CJViewElement-Swift/Model (0.0.1)
   - CJViewElement-Swift/SquareResultView (0.0.1)
-  - CJViewGR-Swift (0.0.1):
-    - CJViewGR-Swift/Extension (= 0.0.1)
-  - CJViewGR-Swift/Extension (0.0.1)
-  - CQDemoKit/BaseUIKit (0.6.9):
+  - CQDemoKit/BaseUIKit (0.7.1):
     - Masonry
-  - CQDemoKit/BaseUtil (0.6.9)
-  - CQDemoKit/BaseVC (0.6.9):
-    - CQDemoKit/BaseVC/Base (= 0.6.9)
-    - CQDemoKit/BaseVC/Collection (= 0.6.9)
-    - CQDemoKit/BaseVC/ScrollView (= 0.6.9)
-    - CQDemoKit/BaseVC/TabBar (= 0.6.9)
-    - CQDemoKit/BaseVC/TableView (= 0.6.9)
-    - CQDemoKit/BaseVC/TextView (= 0.6.9)
+  - CQDemoKit/BaseUtil (0.7.1)
+  - CQDemoKit/BaseVC (0.7.1):
+    - CQDemoKit/BaseVC/Base (= 0.7.1)
+    - CQDemoKit/BaseVC/Collection (= 0.7.1)
+    - CQDemoKit/BaseVC/ScrollView (= 0.7.1)
+    - CQDemoKit/BaseVC/TabBar (= 0.7.1)
+    - CQDemoKit/BaseVC/TableView (= 0.7.1)
+    - CQDemoKit/BaseVC/TextView (= 0.7.1)
     - CQDemoKit/Helper
-  - CQDemoKit/BaseVC/Base (0.6.9):
+  - CQDemoKit/BaseVC/Base (0.7.1):
     - CQDemoKit/BaseUIKit
     - CQDemoKit/Helper
     - Masonry
-  - CQDemoKit/BaseVC/Collection (0.6.9):
+  - CQDemoKit/BaseVC/Collection (0.7.1):
     - CQDemoKit/BaseVC/Base
     - CQDemoKit/Helper
-  - CQDemoKit/BaseVC/ScrollView (0.6.9):
+  - CQDemoKit/BaseVC/ScrollView (0.7.1):
     - CQDemoKit/BaseVC/Base
     - CQDemoKit/Helper
-  - CQDemoKit/BaseVC/TabBar (0.6.9):
+  - CQDemoKit/BaseVC/TabBar (0.7.1):
     - CQDemoKit/Helper
-  - CQDemoKit/BaseVC/TableView (0.6.9):
+  - CQDemoKit/BaseVC/TableView (0.7.1):
     - CQDemoKit/BaseVC/Base
     - CQDemoKit/Helper
-  - CQDemoKit/BaseVC/TextView (0.6.9):
+  - CQDemoKit/BaseVC/TextView (0.7.1):
     - CQDemoKit/BaseUtil
     - CQDemoKit/BaseVC/Base
     - CQDemoKit/Helper
-  - CQDemoKit/Helper (0.6.9)
+  - CQDemoKit/Helper (0.7.1)
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -72,11 +67,10 @@ PODS:
   - SnapKit (5.7.1)
 
 DEPENDENCIES:
-  - CJBaseUIKit/UIColor (from `../../../CJDataVientianeSDK`)
-  - CJDataVientianeSDK-Swift (from `../../../CJDataVientianeSDK`)
+  - CJBaseUIKit/UIColor (~> 0.8.0)
+  - CJDataVientianeSDK-Swift/Date (~> 0.0.1)
   - CJViewElement-Swift (from `../`)
-  - CJViewGR-Swift (from `../../../CJGRKit`)
-  - CQDemoKit/BaseVC (~> 0.6.9)
+  - CQDemoKit/BaseVC (~> 0.7.1)
   - SDWebImage (= 5.19.7)
   - SDWebImageSwiftUI (= 3.1.1)
   - SDWebImageWebPCoder (= 0.14.6)
@@ -84,6 +78,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - CJBaseUIKit
+    - CJDataVientianeSDK-Swift
     - CQDemoKit
     - libwebp
     - Masonry
@@ -93,21 +89,14 @@ SPEC REPOS:
     - SnapKit
 
 EXTERNAL SOURCES:
-  CJBaseUIKit:
-    :path: "../../../CJDataVientianeSDK"
-  CJDataVientianeSDK-Swift:
-    :path: "../../../CJDataVientianeSDK"
   CJViewElement-Swift:
     :path: "../"
-  CJViewGR-Swift:
-    :path: "../../../CJGRKit"
 
 SPEC CHECKSUMS:
   CJBaseUIKit: 1aae41e618536f39628c79a7461f48e6979b8a5e
-  CJDataVientianeSDK-Swift: d0f03e9dfa4d20feab46805cd2dd2ed24c2a4675
+  CJDataVientianeSDK-Swift: 202f7c52e557f037c8aa1f0d9e8b131631a4b600
   CJViewElement-Swift: c8ff58ffe0946ddeb1ce7f3df5991c5bb6fd5d34
-  CJViewGR-Swift: 84e6c40429e800d3b3e3657c5364e7b3896b62d4
-  CQDemoKit: f7a6a6f2a7e3eea2a4a0684c654bfcf0360e6dca
+  CQDemoKit: d3c8f63f39f685299711194a65bb2f6ec11bc947
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 8a6b7b160b4d710e2a22b6900e25301075c34cb3
@@ -115,6 +104,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 2350c3024d00267abd8be48496bd798ffdbab7e9
+PODFILE CHECKSUM: 59e37098e419d678dd186c417daaf94e56a18ded
 
 COCOAPODS: 1.16.2
