@@ -44,7 +44,7 @@ struct CJDatesSettingView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
 //            HStack(spacing: 0) {
 //                Text(title)
 //                    .font(.system(size: 15.5,weight: .medium))
@@ -72,6 +72,7 @@ struct CJDatesSettingView: View {
                 self.updateUI(isCountUpdate: newCount != oldCount)
             })
             .padding(.horizontal, 21)
+            //.background(Color.cyan.opacity(0.8))
             
             let existData = dateChooseModels.count > 0
             if existData, currentIndex >= 0, currentIndex < dateChooseModels.count {
@@ -92,6 +93,8 @@ struct CJDatesSettingView: View {
                 .withCornerRadius(10.0, horizontalPadding: 10.0)
                 .withLevelOneLeadingTitle("文字", titleWidth: 40)
                 .padding(.horizontal, 20)
+                //.background(Color.green.opacity(0.8))
+                .frame(height: 40)
 
                 let bindDateModel: Binding<CJCommemorationDataModel> = Binding(get: { dateChooseModels[currentIndex].data }, set: { dateChooseModels[currentIndex].data = $0 })
                 CJCommemorationDateSettingView(commemorationDateModel: bindDateModel, onChangeOfDateChooseModel: { newCommemorationDateModel in
@@ -100,6 +103,7 @@ struct CJDatesSettingView: View {
                 }, actionClosure: { actionType in
                     self.actionClosure(actionType)
                 })
+                //.background(Color.cyan.opacity(0.8))
                 .environmentObject(dateSettingViewUpdateObserver)
             }
             

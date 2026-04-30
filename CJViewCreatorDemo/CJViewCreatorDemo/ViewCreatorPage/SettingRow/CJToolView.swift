@@ -74,6 +74,7 @@ struct CJToolView: View {
 //                                    popMenus.append(<#T##Element#>)
                                 }
                             )
+                            //.background(Color.red.opacity(0.8))
                         }
                         
                         if singleTextComponents.count > 0 {
@@ -91,6 +92,8 @@ struct CJToolView: View {
                             .withCornerRadius(10.0, horizontalPadding: 10.0)
                             .withLevelOneLeadingTitle("文字", titleWidth: 40)
                             .padding(.horizontal, 20)
+                            //.background(Color.green.opacity(0.3))
+                            .frame(height: 40)
                             
                             CJTextsSettingView(
                                 title: "我是新的日期标题",
@@ -137,9 +140,10 @@ struct CJToolView: View {
 //                                    popMenus.append(<#T##Element#>)
                                 }
                             )
-                                    
+                            //.background(Color.blue.opacity(0.3))
                         }
                         
+                        // 背景颜色(橙色)
                         if backgroundTextComponents.count > 0 {
                             CJBackgroundSettingRow(models: TSRowDataUtil.backgroundColorData(), originalBackgroundModel: model.backgroundModel, onChangeOfBackgroundModel: { newBackgroundModel in
                                 model.backgroundModel = newBackgroundModel
@@ -151,9 +155,12 @@ struct CJToolView: View {
                                 
                                 onChangeOfElementModel(model)
                             })
+                            //.background(Color.orange.opacity(0.3))
                         }
-                        //
+                        
+                        // 字体+字体颜色
                         if existTextElement {
+                            // 字体(紫色)
                             CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4"), onChangeOfFontModel: { newFontModel in
                                 let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                 for showingModel in showingModels {
@@ -161,7 +168,9 @@ struct CJToolView: View {
                                 }
                                 onChangeOfElementModel(model)
                             })
+                            //.background(Color.purple.opacity(0.3))
 
+                            // 字体颜色(黄色)
                             CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: CJTextColorDataModel(id: "111",
                                                                                                startPoint: .topLeading,
                                                                                                endPoint: .bottomTrailing,
@@ -187,13 +196,16 @@ struct CJToolView: View {
                                 }
                                 onChangeOfElementModel(model)
                             })
+                            //.background(Color.yellow.opacity(0.3))
                         }
                         
+                        // 边框(粉红色)
                         if borderComponents.count > 0 {
                             CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: CJBorderDataModel(id: "111", imageName: "border_8"), onChangeOfBorderModel: { newBorderModel in
                                 model.borderModel = newBorderModel
                                 onChangeOfElementModel(model)
                             })
+                            //.background(Color.pink.opacity(0.3))
                         }
                     }
                     .padding(.vertical, 20)
