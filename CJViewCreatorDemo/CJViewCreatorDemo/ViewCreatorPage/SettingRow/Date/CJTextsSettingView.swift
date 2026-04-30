@@ -91,7 +91,7 @@ struct CJTextsSettingView: View {
                 )
                 .frame(height: 40)
                 .withCornerRadius(10.0, horizontalPadding: 10.0)
-                .withLeadingTitle("文字", titleWidth: 40)
+                .withLevelOneLeadingTitle("文字", titleWidth: 40)
                 .padding(.horizontal, 20)
 
 //                let bindDateModel: Binding<CJTextDataModel> = Binding(get: { dateChooseModels[currentIndex].data }, set: { dateChooseModels[currentIndex].data = $0 })
