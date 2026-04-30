@@ -44,7 +44,7 @@ struct CJTextsSettingView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
 //            HStack(spacing: 0) {
 //                Text(title)
 //                    .font(.system(size: 15.5,weight: .medium))
@@ -72,6 +72,7 @@ struct CJTextsSettingView: View {
                 self.updateUI(isCountUpdate: newCount != oldCount)
             })
             .padding(.horizontal, 21)
+            //.background(Color.red.opacity(0.8))
             
             let existData = dateChooseModels.count > 0
             if existData, currentIndex >= 0, currentIndex < dateChooseModels.count  {
@@ -94,6 +95,8 @@ struct CJTextsSettingView: View {
                 .withLevelOneLeadingTitle("文字", titleWidth: 40)
                 .padding(.horizontal, 20)
                 .frame(height: 40)
+                .padding(.bottom, 4)
+                //.background(Color.yellow.opacity(0.8))
 
 //                let bindDateModel: Binding<CJTextDataModel> = Binding(get: { dateChooseModels[currentIndex].data }, set: { dateChooseModels[currentIndex].data = $0 })
 //                CJCommemorationDateSettingView(commemorationDateModel: bindDateModel, onChangeOfDateChooseModel: { newCommemorationDateModel in
@@ -107,10 +110,23 @@ struct CJTextsSettingView: View {
                 
                
                 
+                CJPositionSizeSettingRow(
+                    title: "位置与尺寸",
+                    left: Binding(get: { model.layout.left }, set: { model.layout.left = $0 }),
+                    top: Binding(get: { model.layout.top }, set: { model.layout.top = $0 }),
+                    width: Binding(get: { model.layout.width }, set: { model.layout.width = $0 }),
+                    height: Binding(get: { model.layout.height }, set: { model.layout.height = $0 }),
+                    onChange: {
+                        self.updateUI()
+                    }
+                )
+                //.background(Color.red.opacity(0.8))
+                
                 CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4"), onChangeOfFontModel: { newFontModel in
                     model.layout.font = newFontModel
                     self.updateUI()
                 })
+                //.background(Color.green.opacity(0.8))
                 
                 CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: CJTextColorDataModel(id: "111",
                                                                                                                           startPoint: .topLeading,
@@ -120,6 +136,7 @@ struct CJTextsSettingView: View {
                     model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
                     self.updateUI()
                 })
+                //.background(Color.cyan.opacity(0.8))
                 
                 
                 

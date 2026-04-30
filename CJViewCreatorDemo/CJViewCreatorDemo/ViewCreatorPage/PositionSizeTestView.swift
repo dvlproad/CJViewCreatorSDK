@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CJViewElement_Swift
 
 struct PositionSizeTestView: View {
     @State private var left: CGFloat = 10
