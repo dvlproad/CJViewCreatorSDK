@@ -298,7 +298,7 @@ public extension View {
                 )
     }
     
-    public func layout(_ layout: CJBaseLayoutModel) -> some View {
+    public func layout(_ layout: CJTextLayoutModel) -> some View {
         var foregroundColor: Color = Color(hex: layout.foregroundColor)
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil && !layout.backgroundColor!.isEmpty {
@@ -339,7 +339,7 @@ public extension View {
         
     }
     
-    public func layout(_ layout: CJBaseLayoutModel, overlayView: LinearGradient) -> some View {
+    public func layout(_ layout: CJTextLayoutModel, overlayView: LinearGradient) -> some View {
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil {
             backgroundColor = Color(hex: layout.backgroundColor!)
@@ -375,7 +375,7 @@ public extension View {
     }
     
     //    func property(_ property: CJBasePropertyModel) -> some View {
-    public func property(_ property: CJBaseLayoutModel) -> some View {
+    public func property(_ property: CJTextLayoutModel) -> some View {
         var font: Font
         if property.font.name.count == 0 {
             font = .system(size: property.fontSize, weight: property.fontWeight.toFontWeight)
