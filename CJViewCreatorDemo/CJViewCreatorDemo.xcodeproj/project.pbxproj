@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9778BD072FA38A9F00201441 /* TSViewExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD052FA38A9F00201441 /* TSViewExtensionView.swift */; };
+		9778BD082FA38A9F00201441 /* TSTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD042FA38A9F00201441 /* TSTextInputView.swift */; };
 		977BB3662D132E68000BB956 /* TSRowDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977BB3652D132E68000BB956 /* TSRowDataUtil.swift */; };
 		977EFC8E2D16F73300AFCEAC /* border_7_2x2.webp in Resources */ = {isa = PBXBuildFile; fileRef = 977EFC622D16F73300AFCEAC /* border_7_2x2.webp */; };
 		977EFC8F2D16F73300AFCEAC /* border_6_2x2.webp in Resources */ = {isa = PBXBuildFile; fileRef = 977EFC632D16F73300AFCEAC /* border_6_2x2.webp */; };
@@ -77,6 +79,8 @@
 		16908EAD7B427776A24181FC /* Pods-CJViewCreatorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJViewCreatorDemo.debug.xcconfig"; path = "Target Support Files/Pods-CJViewCreatorDemo/Pods-CJViewCreatorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		31ADAE5EF674111245C7D630 /* Pods-CJViewCreatorDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CJViewCreatorDemo.release.xcconfig"; path = "Target Support Files/Pods-CJViewCreatorDemo/Pods-CJViewCreatorDemo.release.xcconfig"; sourceTree = "<group>"; };
 		974B4C6B2D1457F9004E5171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9778BD042FA38A9F00201441 /* TSTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSTextInputView.swift; sourceTree = "<group>"; };
+		9778BD052FA38A9F00201441 /* TSViewExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSViewExtensionView.swift; sourceTree = "<group>"; };
 		977BB3652D132E68000BB956 /* TSRowDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSRowDataUtil.swift; sourceTree = "<group>"; };
 		977EFC622D16F73300AFCEAC /* border_7_2x2.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = border_7_2x2.webp; sourceTree = "<group>"; };
 		977EFC632D16F73300AFCEAC /* border_6_2x2.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = border_6_2x2.webp; sourceTree = "<group>"; };
@@ -196,6 +200,15 @@
 				977EFCCC2D1863B200AFCEAC /* font_09.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		9778BD062FA38A9F00201441 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				9778BD042FA38A9F00201441 /* TSTextInputView.swift */,
+				9778BD052FA38A9F00201441 /* TSViewExtensionView.swift */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 		977BB3672D1332E3000BB956 /* SquareResultView */ = {
@@ -325,6 +338,7 @@
 				9785B0612D0EF3AE00CFE0F4 /* CJViewCreatorDemoApp.swift */,
 				9785B0632D0EF3AE00CFE0F4 /* ContentView.swift */,
 				9785B1432D106BEF00CFE0F4 /* TSContentView.swift */,
+				9778BD062FA38A9F00201441 /* Demo */,
 				9785B0AC2D0F048E00CFE0F4 /* ViewCreatorPage */,
 				977EFCC22D180AEE00AFCEAC /* ComponentConfigModel */,
 				9785B0832D0EFFEB00CFE0F4 /* Data */,
@@ -512,9 +526,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CJViewCreatorDemo/Pods-CJViewCreatorDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CJViewCreatorDemo/Pods-CJViewCreatorDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -537,6 +555,8 @@
 				977EFD002D186B6B00AFCEAC /* CJDatesSettingView.swift in Sources */,
 				9785B13D2D0F37AB00CFE0F4 /* TSViewCreatorPage.swift in Sources */,
 				9785B0642D0EF3AE00CFE0F4 /* ContentView.swift in Sources */,
+				9778BD072FA38A9F00201441 /* TSViewExtensionView.swift in Sources */,
+				9778BD082FA38A9F00201441 /* TSTextInputView.swift in Sources */,
 				977BB3662D132E68000BB956 /* TSRowDataUtil.swift in Sources */,
 				977EFCF32D186A9100AFCEAC /* CJSheetActionType.swift in Sources */,
 				977EFD052D186B6B00AFCEAC /* CJDateChooseRow.swift in Sources */,

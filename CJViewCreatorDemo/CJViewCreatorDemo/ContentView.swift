@@ -33,6 +33,14 @@ struct ContentView: View {
                     count = count + 1
                 }
                 
+                NavigationLink(destination: TSViewExtensionView()) {
+                    Text("View 扩展测试")
+                }
+                
+                NavigationLink(destination: TSTextInputView()) {
+                    Text("CJTextInputView 测试")
+                }
+                
 
                 HStack(alignment: .top, spacing: 0) {
                     CJVEVerticalTextView(
