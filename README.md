@@ -116,6 +116,14 @@ let borderModel = CJBorderDataModel(id: "border_1", imageName: "border_image")
 | `CJDatesSettingView` | 日期设置视图 |
 | `CJTextsSettingView` | 文本设置视图 |
 
+
+
+## TODO
+
+【Feature】尝试对 位置与尺寸的设置视图 进行新增恢复动作。但失败，原因 CJPositionSizeSettingRow 里 onChange之后触发了更新UI，然后又重新走到了CJPositionSizeSettingRow 的init里，导致origin使用了onChange之后的值。所以待继续修改，其他的也类似，可以考虑 onChange 触发的更新UI，在 TSViewCreatorPage 中能否只更新 CJSquareView ，而不更新 CJToolView。
+
+
+
 ## 系统要求
 
 - iOS 17.0+

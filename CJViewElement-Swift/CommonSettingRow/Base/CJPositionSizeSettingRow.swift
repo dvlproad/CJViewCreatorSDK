@@ -7,51 +7,60 @@
 
 import SwiftUI
 
-public struct CJPositionSizeSettingRow: View {
-    var title: String
-    @Binding var left: CGFloat
-    @Binding var top: CGFloat
-    @Binding var width: CGFloat
-    @Binding var height: CGFloat
-    var onChange: (() -> Void)?
+public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
+    let title: String
+    let originalLayout: LayoutType   // let 保证不会被意外修改
+    @State var currentLayout: LayoutType
+    var onChange: ((LayoutType) -> Void)?
     
     public init(
         title: String = "位置与尺寸",
-        left: Binding<CGFloat>,
-        top: Binding<CGFloat>,
-        width: Binding<CGFloat>,
-        height: Binding<CGFloat>,
-        onChange: (() -> Void)? = nil
+        originalLayout: LayoutType,
+        onChange: ((LayoutType) -> Void)? = nil
     ) {
         self.title = title
-        self._left = left
-        self._top = top
-        self._width = width
-        self._height = height
+        // 保存 originalLayout 的独立副本（深拷贝）
+        self.originalLayout = originalLayout.copy() as! LayoutType
+        // currentLayout 也初始化为副本，避免和外部共享引用
+        self._currentLayout = State(initialValue: originalLayout.copy() as! LayoutType)
         self.onChange = onChange
     }
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .foregroundColor(Color(hex: "#333333"))
-                .font(.system(size: 15.5, weight: .medium))
-                .padding(.leading, 21)
-                .padding(.top, 0)
-                .padding(.bottom, 4)
+            CJSettingTitleRow(
+                title: title,
+                showRecoverIcon: .constant(true),
+                onTapRecover: {
+                    // 恢复时从 originalLayout 重新拷贝，确保是全新对象
+                    currentLayout = originalLayout.copy() as! LayoutType
+                    onChange?(currentLayout)
+                }
+            )
+            .padding(.leading, 21)
+            .padding(.top, 0)
+            .padding(.bottom, 4)
             
-            PositionSizeInputView(left: $left, top: $top, width: $width, height: $height, onChange: onChange)
-                .padding(.horizontal, 10)
-                .padding(.bottom, 4)
+            PositionSizeInputView(
+                left: Binding(get: { currentLayout.left }, set: { currentLayout.left = $0 }),
+                top: Binding(get: { currentLayout.top }, set: { currentLayout.top = $0 }),
+                width: Binding(get: { currentLayout.width }, set: { currentLayout.width = $0 }),
+                height: Binding(get: { currentLayout.height }, set: { currentLayout.height = $0 }),
+                onChange: {
+                    onChange?(currentLayout)
+                }
+            )
+            .padding(.horizontal, 10)
+            .padding(.bottom, 4)
         }
     }
 }
 
 #Preview {
     CJPositionSizeSettingRow(
-        left: .constant(10),
-        top: .constant(20),
-        width: .constant(200),
-        height: .constant(100)
+        originalLayout: CJBaseLayoutModel(left: 10, top: 20, width: 200, height: 100),
+        onChange: { layout in
+            print("layout changed: \(layout)")
+        }
     )
 }

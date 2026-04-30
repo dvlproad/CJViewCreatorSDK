@@ -112,11 +112,9 @@ struct CJTextsSettingView: View {
                 
                 CJPositionSizeSettingRow(
                     title: "位置与尺寸",
-                    left: Binding(get: { model.layout.left }, set: { model.layout.left = $0 }),
-                    top: Binding(get: { model.layout.top }, set: { model.layout.top = $0 }),
-                    width: Binding(get: { model.layout.width }, set: { model.layout.width = $0 }),
-                    height: Binding(get: { model.layout.height }, set: { model.layout.height = $0 }),
-                    onChange: {
+                    originalLayout: model.layout,
+                    onChange: { newLayout in
+                        model.layout = newLayout
                         self.updateUI()
                     }
                 )
