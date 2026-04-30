@@ -41,6 +41,10 @@ struct ContentView: View {
                     Text("CJTextInputView 测试")
                 }
                 
+                NavigationLink(destination: PositionSizeTestView()) {
+                    Text("PositionSizeInputView 测试")
+                }
+                
 
                 HStack(alignment: .top, spacing: 0) {
                     CJVEVerticalTextView(

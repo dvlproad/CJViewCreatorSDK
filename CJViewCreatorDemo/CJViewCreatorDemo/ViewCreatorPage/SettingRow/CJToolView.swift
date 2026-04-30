@@ -95,6 +95,7 @@ struct CJToolView: View {
                             .background(Color.green.opacity(0.3))
                             .frame(height: 40)
                             
+                            // 文字列表操作视图
                             CJTextsSettingView(
                                 title: "我是新的日期标题",
                                 minCount: 1,

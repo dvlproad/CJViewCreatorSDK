@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9778BD072FA38A9F00201441 /* TSViewExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD052FA38A9F00201441 /* TSViewExtensionView.swift */; };
 		9778BD082FA38A9F00201441 /* TSTextInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD042FA38A9F00201441 /* TSTextInputView.swift */; };
+		9778BD0C2FA3B49B00201441 /* PositionSizeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD0B2FA3B49B00201441 /* PositionSizeInputView.swift */; };
+		9778BD0E2FA3B59E00201441 /* PositionSizeTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9778BD0D2FA3B59E00201441 /* PositionSizeTestView.swift */; };
 		977BB3662D132E68000BB956 /* TSRowDataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977BB3652D132E68000BB956 /* TSRowDataUtil.swift */; };
 		977EFC8E2D16F73300AFCEAC /* border_7_2x2.webp in Resources */ = {isa = PBXBuildFile; fileRef = 977EFC622D16F73300AFCEAC /* border_7_2x2.webp */; };
 		977EFC8F2D16F73300AFCEAC /* border_6_2x2.webp in Resources */ = {isa = PBXBuildFile; fileRef = 977EFC632D16F73300AFCEAC /* border_6_2x2.webp */; };
@@ -81,6 +83,8 @@
 		974B4C6B2D1457F9004E5171 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9778BD042FA38A9F00201441 /* TSTextInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSTextInputView.swift; sourceTree = "<group>"; };
 		9778BD052FA38A9F00201441 /* TSViewExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSViewExtensionView.swift; sourceTree = "<group>"; };
+		9778BD0B2FA3B49B00201441 /* PositionSizeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSizeInputView.swift; sourceTree = "<group>"; };
+		9778BD0D2FA3B59E00201441 /* PositionSizeTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSizeTestView.swift; sourceTree = "<group>"; };
 		977BB3652D132E68000BB956 /* TSRowDataUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSRowDataUtil.swift; sourceTree = "<group>"; };
 		977EFC622D16F73300AFCEAC /* border_7_2x2.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = border_7_2x2.webp; sourceTree = "<group>"; };
 		977EFC632D16F73300AFCEAC /* border_6_2x2.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = border_6_2x2.webp; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 			isa = PBXGroup;
 			children = (
 				9785B13C2D0F37AB00CFE0F4 /* TSViewCreatorPage.swift */,
+				9778BD0B2FA3B49B00201441 /* PositionSizeInputView.swift */,
+				9778BD0D2FA3B59E00201441 /* PositionSizeTestView.swift */,
 				977BB3672D1332E3000BB956 /* SquareResultView */,
 				9785B14A2D10795100CFE0F4 /* SettingRow */,
 			);
@@ -561,8 +567,10 @@
 				977EFCF32D186A9100AFCEAC /* CJSheetActionType.swift in Sources */,
 				977EFD052D186B6B00AFCEAC /* CJDateChooseRow.swift in Sources */,
 				97D235362D1C406D0002F2F3 /* CJTextsSettingView.swift in Sources */,
+				9778BD0E2FA3B59E00201441 /* PositionSizeTestView.swift in Sources */,
 				977EFD042D186B6B00AFCEAC /* CJDateListRow.swift in Sources */,
 				977EFD022D186B6B00AFCEAC /* CJSegmentedSettingRow.swift in Sources */,
+				9778BD0C2FA3B49B00201441 /* PositionSizeInputView.swift in Sources */,
 				977EFD082D18743000AFCEAC /* CJCommemorationDateSettingView.swift in Sources */,
 				9785B0622D0EF3AE00CFE0F4 /* CJViewCreatorDemoApp.swift in Sources */,
 				977EFD012D186B6B00AFCEAC /* CJDateRepateRow.swift in Sources */,
