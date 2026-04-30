@@ -207,16 +207,6 @@ struct CJToolView: View {
 //                        }
 //                    }
                 }
-                .simultaneousGesture(TapGesture().onEnded({ _ in
-                    dismissMenu()
-                }).simultaneously(with: DragGesture()
-                    .onChanged { _ in
-                        debugPrint("Scroll onChanged")
-                        dismissMenu()
-                    }
-                    .onEnded { _ in
-                        debugPrint("Scroll ended")
-                    }))
             }
             .coordinateSpace(name: "CommonToolsView")
             .id(refreshID)
