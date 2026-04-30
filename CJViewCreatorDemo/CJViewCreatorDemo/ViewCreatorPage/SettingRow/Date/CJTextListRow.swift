@@ -102,9 +102,8 @@ struct CJTextListRow: View {
                             let itemModel: CJTextComponentConfigModel = items[index] // 显式解包
                             let item: CJTextDataModel = itemModel.data
 
-                            CountdownLabel(
+                            TextActionLabel(
                                 title: item.text,
-                                date: item.text,
 //                                backgroundColor: item.backgroundColor,
                                 isEditing: index == currentIndex,
                                 allowDelete: allowsDelete,
@@ -158,74 +157,69 @@ struct CJTextListRow: View {
 //}
 //
 //
-//
-//// MARK: - 倒数日标签
-//struct CountdownLabel: View {
-//    let title: String
-//    let date: String
-////    let backgroundColor: Color?
-//    let isEditing: Bool
-//    let allowDelete: Bool
-//    let onDelete: () -> Void
-//    
-//    @ViewBuilder
-//    var body: some View {
-//        ZStack(alignment: .topTrailing) {
-//            // 主要内容
-//            VStack(alignment: .leading, spacing: 4) {
-//                Text(title)
-//                    .lineLimit(1)
-//                    .foregroundColor(Color(hex: "#333333"))
-//                    .font(.system(size: 13))
-////                    .padding(.trailing, 20) // 为删除按钮留出空间
-//                
-//                Text(date)
-//                    .foregroundColor(Color(hex: "#333333"))
-//                    .font(.system(size: 11))
-//            }
-////            .padding(.horizontal, 12)
-////            .padding(.vertical, 24)
-//            .frame(width: 90, height: 60)
-//            .background(
-//                RoundedRectangle(cornerRadius: 13)
-//                    .fill(Color(hex: "#FFE352").opacity(isEditing ? 1.0 : 0.3))
-//            )
-//            
-//            // 删除按钮
-//            if allowDelete {
-//                Button(action: onDelete) {
-//                    Image(systemName: "minus.circle.fill")
-//                        .foregroundColor(.black)
-//                        .font(.system(size: 16))
-//                }
-//                .offset(x: 5, y: -5)
-//            }
-//        }
-//        .frame(width: 100, height: 80)
-//        //.backgroundColor(Color.red)
-//    }
-//}
-//
-//// MARK: - 预览 CountdownLabel
-//struct CountdownLabel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CountdownLabel(
-//            title: "国庆节",
-//            date: "2024-10-01",
-//            isEditing: true,
-//            allowDelete: true,
-//            onDelete: {
-//                // 这里可以放置一个打印语句或者实际的删除逻辑
-//                print("Delete button tapped")
-//            }
-//        )
-//        .previewLayout(.sizeThatFits)
-//        .padding() // 给预览添加一些边距
-//        .background(Color.blue) // 给预览添加一个白色背景
-//    }
-//}
-//
-//
+
+
+// MARK: - 文本操作标签
+struct TextActionLabel: View {
+    let title: String
+//    let backgroundColor: Color?
+    let isEditing: Bool
+    let allowDelete: Bool
+    let onDelete: () -> Void
+    
+    @ViewBuilder
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            // 主要内容
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .lineLimit(1)
+                    .foregroundColor(Color(hex: "#333333"))
+                    .font(.system(size: 13))
+//                    .padding(.trailing, 20) // 为删除按钮留出空间
+                
+            }
+//            .padding(.horizontal, 12)
+//            .padding(.vertical, 24)
+            .frame(width: 90, height: 60)
+            .background(
+                RoundedRectangle(cornerRadius: 13)
+                    .fill(Color(hex: "#FFE352").opacity(isEditing ? 1.0 : 0.3))
+            )
+            
+            // 删除按钮
+            if allowDelete {
+                Button(action: onDelete) {
+                    Image(systemName: "minus.circle.fill")
+                        .foregroundColor(.black)
+                        .font(.system(size: 16))
+                }
+                .offset(x: 5, y: -5)
+            }
+        }
+        .frame(width: 100, height: 80)
+        //.backgroundColor(Color.red)
+    }
+}
+
+// MARK: - 预览 TextActionLabel
+struct TextActionLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        TextActionLabel(
+            title: "我是文本",
+            isEditing: true,
+            allowDelete: true,
+            onDelete: {
+                // 这里可以放置一个打印语句或者实际的删除逻辑
+                print("Delete button tapped")
+            }
+        )
+        .previewLayout(.sizeThatFits)
+        .padding() // 给预览添加一些边距
+        .background(Color.blue) // 给预览添加一个白色背景
+    }
+}
+
 //
 //
 //

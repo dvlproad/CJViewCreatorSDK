@@ -92,7 +92,7 @@ struct CJToolView: View {
                             .withCornerRadius(10.0, horizontalPadding: 10.0)
                             .withLevelOneLeadingTitle("文字", titleWidth: 40)
                             .padding(.horizontal, 20)
-                            //.background(Color.green.opacity(0.3))
+                            .background(Color.green.opacity(0.3))
                             .frame(height: 40)
                             
                             CJTextsSettingView(
@@ -140,7 +140,7 @@ struct CJToolView: View {
 //                                    popMenus.append(<#T##Element#>)
                                 }
                             )
-                            //.background(Color.blue.opacity(0.3))
+                            .background(Color.blue.opacity(0.3))
                         }
                         
                         // 背景颜色(橙色)
