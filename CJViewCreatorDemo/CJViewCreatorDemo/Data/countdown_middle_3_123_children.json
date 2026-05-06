@@ -543,6 +543,7 @@
             "id": "border",
             "componentType": "border",
             "data": {
+                "imageName": "border_5",
                 "text": "我是边框颜色"
             },
             "layout": {

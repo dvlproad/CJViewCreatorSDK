@@ -13,19 +13,36 @@ class CQWidgetModel {
     var backgroundModel: CJBoxDecorationModel
     var borderModel: CJBorderDataModel
     
-    init() {
+    convenience init() {
         let layoutId = "countdown_middle_3_123_children"
-        self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
-        
-        self.backgroundModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
-        self.borderModel = TSRowDataUtil.backgroundBorderData().last!
+        self.init(layoutId)
     }
     
     init(_ layoutId: String) {
         self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
+        self.backgroundModel = anyComponentModel.defaultBackground
+        self.borderModel = anyComponentModel.defaultBorder
+    }
+}
+
+extension CJAllComponentConfigModel {
+    var defaultBackground: CJBoxDecorationModel {
+        guard let firstBackgroundComponent = backgroundTextComponents.first else {
+            return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
+        }
         
-        self.backgroundModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
-        self.borderModel = TSRowDataUtil.backgroundBorderData().last!
+        if let backgroundColor = firstBackgroundComponent.layout.backgroundColor {
+            return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: backgroundColor))
+        }
+        
+        return firstBackgroundComponent.layout.background
     }
     
+    var defaultBorder: CJBorderDataModel {
+        guard let firstBorderComponent = borderComponents.first else {
+            return TSRowDataUtil.backgroundBorderData().last!
+        }
+        
+        return firstBorderComponent.data
+    }
 }
