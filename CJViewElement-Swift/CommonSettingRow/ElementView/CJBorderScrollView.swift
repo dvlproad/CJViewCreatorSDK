@@ -10,16 +10,16 @@ import SwiftUI
 
 public struct CJBorderScrollView: View {
     public var borderModels: [CJBorderDataModel]
-    @State public var currentBorderModel: CJBorderDataModel
+    @Binding public var currentBorderModel: CJBorderDataModel
     public var onChangeOfBorderModel: ((_ newBorderModel: CJBorderDataModel) -> Void)
     
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
-    public init(borderModels: [CJBorderDataModel], currentBorderModel: CJBorderDataModel, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
+    public init(borderModels: [CJBorderDataModel], currentBorderModel: Binding<CJBorderDataModel>, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
         self.borderModels = borderModels
-        self.currentBorderModel = currentBorderModel
+        self._currentBorderModel = currentBorderModel
         self.onChangeOfBorderModel = onChangeOfBorderModel
     }
     
@@ -30,7 +30,7 @@ public struct CJBorderScrollView: View {
                 LazyHStack(spacing: 10) {
                     ZStack {
                         ColorPicker("颜色", selection: $paletteSelectedColor, supportsOpacity: false)
-                            .frame(width: 30,height: 30)
+                            .frame(width: 30, height: 30)
                             .offset(x: -4)
                             .overlay(
                                 Image("colorPalette")
@@ -39,7 +39,7 @@ public struct CJBorderScrollView: View {
                                     .frame(width: showPalette ? 30 : 0, height: showPalette ? 30 : 0)
                                     .allowsHitTesting(false)
                             )
-                    }.frame(width: 30,height: 30)
+                    }.frame(width: 30, height: 30)
                     
 //                            ForEach(0..<items.count, id:\.self) { index in
 //                                let item = items[index].data
@@ -52,7 +52,7 @@ public struct CJBorderScrollView: View {
                     }
                 }
                 .padding(.horizontal, 21)
-                .frame( height: 40)
+                .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in
                 withAnimation {
@@ -60,6 +60,9 @@ public struct CJBorderScrollView: View {
                         scrollView.scrollTo(index, anchor: .center)
                     }
                 }
+            }
+            .onChange(of: currentBorderModel) { oldValue, newValue in
+                selectedIndex = borderModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
             }
             .onAppear() {
                 selectedIndex = borderModels.firstIndex(where: { $0.id == currentBorderModel.id }) ?? -1
@@ -94,17 +97,17 @@ public struct CJBorderIcon: View {
     var borderImageName: String
     var isSelected: Bool
     
-    public var body: some View{
-        ZStack{
+    public var body: some View {
+        ZStack {
             Image(borderImageName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 38,height: 38)
+                .frame(width: 38, height: 38)
             if isSelected {
                 Image("check")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 14,height: 10)
+                    .frame(width: 14, height: 10)
             }
         }
     }

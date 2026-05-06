@@ -1,5 +1,5 @@
 //
-//  CJColorScrollView.swift
+//  CJFontScrollView.swift
 //  CJViewCreatorDemo
 //
 //  Created by qian on 2024/12/15.
@@ -10,16 +10,16 @@ import SwiftUI
 
 public struct CJFontScrollView: View {
     var fontModels: [CJFontDataModel]
-    @State var currentFontModel: CJFontDataModel
+    @Binding var currentFontModel: CJFontDataModel
     var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
-    public init(fontModels: [CJFontDataModel], currentFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
+    public init(fontModels: [CJFontDataModel], currentFontModel: Binding<CJFontDataModel>, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
         self.fontModels = fontModels
-        self.currentFontModel = currentFontModel
+        self._currentFontModel = currentFontModel
         self.onChangeOfFontModel = onChangeOfFontModel
     }
     
@@ -33,13 +33,13 @@ public struct CJFontScrollView: View {
                     ForEach(Array(fontModels.enumerated()), id: \.offset) { index, model in
                         CJFontIcon(fontModel: model, isSelected: currentFontModel.id == model.id)
                             .onTapGesture {
-                                tapColor(index, fontModel: model)
+                                selectFont(index, fontModel: model)
                             }
                             .id(index)
                     }
                 }
                 .padding(.horizontal, 21)
-                .frame( height: 40)
+                .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in
                 withAnimation {
@@ -47,6 +47,9 @@ public struct CJFontScrollView: View {
                         scrollView.scrollTo(index, anchor: .center)
                     }
                 }
+            }
+            .onChange(of: currentFontModel) { oldValue, newValue in
+                selectedIndex = fontModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
             }
             .onAppear() {
                 selectedIndex = fontModels.firstIndex(where: { $0.id == currentFontModel.id }) ?? -1
@@ -67,7 +70,7 @@ public struct CJFontScrollView: View {
     }
     
     // MARK: Event
-    private func tapColor(_ index: Int, fontModel: CJFontDataModel) {
+    private func selectFont(_ index: Int, fontModel: CJFontDataModel) {
         currentFontModel = fontModel
         
         selectedIndex = fontModels.firstIndex(where: { $0.id == fontModel.id }) ?? -1

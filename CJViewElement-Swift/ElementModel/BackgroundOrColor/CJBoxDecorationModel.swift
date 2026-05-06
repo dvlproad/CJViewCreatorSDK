@@ -76,6 +76,17 @@ public class CJBoxDecorationModel: CJBaseModel {
 //        }
 //        return .none
 //    }
+    
+    /// 返回更新了 colorModel 的新实例（用于 SwiftUI @State 更新）
+    public func withColorModel(_ newColorModel: CJTextColorDataModel) -> CJBoxDecorationModel {
+        return CJBoxDecorationModel(
+            id: self.id,
+            colorModel: newColorModel,
+            imageModel: self.imageModel,
+            borderRadius: self.borderRadius,
+            border: self.border
+        )
+    }
 }
 
 

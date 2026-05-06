@@ -10,16 +10,16 @@ import SwiftUI
 
 public struct CJColorScrollView: View {
     public var colorModels: [CJTextColorDataModel]
-    @State public var currentColorModel: CJTextColorDataModel
+    @Binding public var currentColorModel: CJTextColorDataModel
     public var onChangeOfColorModel: ((_ newColorModel: CJTextColorDataModel) -> Void)
     
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
-    public init(colorModels: [CJTextColorDataModel], currentColorModel: CJTextColorDataModel, onChangeOfColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
+    public init(colorModels: [CJTextColorDataModel], currentColorModel: Binding<CJTextColorDataModel>, onChangeOfColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.colorModels = colorModels
-        self.currentColorModel = currentColorModel
+        self._currentColorModel = currentColorModel
         self.onChangeOfColorModel = onChangeOfColorModel
     }
     
@@ -30,20 +30,20 @@ public struct CJColorScrollView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 10) {
                     CJColorPickerIcon(paletteSelectedColor: $paletteSelectedColor, showPalette: $showPalette)
-                        .frame(width: 30,height: 30)
+                        .frame(width: 30, height: 30)
                     
 //                            ForEach(0..<items.count, id:\.self) { index in
 //                                let item = items[index].data
                     ForEach(Array(colorModels.enumerated()), id: \.offset) { index, model in
                         CJColorIcon(colorModel: model, isSelected: currentColorModel.id == model.id)
                             .onTapGesture {
-                                tapColor(index, colorModel: model)
+                                selectColor(index, colorModel: model)
                             }
                             .id(index)
                     }
                 }
                 .padding(.horizontal, 21)
-                .frame( height: 40)
+                .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in
                 withAnimation {
@@ -51,6 +51,9 @@ public struct CJColorScrollView: View {
                         scrollView.scrollTo(index, anchor: .center)
                     }
                 }
+            }
+            .onChange(of: currentColorModel) { oldValue, newValue in
+                selectedIndex = colorModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
             }
             .onAppear() {
                 selectedIndex = colorModels.firstIndex(where: { $0.id == currentColorModel.id }) ?? -1
@@ -71,7 +74,7 @@ public struct CJColorScrollView: View {
     }
     
     // MARK: Event
-    private func tapColor(_ index: Int, colorModel: CJTextColorDataModel) {
+    private func selectColor(_ index: Int, colorModel: CJTextColorDataModel) {
         currentColorModel = colorModel
         
         selectedIndex = colorModels.firstIndex(where: { $0.id == colorModel.id }) ?? -1
@@ -91,14 +94,14 @@ public struct CJColorIcon: View {
             Rectangle()
                 .fill(colorModel.linearGradientColor)
                 .contentShape(Rectangle()) // 确保整个区域都是可点击的
-                .frame(width: 30,height: 30)
+                .frame(width: 30, height: 30)
                 .cornerRadius(15)
             
             if isSelected {
                 Image("check")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 14,height: 10)
+                    .frame(width: 14, height: 10)
             }
         }
     }

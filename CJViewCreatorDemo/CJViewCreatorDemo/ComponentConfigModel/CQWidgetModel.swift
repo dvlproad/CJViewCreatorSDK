@@ -10,16 +10,22 @@ import CJViewElement_Swift
 
 class CQWidgetModel {
     var anyComponentModel: CJAllComponentConfigModel = CJAllComponentConfigModel()
-    var backgroundModel: CJBoxDecorationModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
-    var borderModel: CJBorderDataModel = CJBorderDataModel()
+    var backgroundModel: CJBoxDecorationModel
+    var borderModel: CJBorderDataModel
     
     init() {
         let layoutId = "countdown_middle_3_123_children"
         self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
+        
+        self.backgroundModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
+        self.borderModel = TSRowDataUtil.backgroundBorderData().last!
     }
     
     init(_ layoutId: String) {
         self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
+        
+        self.backgroundModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
+        self.borderModel = TSRowDataUtil.backgroundBorderData().last!
     }
     
 }

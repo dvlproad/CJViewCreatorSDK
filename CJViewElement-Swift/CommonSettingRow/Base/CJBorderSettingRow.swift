@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct CJBorderSettingRow: View {
     public let models: [CJBorderDataModel]
-    public var originalBorderModel: CJBorderDataModel
+    public let originalBorderModel: CJBorderDataModel
     @State var currentBorderModel: CJBorderDataModel = CJBorderDataModel()
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     
@@ -20,7 +20,7 @@ public struct CJBorderSettingRow: View {
     public init(models: [CJBorderDataModel], originalBorderModel: CJBorderDataModel, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
         self.models = models
         self.originalBorderModel = originalBorderModel
-//        self.currentBorderModel = currentBorderModel
+        self._currentBorderModel = State(initialValue: originalBorderModel)
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfBorderModel = onChangeOfBorderModel
@@ -32,6 +32,8 @@ public struct CJBorderSettingRow: View {
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "边框", showRecoverIcon: .constant(true)) {
                     currentBorderModel = originalBorderModel
+                    selectedIndex = models.firstIndex(where: { $0.id == originalBorderModel.id }) ?? -1
+                    onChangeOfBorderModel(originalBorderModel)
                 }.padding(.leading, 21)
                 
                 borderScrollView
@@ -62,7 +64,7 @@ public struct CJBorderSettingRow: View {
             borderModels.append(borderModel)
         }
         
-        return CJBorderScrollView(borderModels: borderModels, currentBorderModel: currentBorderModel, onChangeOfBorderModel: { newBorderModel in
+        return CJBorderScrollView(borderModels: borderModels, currentBorderModel: $currentBorderModel, onChangeOfBorderModel: { newBorderModel in
             currentBorderModel = newBorderModel
             
             selectedIndex = models.firstIndex(where: { $0.id == newBorderModel.id }) ?? -1

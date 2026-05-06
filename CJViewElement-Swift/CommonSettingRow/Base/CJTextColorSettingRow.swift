@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct CJTextColorSettingRow: View {
     public let models: [CJTextColorDataModel]
-    public var originalTextColorModel: CJTextColorDataModel
+    public let originalTextColorModel: CJTextColorDataModel
     @State var currentTextColorModel: CJTextColorDataModel = CJTextColorDataModel()
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     
@@ -20,7 +20,7 @@ public struct CJTextColorSettingRow: View {
     public init(models: [CJTextColorDataModel], originalTextColorModel: CJTextColorDataModel, onChangeOfTextColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.models = models
         self.originalTextColorModel = originalTextColorModel
-//        self.currentTextColorModel = currentTextColorModel
+        self._currentTextColorModel = State(initialValue: originalTextColorModel)
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfTextColorModel = onChangeOfTextColorModel
@@ -32,6 +32,7 @@ public struct CJTextColorSettingRow: View {
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "字体颜色", showRecoverIcon: .constant(true)) {
                     currentTextColorModel = originalTextColorModel
+                    onChangeOfTextColorModel(originalTextColorModel)
                 }.padding(.leading, 21)
                 
                 colorScrollView
@@ -62,7 +63,7 @@ public struct CJTextColorSettingRow: View {
             colorModels.append(colorModel)
         }
         
-        return CJColorScrollView(colorModels: colorModels, currentColorModel: currentTextColorModel, onChangeOfColorModel: { newColorModel in
+        return CJColorScrollView(colorModels: colorModels, currentColorModel: $currentTextColorModel, onChangeOfColorModel: { newColorModel in
             currentTextColorModel = newColorModel
             
             selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1

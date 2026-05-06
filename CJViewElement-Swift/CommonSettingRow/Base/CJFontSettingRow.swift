@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct CJFontSettingRow: View {
     public let models: [CJFontDataModel]
-    public var originalFontModel: CJFontDataModel
+    public let originalFontModel: CJFontDataModel
     @State var currentFontModel: CJFontDataModel = CJFontDataModel()
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     
@@ -20,7 +20,7 @@ public struct CJFontSettingRow: View {
     public init(models: [CJFontDataModel], originalFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
         self.models = models
         self.originalFontModel = originalFontModel
-//        self.currentFontModel = currentFontModel
+        self._currentFontModel = State(initialValue: originalFontModel)
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfFontModel = onChangeOfFontModel
@@ -32,6 +32,7 @@ public struct CJFontSettingRow: View {
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "字体", showRecoverIcon: .constant(true)) {
                     currentFontModel = originalFontModel
+                    onChangeOfFontModel(originalFontModel)
                 }.padding(.leading, 21)
                 
                 fontScrollView
@@ -62,7 +63,7 @@ public struct CJFontSettingRow: View {
             fontModels.append(fontModel)
         }
         
-        return CJFontScrollView(fontModels: fontModels, currentFontModel: currentFontModel, onChangeOfFontModel: { newFontModel in
+        return CJFontScrollView(fontModels: fontModels, currentFontModel: $currentFontModel, onChangeOfFontModel: { newFontModel in
             currentFontModel = newFontModel
             
             selectedIndex = models.firstIndex(where: { $0.id == newFontModel.id }) ?? -1

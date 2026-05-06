@@ -172,37 +172,37 @@ struct CJToolView: View {
                             //.background(Color.purple.opacity(0.3))
 
                             // 字体颜色(黄色)
-                            CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: CJTextColorDataModel(id: "111",
-                                                                                               startPoint: .topLeading,
-                                                                                               endPoint: .bottomTrailing,
-                                                                                               colorStrings: ["#F8AC9F","#F9EFE5"]
-                                                                                              ), onChangeOfTextColorModel: { newTextColorModel in
-                                let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
-                                if newTextColorModel.colorStrings.count == 1 {
-                                    for showingModel in showingModels {
-                                        showingModel.layout.foregroundColor = newTextColorModel.colorStrings[0]
-                                    }
-                                    
-                                } else {
-                                    let forgroundColorString = Color.clear.toHex()!
-                                    for showingModel in showingModels {
-                                        showingModel.layout.foregroundColor = forgroundColorString
-                                        let overlay: CJBoxDecorationModel? = showingModel.layout.overlay
-                                        if overlay != nil {
-                                            overlay?.colorModel = newTextColorModel
-                                        } else {
-                                            showingModel.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
+                            CJTextColorSettingRow(
+                                models: TSRowDataUtil.fontColorData(),
+                                originalTextColorModel: CJTextColorDataModel(id: "111", startPoint: .topLeading, endPoint: .bottomTrailing, colorStrings: ["#F8FCFF","#F9EFFF"]),
+                                onChangeOfTextColorModel: { newTextColorModel in
+                                    let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
+                                    if newTextColorModel.colorStrings.count == 1 {
+                                        for showingModel in showingModels {
+                                            showingModel.layout.foregroundColor = newTextColorModel.colorStrings[0]
+                                        }
+                                        
+                                    } else {
+                                        let forgroundColorString = Color.clear.toHex()!
+                                        for showingModel in showingModels {
+                                            showingModel.layout.foregroundColor = forgroundColorString
+                                            let overlay: CJBoxDecorationModel? = showingModel.layout.overlay
+                                            if overlay != nil {
+                                                overlay?.colorModel = newTextColorModel
+                                            } else {
+                                                showingModel.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
+                                            }
                                         }
                                     }
+                                    onChangeOfElementModel(model)
                                 }
-                                onChangeOfElementModel(model)
-                            })
+                            )
                             //.background(Color.yellow.opacity(0.3))
                         }
                         
                         // 边框(粉红色)
                         if borderComponents.count > 0 {
-                            CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: CJBorderDataModel(id: "111", imageName: "border_8"), onChangeOfBorderModel: { newBorderModel in
+                            CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: model.borderModel, onChangeOfBorderModel: { newBorderModel in
                                 model.borderModel = newBorderModel
                                 onChangeOfElementModel(model)
                             })
