@@ -162,7 +162,10 @@ struct CJToolView: View {
                         // 字体+字体颜色
                         if existTextElement {
                             // 字体(紫色)
-                            CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4"), onChangeOfFontModel: { newFontModel in
+                            let originShowModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
+                            let referenceTextComponent: CJTextComponentConfigModel? = originShowModels.first
+                            let referenceFont = referenceTextComponent?.layout.font ?? CJFontDataModel()
+                            CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
                                 let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                 for showingModel in showingModels {
                                     showingModel.layout.font = newFontModel
@@ -172,9 +175,19 @@ struct CJToolView: View {
                             //.background(Color.purple.opacity(0.3))
 
                             // 字体颜色(黄色)
+                            let referenceTextColorModel: CJTextColorDataModel = {
+                                guard let firstLayout = referenceTextComponent?.layout else {
+                                    return CJTextColorDataModel(id: "111", startPoint: .topLeading, endPoint: .bottomTrailing, colorStrings: ["#F8FCFF","#F9EFFF"])
+                                }
+                                if let overlayColorModel = firstLayout.overlay?.colorModel {
+                                    return overlayColorModel
+                                } else {
+                                    return CJTextColorDataModel(solidColorString: firstLayout.foregroundColor)
+                                }
+                            }()
                             CJTextColorSettingRow(
                                 models: TSRowDataUtil.fontColorData(),
-                                originalTextColorModel: CJTextColorDataModel(id: "111", startPoint: .topLeading, endPoint: .bottomTrailing, colorStrings: ["#F8FCFF","#F9EFFF"]),
+                                originalTextColorModel: referenceTextColorModel,
                                 onChangeOfTextColorModel: { newTextColorModel in
                                     let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                     if newTextColorModel.colorStrings.count == 1 {

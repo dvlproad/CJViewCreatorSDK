@@ -120,17 +120,15 @@ struct CJTextsSettingView: View {
                 )
                 //.background(Color.red.opacity(0.8))
                 
-                CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4"), onChangeOfFontModel: { newFontModel in
+                let referenceFont = CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4")
+                CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
                     model.layout.font = newFontModel
                     self.updateUI()
                 })
                 //.background(Color.green.opacity(0.8))
                 
-                CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: CJTextColorDataModel(id: "111",
-                                                                                                                          startPoint: .topLeading,
-                                                                                                                          endPoint: .bottomTrailing,
-                                                                                                                          colorStrings: ["#F8AC9F","#F9EFE5"]
-                                                                                                                         ), onChangeOfTextColorModel: { newTextColorModel in
+                let referenceTextColorModel: CJTextColorDataModel = CJTextColorDataModel(id: "111", startPoint: .topLeading, endPoint: .bottomTrailing, colorStrings: ["#F8AC9F","#F9EFE5"])
+                CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, onChangeOfTextColorModel: { newTextColorModel in
                     model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
                     self.updateUI()
                 })
