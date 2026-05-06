@@ -32,18 +32,18 @@ struct TSViewCreatorPage: View {
                     .frame(width: geometry.size.width, height: 200)
                     
                     CJToolView(model: $model, onChangeOfElementModel:{ newElementModel in
-                        backgroundModel = newElementModel.backgroundModel
+                        backgroundModel = newElementModel.anyComponentModel.backgroundModel
                         anyComponentModel = newElementModel.anyComponentModel
-                        borderModel = newElementModel.borderModel
+                        borderModel = newElementModel.anyComponentModel.borderModel
                         dealUpdateUI = dealUpdateUI + 1
                     })
                 }
             }
         }).onAppear(){
             model = CQWidgetModel("countdown_middle_3_123_children")
-            backgroundModel = model.backgroundModel
+            backgroundModel = model.anyComponentModel.backgroundModel
             anyComponentModel = model.anyComponentModel
-            borderModel = model.borderModel
+            borderModel = model.anyComponentModel.borderModel
         }
     }
 }

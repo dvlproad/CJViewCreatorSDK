@@ -146,8 +146,8 @@ struct CJToolView: View {
                         
                         // 背景颜色(橙色)
                         if backgroundTextComponents.count > 0 {
-                            CJBackgroundSettingRow(models: TSRowDataUtil.backgroundColorData(), originalBackgroundModel: model.backgroundModel, onChangeOfBackgroundModel: { newBackgroundModel in
-                                model.backgroundModel = newBackgroundModel
+                            CJBackgroundSettingRow(models: TSRowDataUtil.backgroundColorData(), originalBackgroundModel: model.anyComponentModel.backgroundModel, onChangeOfBackgroundModel: { newBackgroundModel in
+                                model.anyComponentModel.backgroundModel = newBackgroundModel
                                 
 //                                let randomColorString = Color.randomColor.toHex()!
 //                                model.backgroundModel.colorModel?.colorStrings = [randomColorString]
@@ -215,8 +215,8 @@ struct CJToolView: View {
                         
                         // 边框(粉红色)
                         if borderComponents.count > 0 {
-                            CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: model.borderModel, onChangeOfBorderModel: { newBorderModel in
-                                model.borderModel = newBorderModel
+                            CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: model.anyComponentModel.borderModel, onChangeOfBorderModel: { newBorderModel in
+                                model.anyComponentModel.borderModel = newBorderModel
                                 onChangeOfElementModel(model)
                             })
                             //.background(Color.pink.opacity(0.3))

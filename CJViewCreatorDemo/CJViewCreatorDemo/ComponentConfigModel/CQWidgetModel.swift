@@ -10,8 +10,7 @@ import CJViewElement_Swift
 
 class CQWidgetModel {
     var anyComponentModel: CJAllComponentConfigModel = CJAllComponentConfigModel()
-    var backgroundModel: CJBoxDecorationModel
-    var borderModel: CJBorderDataModel
+    // 其他会员、广告等属性...
     
     convenience init() {
         let layoutId = "countdown_middle_3_123_children"
@@ -20,29 +19,53 @@ class CQWidgetModel {
     
     init(_ layoutId: String) {
         self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
-        self.backgroundModel = anyComponentModel.defaultBackground
-        self.borderModel = anyComponentModel.defaultBorder
     }
 }
 
 extension CJAllComponentConfigModel {
-    var defaultBackground: CJBoxDecorationModel {
-        guard let firstBackgroundComponent = backgroundTextComponents.first else {
-            return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
+    var backgroundModel: CJBoxDecorationModel {
+        get {
+            guard let firstBackgroundComponent = backgroundTextComponents.first else {
+                return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: "#F8AC9F"))
+            }
+            
+            if let backgroundColor = firstBackgroundComponent.layout.backgroundColor {
+                return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: backgroundColor))
+            }
+            
+            return firstBackgroundComponent.layout.background
         }
-        
-        if let backgroundColor = firstBackgroundComponent.layout.backgroundColor {
-            return CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: backgroundColor))
+        set {
+            if backgroundTextComponents.isEmpty {
+                // 如果为空，需要创建一个新的 component
+                let newComponent = CJBackgroundComponentConfigModel()
+                newComponent.layout.background = newValue
+                backgroundTextComponents = [newComponent]
+            } else {
+                // 更新第一个 component 的 background
+                backgroundTextComponents[0].layout.background = newValue
+                // 同时清空 backgroundColor，避免优先级问题
+                backgroundTextComponents[0].layout.backgroundColor = nil
+            }
         }
-        
-        return firstBackgroundComponent.layout.background
     }
     
-    var defaultBorder: CJBorderDataModel {
-        guard let firstBorderComponent = borderComponents.first else {
-            return TSRowDataUtil.backgroundBorderData().last!
+    var borderModel: CJBorderDataModel {
+        get {
+            guard let firstBorderComponent = borderComponents.first else {
+                return TSRowDataUtil.backgroundBorderData().last!
+            }
+            
+            return firstBorderComponent.data
         }
-        
-        return firstBorderComponent.data
+        set {
+            if borderComponents.isEmpty {
+                let newComponent = CJBorderComponentConfigModel()
+                newComponent.data = newValue
+                borderComponents = [newComponent]
+            } else {
+                borderComponents[0].data = newValue
+            }
+        }
     }
 }
