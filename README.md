@@ -124,6 +124,14 @@ let borderModel = CJBorderDataModel(id: "border_1", imageName: "border_image")
 
 
 
+## 注意
+
+由于 CJAllComponentConfigModel 是 class（引用类型），当 CJToolView 修改 model.anyComponentModel 内部属性时，实际上修改的是同一个对象实例。SwiftUI 的 @Binding 对于 class 类型的内部属性变化不会自动触发视图刷新，因为 Binding 只检测到引用地址没变。
+
+详情请看： [SwiftUIRefreshSolutions.md](SwiftUIRefreshSolutions.md)
+
+
+
 ## 系统要求
 
 - iOS 17.0+
