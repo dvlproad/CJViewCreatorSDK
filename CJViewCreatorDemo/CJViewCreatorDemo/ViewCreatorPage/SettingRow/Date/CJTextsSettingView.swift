@@ -17,6 +17,7 @@ struct CJTextsSettingView: View {
     var maxCount: Int
     @Binding var dateChooseModels: [CJTextComponentConfigModel]
     @State var currentIndex = -1
+    @State private var originalTextLayouts: [String: CJTextLayoutModel] = [:]
 //    @State var currentTextDateModel: CJCommemorationDataModel
 //    @State var currentTextDateModel: CJTextComponentConfigModel
     var onChangeOfDateChooseModels: ((_ newTextDateModels: [CJTextComponentConfigModel], _ isCountUpdate: Bool) -> Void)
@@ -112,24 +113,27 @@ struct CJTextsSettingView: View {
                 
                 CJPositionSizeSettingRow(
                     title: "位置与尺寸",
-                    originalLayout: model.layout,
+                    originalLayout: originalTextLayouts[model.id] ?? model.layout.copy(),
                     onChange: { newLayout in
-                        model.layout = newLayout
+                        model.layout.left = newLayout.left
+                        model.layout.top = newLayout.top
+                        model.layout.width = newLayout.width
+                        model.layout.height = newLayout.height
                         self.updateUI()
                     }
                 )
                 //.background(Color.red.opacity(0.8))
                 
-                let referenceFont = CJFontDataModel(id: "111", name: "zcoolqingkehuangyouti-Regular", egImage: "fontImage_4")
+                let referenceFont = originalTextLayouts[model.id]?.font ?? model.layout.font.copy()
                 CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
-                    model.layout.font = newFontModel
+                    model.layout.font = newFontModel.copy()
                     self.updateUI()
                 })
                 //.background(Color.green.opacity(0.8))
                 
-                let referenceTextColorModel: CJTextColorDataModel = CJTextColorDataModel(id: "111", startPoint: .topLeading, endPoint: .bottomTrailing, colorStrings: ["#F8AC9F","#F9EFE5"])
+                let referenceTextColorModel = originalTextLayouts[model.id]?.textColorModel() ?? model.layout.textColorModel()
                 CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, onChangeOfTextColorModel: { newTextColorModel in
-                    model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel)
+                    model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel.copy())
                     self.updateUI()
                 })
                 //.background(Color.cyan.opacity(0.8))
@@ -138,6 +142,17 @@ struct CJTextsSettingView: View {
                 
             }
             
+        }
+        .onAppear {
+            captureOriginalModelsIfNeeded(dateChooseModels)
+        }
+    }
+
+    private func captureOriginalModelsIfNeeded(_ models: [CJTextComponentConfigModel]) {
+        for model in models {
+            if originalTextLayouts[model.id] == nil {
+                originalTextLayouts[model.id] = model.layout.copy()
+            }
         }
     }
 }

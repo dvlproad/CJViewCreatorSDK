@@ -80,6 +80,17 @@ public class CJTextColorDataModel: CJBaseModel, Equatable {
         self.index = index
     }
     
+    // MARK: - Copy
+    public func copy() -> CJTextColorDataModel {
+        let copy = CJTextColorDataModel()
+        copy.id = id
+        copy.startPoint = startPoint
+        copy.endPoint = endPoint
+        copy.colorStrings = colorStrings
+        copy.index = index
+        return copy
+    }
+
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
         case id

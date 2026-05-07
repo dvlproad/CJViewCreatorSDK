@@ -57,7 +57,7 @@ public class CJBaseLayoutModel: CJBaseModel {
         copy.height = height
         copy.backgroundColor = backgroundColor
         copy.borderCornerRadius = borderCornerRadius
-        copy.background = background
+        copy.background = background.copy()
         return copy
     }
     

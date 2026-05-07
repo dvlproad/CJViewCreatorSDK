@@ -97,7 +97,7 @@ struct CJToolView: View {
                             
                             // 文字列表操作视图
                             CJTextsSettingView(
-                                title: "我是新的日期标题",
+                                title: "我是文字列表操作视图",
                                 minCount: 1,
                                 maxCount: 3,
                                 dateChooseModels: Binding(get: { singleTextComponents }, set: { singleTextComponents = $0 }),

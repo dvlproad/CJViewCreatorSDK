@@ -30,6 +30,15 @@ public class CJFontDataModel: CJBaseModel {
         self.egImage = egImage
     }
     
+    // MARK: - Copy
+    public func copy() -> CJFontDataModel {
+        let copy = CJFontDataModel()
+        copy.id = id
+        copy.name = name
+        copy.egImage = egImage
+        return copy
+    }
+
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
         case id

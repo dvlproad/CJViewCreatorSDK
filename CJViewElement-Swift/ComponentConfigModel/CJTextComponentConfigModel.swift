@@ -93,21 +93,29 @@ public class CJTextLayoutModel: CJBaseLayoutModel {
     }
     
     // MARK: - Copy
-    override func copy() -> Self {
+    public override func copy() -> Self {
         let copy = super.copy() as! Self
         copy.text = text
         copy.lineLimit = lineLimit
         copy.fontSize = fontSize
         copy.fontWeight = fontWeight
-        copy.font = font
+        copy.font = font.copy()
         copy.foregroundColor = foregroundColor
         copy.textAlignment = textAlignment
         copy.multilineTextAlignment = multilineTextAlignment
         copy.minimumScaleFactor = minimumScaleFactor
-        copy.overlay = overlay
+        copy.overlay = overlay?.copy()
         return copy
     }
     
+    public func textColorModel() -> CJTextColorDataModel {
+        if let overlayColorModel = overlay?.colorModel {
+            return overlayColorModel.copy()
+        } else {
+            return CJTextColorDataModel(solidColorString: foregroundColor)
+        }
+    }
+
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
         case text

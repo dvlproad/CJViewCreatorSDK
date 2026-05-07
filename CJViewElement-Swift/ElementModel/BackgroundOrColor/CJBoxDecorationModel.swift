@@ -32,6 +32,17 @@ public class CJBoxDecorationModel: CJBaseModel {
         self.border = border
     }
     
+    // MARK: - Copy
+    public func copy() -> CJBoxDecorationModel {
+        CJBoxDecorationModel(
+            id: id,
+            colorModel: colorModel?.copy(),
+            imageModel: imageModel,
+            borderRadius: borderRadius,
+            border: border?.copy()
+        )
+    }
+
     // MARK: - Codable
     enum CodingKeys: String, CodingKey {
         case id
@@ -110,6 +121,11 @@ public class CJBorderModel: CJBaseModel {
         self.width = width
     }
     
+    // MARK: - Copy
+    public func copy() -> CJBorderModel {
+        CJBorderModel(color: color, width: width)
+    }
+
     // MARK: - Codable
     enum CodingKeys: String, CodingKey {
         case color
