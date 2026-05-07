@@ -168,7 +168,7 @@ struct CJToolView: View {
                             let originShowModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                             let referenceTextComponent: CJTextComponentConfigModel? = originShowModels.first
                             let referenceFont = referenceTextComponent?.layout.font ?? CJFontDataModel()
-                            CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
+                            CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, currentFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
                                 let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                 for showingModel in showingModels {
                                     showingModel.layout.font = newFontModel
@@ -191,6 +191,7 @@ struct CJToolView: View {
                             CJTextColorSettingRow(
                                 models: TSRowDataUtil.fontColorData(),
                                 originalTextColorModel: referenceTextColorModel,
+                                currentTextColorModel: referenceTextColorModel,
                                 onChangeOfTextColorModel: { newTextColorModel in
                                     let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                                     if newTextColorModel.colorStrings.count == 1 {

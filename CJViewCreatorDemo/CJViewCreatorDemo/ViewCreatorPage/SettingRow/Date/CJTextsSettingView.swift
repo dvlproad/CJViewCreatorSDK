@@ -114,6 +114,7 @@ struct CJTextsSettingView: View {
                 CJPositionSizeSettingRow(
                     title: "位置与尺寸",
                     originalLayout: originalTextLayouts[model.id] ?? model.layout.copy(),
+                    currentLayout: model.layout,
                     onChange: { newLayout in
                         model.layout.left = newLayout.left
                         model.layout.top = newLayout.top
@@ -122,20 +123,23 @@ struct CJTextsSettingView: View {
                         self.updateUI()
                     }
                 )
+                .id("position-\(model.id)")
                 //.background(Color.red.opacity(0.8))
                 
                 let referenceFont = originalTextLayouts[model.id]?.font ?? model.layout.font.copy()
-                CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
+                CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, currentFontModel: model.layout.font, onChangeOfFontModel: { newFontModel in
                     model.layout.font = newFontModel.copy()
                     self.updateUI()
                 })
+                .id("font-\(model.id)")
                 //.background(Color.green.opacity(0.8))
                 
                 let referenceTextColorModel = originalTextLayouts[model.id]?.textColorModel() ?? model.layout.textColorModel()
-                CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, onChangeOfTextColorModel: { newTextColorModel in
+                CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, currentTextColorModel: model.layout.textColorModel(), onChangeOfTextColorModel: { newTextColorModel in
                     model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel.copy())
                     self.updateUI()
                 })
+                .id("textColor-\(model.id)")
                 //.background(Color.cyan.opacity(0.8))
                 
                 

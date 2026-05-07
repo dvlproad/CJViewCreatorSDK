@@ -114,7 +114,7 @@
             },
             "components": [
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_1_1",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "title",
@@ -136,7 +136,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_1_2",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_yyyyMMdd",
@@ -156,7 +156,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_1_3",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_countdown",
@@ -180,7 +180,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_1_4",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_unit",
@@ -271,7 +271,7 @@
             },
             "components": [
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_2_1",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "title",
@@ -293,7 +293,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_2_2",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_yyyyMMdd",
@@ -313,7 +313,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_2_3",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_countdown",
@@ -337,7 +337,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_2_4",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_unit",
@@ -428,7 +428,7 @@
             },
             "components": [
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_3_1",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "title",
@@ -450,7 +450,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_3_2",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_yyyyMMdd",
@@ -470,7 +470,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_3_3",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_countdown",
@@ -494,7 +494,7 @@
                     }
                 },
                 {
-                    "id": "normal_single_text_children",
+                    "id": "normal_single_text_children_3_4",
                     "componentType": "normal_single_text",
                     "data": {
                         "textType": "date_unit",

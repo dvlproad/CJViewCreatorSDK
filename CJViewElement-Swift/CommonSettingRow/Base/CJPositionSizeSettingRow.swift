@@ -16,13 +16,14 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
     public init(
         title: String = "位置与尺寸",
         originalLayout: LayoutType,
+        currentLayout: LayoutType,
         onChange: ((LayoutType) -> Void)? = nil
     ) {
         self.title = title
         // 保存 originalLayout 的独立副本（深拷贝）
         self.originalLayout = originalLayout.copy() as! LayoutType
         // currentLayout 也初始化为副本，避免和外部共享引用
-        self._currentLayout = State(initialValue: originalLayout.copy() as! LayoutType)
+        self._currentLayout = State(initialValue: currentLayout.copy() as! LayoutType)
         self.onChange = onChange
     }
     
@@ -59,6 +60,7 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
 #Preview {
     CJPositionSizeSettingRow(
         originalLayout: CJBaseLayoutModel(left: 10, top: 20, width: 200, height: 100),
+        currentLayout: CJBaseLayoutModel(left: 10, top: 20, width: 200, height: 100),
         onChange: { layout in
             print("layout changed: \(layout)")
         }

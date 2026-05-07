@@ -17,10 +17,10 @@ public struct CJTextColorSettingRow: View {
     @State var selectedIndex: Int?
     public var onChangeOfTextColorModel: ((_ newTextColorModel: CJTextColorDataModel) -> Void)
     
-    public init(models: [CJTextColorDataModel], originalTextColorModel: CJTextColorDataModel, onChangeOfTextColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
+    public init(models: [CJTextColorDataModel], originalTextColorModel: CJTextColorDataModel, currentTextColorModel: CJTextColorDataModel, onChangeOfTextColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.models = models
         self.originalTextColorModel = originalTextColorModel.copy()
-        self._currentTextColorModel = State(initialValue: originalTextColorModel.copy())
+        self._currentTextColorModel = State(initialValue: currentTextColorModel.copy())
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfTextColorModel = onChangeOfTextColorModel

@@ -17,10 +17,10 @@ public struct CJFontSettingRow: View {
     @State var selectedIndex: Int?
     public var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
-    public init(models: [CJFontDataModel], originalFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
+    public init(models: [CJFontDataModel], originalFontModel: CJFontDataModel, currentFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
         self.models = models
         self.originalFontModel = originalFontModel.copy()
-        self._currentFontModel = State(initialValue: originalFontModel.copy())
+        self._currentFontModel = State(initialValue: currentFontModel.copy())
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfFontModel = onChangeOfFontModel
