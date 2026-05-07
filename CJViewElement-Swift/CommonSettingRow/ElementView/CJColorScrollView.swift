@@ -59,7 +59,7 @@ public struct CJColorScrollView: View {
                 }
             }
             .onChange(of: currentColorModel) { oldValue, newValue in
-                selectedIndex = colorModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
+                selectedIndex = colorModels.firstMatchingColorIndex(newValue)
             }
             .onChange(of: paletteSelectedColor) { oldValue, newValue in
                 if newValue == .clear {
@@ -71,7 +71,7 @@ public struct CJColorScrollView: View {
                 onChangeOfColorModel(colorModel)
             }
             .onAppear() {
-                selectedIndex = colorModels.firstIndex(where: { $0.id == currentColorModel.id }) ?? -1
+                selectedIndex = colorModels.firstMatchingColorIndex(currentColorModel)
                 
                 withAnimation {
                     if let index = selectedIndex {
@@ -86,7 +86,7 @@ public struct CJColorScrollView: View {
     private func selectColor(_ index: Int, colorModel: CJTextColorDataModel) {
         currentColorModel = colorModel
         
-        selectedIndex = colorModels.firstIndex(where: { $0.id == colorModel.id }) ?? -1
+        selectedIndex = colorModels.firstMatchingColorIndex(colorModel)
         
         onChangeOfColorModel(colorModel)
     }

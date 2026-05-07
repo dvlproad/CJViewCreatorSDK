@@ -90,6 +90,14 @@ public class CJTextColorDataModel: CJBaseModel, Equatable {
         copy.index = index
         return copy
     }
+    
+    // 颜色匹配改为“id 或颜色值匹配”
+    public func matchesColorPreset(_ other: CJTextColorDataModel) -> Bool {
+        if id == other.id {
+            return true
+        }
+        return startPoint == other.startPoint && endPoint == other.endPoint && colorStrings == other.colorStrings
+    }
 
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
@@ -130,3 +138,12 @@ public class CJTextColorDataModel: CJBaseModel, Equatable {
     }
 }
 
+public extension Array where Element == CJTextColorDataModel {
+    // 找到第一个颜色相同的索引
+    func firstMatchingColorIndex(_ colorModel: CJTextColorDataModel?) -> Int {
+        guard let colorModel = colorModel else {
+            return -1
+        }
+        return firstIndex(where: { $0.matchesColorPreset(colorModel) }) ?? -1
+    }
+}

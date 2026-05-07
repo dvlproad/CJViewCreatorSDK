@@ -34,7 +34,7 @@ public struct CJBackgroundSettingRow: View {
                         return
                     }
                     currentBackgroundModel = originalBackgroundModel.copy()
-                    selectedIndex = models.firstIndex(where: { $0.id == currentBackgroundModel.colorModel?.id }) ?? -1
+                    selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
                     onChangeOfBackgroundModel(currentBackgroundModel.copy())
                 }.padding(.leading, 21)
                 
@@ -43,7 +43,7 @@ public struct CJBackgroundSettingRow: View {
             .frame(width: UIScreen.main.bounds.width, height: 80)
         }
         .onAppear(perform: {
-            selectedIndex = models.firstIndex(where: { $0.id == currentBackgroundModel.colorModel?.id }) ?? -1
+            selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
         })
     }
     
@@ -63,7 +63,7 @@ public struct CJBackgroundSettingRow: View {
                 }
             ),
             onChangeOfColorModel: { newColorModel in
-                selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1
+                selectedIndex = models.firstMatchingColorIndex(newColorModel)
                 onChangeOfBackgroundModel(currentBackgroundModel.copy())
             }
         )
