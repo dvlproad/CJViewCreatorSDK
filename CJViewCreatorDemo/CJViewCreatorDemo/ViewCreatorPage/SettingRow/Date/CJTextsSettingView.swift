@@ -111,6 +111,7 @@ struct CJTextsSettingView: View {
                 
                
                 
+                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 CJPositionSizeSettingRow(
                     title: "位置与尺寸",
                     originalLayout: originalTextLayouts[model.id] ?? model.layout.copy(),
@@ -126,6 +127,7 @@ struct CJTextsSettingView: View {
                 .id("position-\(model.id)")
                 //.background(Color.red.opacity(0.8))
                 
+                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 CJFontSettingRow(
                     models: TSRowDataUtil.fontModels(),
                     currentFontModel: Binding(
@@ -142,6 +144,7 @@ struct CJTextsSettingView: View {
                 .id("font-\(model.id)")
                 //.background(Color.green.opacity(0.8))
                 
+                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 let referenceTextColorModel = originalTextLayouts[model.id]?.textColorModel() ?? model.layout.textColorModel()
                 CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, currentTextColorModel: model.layout.textColorModel(), onChangeOfTextColorModel: { newTextColorModel in
                     model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel.copy())
