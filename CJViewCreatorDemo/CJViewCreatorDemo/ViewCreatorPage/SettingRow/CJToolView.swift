@@ -85,7 +85,10 @@ struct CJToolView: View {
                                 placeHolder: "请输入内容",
                                 lineLimit: 1,
                                 textDidChange: { newText in
-                                    
+                                    let textComponent = singleTextComponents[0]
+                                    textComponent.data.text = newText
+                                    textComponent.updateData(referDate: Date(), isForDesktop: false)
+                                    onChangeOfElementModel(model)
                                 }
                             )
                             .frame(height: 40)

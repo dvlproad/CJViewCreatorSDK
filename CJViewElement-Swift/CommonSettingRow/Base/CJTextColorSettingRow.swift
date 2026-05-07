@@ -19,8 +19,8 @@ public struct CJTextColorSettingRow: View {
     
     public init(models: [CJTextColorDataModel], originalTextColorModel: CJTextColorDataModel, onChangeOfTextColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.models = models
-        self.originalTextColorModel = originalTextColorModel
-        self._currentTextColorModel = State(initialValue: originalTextColorModel)
+        self.originalTextColorModel = originalTextColorModel.copy()
+        self._currentTextColorModel = State(initialValue: originalTextColorModel.copy())
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfTextColorModel = onChangeOfTextColorModel
@@ -31,8 +31,8 @@ public struct CJTextColorSettingRow: View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "字体颜色", showRecoverIcon: .constant(true)) {
-                    currentTextColorModel = originalTextColorModel
-                    onChangeOfTextColorModel(originalTextColorModel)
+                    currentTextColorModel = originalTextColorModel.copy()
+                    onChangeOfTextColorModel(currentTextColorModel.copy())
                 }.padding(.leading, 21)
                 
                 colorScrollView
@@ -64,11 +64,11 @@ public struct CJTextColorSettingRow: View {
         }
         
         return CJColorScrollView(colorModels: colorModels, currentColorModel: $currentTextColorModel, onChangeOfColorModel: { newColorModel in
-            currentTextColorModel = newColorModel
+            currentTextColorModel = newColorModel.copy()
             
             selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1
             
-            onChangeOfTextColorModel(currentTextColorModel)
+            onChangeOfTextColorModel(currentTextColorModel.copy())
         })
     }
     

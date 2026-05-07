@@ -19,8 +19,8 @@ public struct CJFontSettingRow: View {
     
     public init(models: [CJFontDataModel], originalFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
         self.models = models
-        self.originalFontModel = originalFontModel
-        self._currentFontModel = State(initialValue: originalFontModel)
+        self.originalFontModel = originalFontModel.copy()
+        self._currentFontModel = State(initialValue: originalFontModel.copy())
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
         self.onChangeOfFontModel = onChangeOfFontModel
@@ -31,8 +31,8 @@ public struct CJFontSettingRow: View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "字体", showRecoverIcon: .constant(true)) {
-                    currentFontModel = originalFontModel
-                    onChangeOfFontModel(originalFontModel)
+                    currentFontModel = originalFontModel.copy()
+                    onChangeOfFontModel(currentFontModel.copy())
                 }.padding(.leading, 21)
                 
                 fontScrollView
@@ -64,11 +64,11 @@ public struct CJFontSettingRow: View {
         }
         
         return CJFontScrollView(fontModels: fontModels, currentFontModel: $currentFontModel, onChangeOfFontModel: { newFontModel in
-            currentFontModel = newFontModel
+            currentFontModel = newFontModel.copy()
             
             selectedIndex = models.firstIndex(where: { $0.id == newFontModel.id }) ?? -1
             
-            onChangeOfFontModel(currentFontModel)
+            onChangeOfFontModel(currentFontModel.copy())
         })
     }
     
