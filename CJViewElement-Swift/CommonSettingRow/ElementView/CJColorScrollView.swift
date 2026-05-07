@@ -20,6 +20,12 @@ public struct CJColorScrollView: View {
     public init(colorModels: [CJTextColorDataModel], currentColorModel: Binding<CJTextColorDataModel>, onChangeOfColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.colorModels = colorModels
         self._currentColorModel = currentColorModel
+        if currentColorModel.wrappedValue.colorStrings.count == 2 {
+            let colorStrings = currentColorModel.wrappedValue.colorStrings
+            if colorStrings[0] == colorStrings[1] {
+                self._paletteSelectedColor = State(initialValue: Color(hex: colorStrings[0]))
+            }
+        }
         self.onChangeOfColorModel = onChangeOfColorModel
     }
     
@@ -55,14 +61,17 @@ public struct CJColorScrollView: View {
             .onChange(of: currentColorModel) { oldValue, newValue in
                 selectedIndex = colorModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
             }
+            .onChange(of: paletteSelectedColor) { oldValue, newValue in
+                if newValue == .clear {
+                    return
+                }
+                let colorModel = CJTextColorDataModel(id: "8888", solidColorString: newValue.toHex(includeAlpha: false) ?? "")
+                currentColorModel = colorModel
+                selectedIndex = -1
+                onChangeOfColorModel(colorModel)
+            }
             .onAppear() {
                 selectedIndex = colorModels.firstIndex(where: { $0.id == currentColorModel.id }) ?? -1
-                if currentColorModel.colorStrings.count == 2 {
-                    let colorStrings = currentColorModel.colorStrings
-                    if colorStrings[0] == colorStrings[1] {
-                        paletteSelectedColor = Color(hex: colorStrings[0])
-                    }
-                }
                 
                 withAnimation {
                     if let index = selectedIndex {

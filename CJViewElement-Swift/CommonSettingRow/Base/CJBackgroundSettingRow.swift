@@ -4,23 +4,23 @@
 //
 //  Created by qian on 2024/12/15.
 //
+//  CJBackgroundSettingRow 改为和 CJTextsSettingView 一样的使用方法，未来可支持像其一样的复杂使用
 
 import SwiftUI
 
 public struct CJBackgroundSettingRow: View {
     public let models: [CJTextColorDataModel]
-    public let originalBackgroundModel: CJBoxDecorationModel
-    @State var currentBackgroundModel: CJBoxDecorationModel = CJBoxDecorationModel()
-    @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
+    @Binding var currentBackgroundModel: CJBoxDecorationModel
     
     @State var selectedIndex: Int?
     public var onChangeOfBackgroundModel: ((_ newBackgroundModel: CJBoxDecorationModel) -> Void)
     
-    public init(models: [CJTextColorDataModel], originalBackgroundModel: CJBoxDecorationModel, onChangeOfBackgroundModel: @escaping (_: CJBoxDecorationModel) -> Void) {
+    @State private var originalBackgroundModel: CJBoxDecorationModel?
+    public init(models: [CJTextColorDataModel], currentBackgroundModel: Binding<CJBoxDecorationModel>, onChangeOfBackgroundModel: @escaping (_: CJBoxDecorationModel) -> Void) {
         self.models = models
-        self.originalBackgroundModel = originalBackgroundModel
-        self._currentBackgroundModel = State(initialValue: originalBackgroundModel)
-//        self.paletteSelectedColor = paletteSelectedColor
+        self._currentBackgroundModel = currentBackgroundModel
+        self._originalBackgroundModel = State(initialValue: currentBackgroundModel.wrappedValue.copy())
+        
 //        self.selectedIndex = selectedIndex
         self.onChangeOfBackgroundModel = onChangeOfBackgroundModel
     }
@@ -30,29 +30,20 @@ public struct CJBackgroundSettingRow: View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "背景颜色", showRecoverIcon: .constant(true)) {
-                    currentBackgroundModel = originalBackgroundModel
-                    onChangeOfBackgroundModel(originalBackgroundModel)
+                    guard let originalBackgroundModel = originalBackgroundModel else {
+                        return
+                    }
+                    currentBackgroundModel = originalBackgroundModel.copy()
+                    selectedIndex = models.firstIndex(where: { $0.id == currentBackgroundModel.colorModel?.id }) ?? -1
+                    onChangeOfBackgroundModel(currentBackgroundModel.copy())
                 }.padding(.leading, 21)
                 
                 backgroundScrollView
             }
             .frame(width: UIScreen.main.bounds.width, height: 80)
         }
-        .onChange(of: paletteSelectedColor) { oldValue, newValue in
-            if newValue == .clear {
-                return
-            }
-            let newColorModel = CJTextColorDataModel(id: "8888", solidColorString: newValue.toHex(includeAlpha: false) ?? "")
-            currentBackgroundModel = currentBackgroundModel.withColorModel(newColorModel)
-        }
         .onAppear(perform: {
             selectedIndex = models.firstIndex(where: { $0.id == currentBackgroundModel.colorModel?.id }) ?? -1
-            if currentBackgroundModel.colorModel?.colorStrings.count == 2 {
-                let colorStrings = currentBackgroundModel.colorModel!.colorStrings
-                if colorStrings[0] == colorStrings[1] {
-                    paletteSelectedColor = Color(hex: colorStrings[0])
-                }
-            }
         })
     }
     
@@ -68,12 +59,12 @@ public struct CJBackgroundSettingRow: View {
             currentColorModel: Binding(
                 get: { currentBackgroundModel.colorModel ?? CJTextColorDataModel() },
                 set: { newColorModel in
-                    currentBackgroundModel = currentBackgroundModel.withColorModel(newColorModel)
+                    currentBackgroundModel = currentBackgroundModel.withColorModel(newColorModel.copy())
                 }
             ),
             onChangeOfColorModel: { newColorModel in
                 selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1
-                onChangeOfBackgroundModel(currentBackgroundModel)
+                onChangeOfBackgroundModel(currentBackgroundModel.copy())
             }
         )
     }
