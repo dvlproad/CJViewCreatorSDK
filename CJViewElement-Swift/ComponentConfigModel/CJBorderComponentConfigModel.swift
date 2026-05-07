@@ -80,39 +80,49 @@ public class CJBorderLayoutModel: CJBaseLayoutModel {
 // MARK: 组件Data数据类
 public class CJBorderDataModel: CJBaseModel {
     public var id: String
-    public var imageName: String
+    public var imageName: String?
+    public var borderColorString: String?
     
     // MARK: - Equatable
     public static func == (lhs: CJBorderDataModel, rhs: CJBorderDataModel) -> Bool {
-        return lhs.id == rhs.id && lhs.imageName == rhs.imageName
+        return lhs.id == rhs.id && lhs.imageName == rhs.imageName && lhs.borderColorString == rhs.borderColorString
     }
     
     // MARK: Init
     required public init() {
         self.id = "9999"
-        self.imageName = ""
+        self.imageName = nil
+        self.borderColorString = nil
     }
     
-    public init(id: String = "", imageName: String) {
-        self.id = id.isEmpty ? imageName : id
+    public init(id: String = "", imageName: String? = nil, borderColorString: String? = nil) {
+        self.id = id.isEmpty ? (imageName ?? borderColorString ?? "") : id
         self.imageName = imageName
+        self.borderColorString = borderColorString
     }
     
+    public func copy() -> CJBorderDataModel {
+        CJBorderDataModel(id: id, imageName: imageName, borderColorString: borderColorString)
+    }
+
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
         case id
         case imageName
+        case borderColorString
     }
     
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decodeIfPresent(String.self, forKey: .id) ?? "id获取失败了"
-        imageName = try container.decodeIfPresent(String.self, forKey: .imageName) ?? "id获取失败了"
+        imageName = try container.decodeIfPresent(String.self, forKey: .imageName)
+        borderColorString = try container.decodeIfPresent(String.self, forKey: .borderColorString)
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
-        try container.encode(imageName, forKey: .imageName)
+        try container.encodeIfPresent(imageName, forKey: .imageName)
+        try container.encodeIfPresent(borderColorString, forKey: .borderColorString)
     }
 }

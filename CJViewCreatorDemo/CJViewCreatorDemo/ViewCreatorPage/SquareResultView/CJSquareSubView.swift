@@ -20,11 +20,16 @@ struct CJSquareSubView: View {
             
             CJTextsView(anyComponentModel: $anyComponentModel, dealUpdateUI: $dealUpdateUI)
 
-            CJBorderView(borderModel: $anyComponentModel.borderModel, makeupBorderNameBlock: { borderPrefixImageName in
-                let borderImageName = widgetFamily.makeupBorderName(borderPrefixImageName)
-                return borderImageName
-            }, dealUpdateUI: $dealUpdateUI)
-                .frame(width: geometry.size.width, height: geometry.size.height)
+            CJBorderView(
+                borderModel: $anyComponentModel.borderModel,
+                cornerRadius: widgetFamily.getCornerRadius(),
+                makeupBorderNameBlock: { borderPrefixImageName in
+                    let borderImageName = widgetFamily.makeupBorderName(borderPrefixImageName)
+                    return borderImageName
+                },
+                dealUpdateUI: $dealUpdateUI
+            )
+            .frame(width: geometry.size.width, height: geometry.size.height)
         })
         .onAppear() {
             

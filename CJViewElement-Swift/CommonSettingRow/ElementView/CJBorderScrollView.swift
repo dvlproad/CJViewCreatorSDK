@@ -20,6 +20,9 @@ public struct CJBorderScrollView: View {
     public init(borderModels: [CJBorderDataModel], currentBorderModel: Binding<CJBorderDataModel>, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
         self.borderModels = borderModels
         self._currentBorderModel = currentBorderModel
+        if let borderColorString = currentBorderModel.wrappedValue.borderColorString, !borderColorString.isEmpty {
+            self._paletteSelectedColor = State(initialValue: Color(hex: borderColorString))
+        }
         self.onChangeOfBorderModel = onChangeOfBorderModel
     }
     
@@ -28,23 +31,13 @@ public struct CJBorderScrollView: View {
         ScrollViewReader { scrollView in
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 10) {
-                    ZStack {
-                        ColorPicker("颜色", selection: $paletteSelectedColor, supportsOpacity: false)
-                            .frame(width: 30, height: 30)
-                            .offset(x: -4)
-                            .overlay(
-                                Image("colorPalette")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: showPalette ? 30 : 0, height: showPalette ? 30 : 0)
-                                    .allowsHitTesting(false)
-                            )
-                    }.frame(width: 30, height: 30)
+                    CJColorPickerIcon(paletteSelectedColor: $paletteSelectedColor, showPalette: $showPalette)
+                        .frame(width: 30, height: 30)
                     
 //                            ForEach(0..<items.count, id:\.self) { index in
 //                                let item = items[index].data
                     ForEach(Array(borderModels.enumerated()), id: \.offset) { index, model in
-                        CJBorderIcon(borderImageName: model.imageName, isSelected: currentBorderModel.id == model.id)
+                        CJBorderIcon(borderImageName: model.imageName ?? "", isSelected: currentBorderModel.id == model.id)
                             .onTapGesture {
                                 tapColor(index, colorModel: model)
                             }
@@ -64,15 +57,21 @@ public struct CJBorderScrollView: View {
             .onChange(of: currentBorderModel) { oldValue, newValue in
                 selectedIndex = borderModels.firstIndex(where: { $0.id == newValue.id }) ?? -1
             }
+            .onChange(of: paletteSelectedColor) { oldValue, newValue in
+                if newValue == .clear {
+                    return
+                }
+                let borderModel = CJBorderDataModel(
+                    id: "8888",
+                    imageName: nil,
+                    borderColorString: newValue.toHex(includeAlpha: false) ?? ""
+                )
+                currentBorderModel = borderModel
+                selectedIndex = -1
+                onChangeOfBorderModel(borderModel.copy())
+            }
             .onAppear() {
                 selectedIndex = borderModels.firstIndex(where: { $0.id == currentBorderModel.id }) ?? -1
-//                if currentBorderModel.colorStrings.count == 2 {
-//                    let colorStrings = currentBorderModel.colorStrings
-//                    if colorStrings[0] == colorStrings[1] {
-//                        paletteSelectedColor = Color(hex: colorStrings[0])
-//                    }
-//                }
-                
                 withAnimation {
                     if let index = selectedIndex {
                         scrollView.scrollTo(index, anchor: .center)
@@ -84,11 +83,11 @@ public struct CJBorderScrollView: View {
     
     // MARK: Event
     private func tapColor(_ index: Int, colorModel: CJBorderDataModel) {
-        currentBorderModel = colorModel
+        currentBorderModel = colorModel.copy()
         
         selectedIndex = borderModels.firstIndex(where: { $0.id == colorModel.id }) ?? -1
         
-        onChangeOfBorderModel(colorModel)
+        onChangeOfBorderModel(colorModel.copy())
     }
 }
 

@@ -228,10 +228,19 @@ struct CJToolView: View {
                         
                         // 边框(粉红色)
                         if borderComponents.count > 0 {
-                            CJBorderSettingRow(models: TSRowDataUtil.backgroundBorderData(), originalBorderModel: model.anyComponentModel.borderModel, onChangeOfBorderModel: { newBorderModel in
-                                model.anyComponentModel.borderModel = newBorderModel
-                                onChangeOfElementModel(model)
-                            })
+                            CJBorderSettingRow(
+                                models: TSRowDataUtil.backgroundBorderData(),
+                                currentBorderModel: Binding(
+                                    get: { model.anyComponentModel.borderModel },
+                                    set: { newBorderModel in
+                                        model.anyComponentModel.borderModel = newBorderModel
+                                    }
+                                ),
+                                onChangeOfBorderModel: { newBorderModel in
+                                    model.anyComponentModel.borderModel = newBorderModel
+                                    onChangeOfElementModel(model)
+                                }
+                            )
                             //.background(Color.pink.opacity(0.3))
                         }
                     }
