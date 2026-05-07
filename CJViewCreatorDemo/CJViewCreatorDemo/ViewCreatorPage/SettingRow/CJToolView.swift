@@ -176,14 +176,25 @@ struct CJToolView: View {
                             // 字体(紫色)
                             let originShowModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
                             let referenceTextComponent: CJTextComponentConfigModel? = originShowModels.first
-                            let referenceFont = referenceTextComponent?.layout.font ?? CJFontDataModel()
-                            CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, currentFontModel: referenceFont, onChangeOfFontModel: { newFontModel in
-                                let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
-                                for showingModel in showingModels {
-                                    showingModel.layout.font = newFontModel
+                            CJFontSettingRow(
+                                models: TSRowDataUtil.fontModels(),
+                                currentFontModel: Binding(
+                                    get: { referenceTextComponent?.layout.font ?? CJFontDataModel() },
+                                    set: { newFontModel in
+                                        let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
+                                        for showingModel in showingModels {
+                                            showingModel.layout.font = newFontModel.copy()
+                                        }
+                                    }
+                                ),
+                                onChangeOfFontModel: { newFontModel in
+                                    let showingModels: [CJTextComponentConfigModel] = model.anyComponentModel.getAllLayoutModels()
+                                    for showingModel in showingModels {
+                                        showingModel.layout.font = newFontModel.copy()
+                                    }
+                                    onChangeOfElementModel(model)
                                 }
-                                onChangeOfElementModel(model)
-                            })
+                            )
                             //.background(Color.purple.opacity(0.3))
 
                             // 字体颜色(黄色)

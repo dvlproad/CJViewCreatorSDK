@@ -13,8 +13,6 @@ public struct CJFontScrollView: View {
     @Binding var currentFontModel: CJFontDataModel
     var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
-    @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
-    @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
     public init(fontModels: [CJFontDataModel], currentFontModel: Binding<CJFontDataModel>, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
@@ -53,12 +51,6 @@ public struct CJFontScrollView: View {
             }
             .onAppear() {
                 selectedIndex = fontModels.firstIndex(where: { $0.id == currentFontModel.id }) ?? -1
-//                if currentFontModel.colorStrings.count == 2 {
-//                    let colorStrings = currentFontModel.colorStrings
-//                    if colorStrings[0] == colorStrings[1] {
-//                        paletteSelectedColor = Color(hex: colorStrings[0])
-//                    }
-//                }
                 
                 withAnimation {
                     if let index = selectedIndex {
@@ -71,11 +63,11 @@ public struct CJFontScrollView: View {
     
     // MARK: Event
     private func selectFont(_ index: Int, fontModel: CJFontDataModel) {
-        currentFontModel = fontModel
+        currentFontModel = fontModel.copy()
         
         selectedIndex = fontModels.firstIndex(where: { $0.id == fontModel.id }) ?? -1
         
-        onChangeOfFontModel(fontModel)
+        onChangeOfFontModel(fontModel.copy())
     }
 }
 

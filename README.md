@@ -130,6 +130,8 @@ let borderModel = CJBorderDataModel(id: "border_1", imageName: "border_image")
 
 详情请看： [SwiftUIRefreshSolutions.md](SwiftUIRefreshSolutions.md)
 
+子控件 SettingRow 的设计原则见 [Setting Row State Design.md](SettingRowStateDesign.md)
+
 
 
 ## 系统要求

@@ -9,19 +9,16 @@ import SwiftUI
 
 public struct CJFontSettingRow: View {
     public let models: [CJFontDataModel]
-    public let originalFontModel: CJFontDataModel
-    @State var currentFontModel: CJFontDataModel = CJFontDataModel()
-    @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
-    
+    @Binding var currentFontModel: CJFontDataModel
     
     @State var selectedIndex: Int?
     public var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
-    public init(models: [CJFontDataModel], originalFontModel: CJFontDataModel, currentFontModel: CJFontDataModel, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
+    @State private var originalFontModel: CJFontDataModel?
+    public init(models: [CJFontDataModel], currentFontModel: Binding<CJFontDataModel>, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
         self.models = models
-        self.originalFontModel = originalFontModel.copy()
-        self._currentFontModel = State(initialValue: currentFontModel.copy())
-//        self.paletteSelectedColor = paletteSelectedColor
+        self._currentFontModel = currentFontModel
+        self._originalFontModel = State(initialValue: currentFontModel.wrappedValue.copy())
 //        self.selectedIndex = selectedIndex
         self.onChangeOfFontModel = onChangeOfFontModel
     }
@@ -31,6 +28,9 @@ public struct CJFontSettingRow: View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
                 CJSettingTitleRow(title: "字体", showRecoverIcon: .constant(true)) {
+                    guard let originalFontModel = originalFontModel else {
+                        return
+                    }
                     currentFontModel = originalFontModel.copy()
                     onChangeOfFontModel(currentFontModel.copy())
                 }.padding(.leading, 21)
@@ -39,20 +39,8 @@ public struct CJFontSettingRow: View {
             }
             .frame(width: UIScreen.main.bounds.width, height: 80)
         }
-        .onChange(of: paletteSelectedColor) { oldValue, newValue in
-            if newValue == .clear {
-                return
-            }
-//            currentFontModel = CJFontDataModel(id: "8888", solidColorString: newValue.toHex(includeAlpha: false) ?? "")
-        }
         .onAppear(perform: {
             selectedIndex = models.firstIndex(where: { $0.id == currentFontModel.id }) ?? -1
-//            if currentFontModel.colorModel?.colorStrings.count == 2 {
-//                let colorStrings = currentFontModel.colorModel!.colorStrings
-//                if colorStrings[0] == colorStrings[1] {
-//                    paletteSelectedColor = Color(hex: colorStrings[0])
-//                }
-//            }
         })
     }
     
@@ -75,5 +63,4 @@ public struct CJFontSettingRow: View {
     // MARK: Event
     
 }
-
 

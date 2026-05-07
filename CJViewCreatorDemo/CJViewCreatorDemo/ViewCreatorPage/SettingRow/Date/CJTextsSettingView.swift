@@ -126,11 +126,19 @@ struct CJTextsSettingView: View {
                 .id("position-\(model.id)")
                 //.background(Color.red.opacity(0.8))
                 
-                let referenceFont = originalTextLayouts[model.id]?.font ?? model.layout.font.copy()
-                CJFontSettingRow(models: TSRowDataUtil.fontModels(), originalFontModel: referenceFont, currentFontModel: model.layout.font, onChangeOfFontModel: { newFontModel in
-                    model.layout.font = newFontModel.copy()
-                    self.updateUI()
-                })
+                CJFontSettingRow(
+                    models: TSRowDataUtil.fontModels(),
+                    currentFontModel: Binding(
+                        get: { model.layout.font },
+                        set: { newFontModel in
+                            model.layout.font = newFontModel.copy()
+                        }
+                    ),
+                    onChangeOfFontModel: { newFontModel in
+                        model.layout.font = newFontModel.copy()
+                        self.updateUI()
+                    }
+                )
                 .id("font-\(model.id)")
                 //.background(Color.green.opacity(0.8))
                 
