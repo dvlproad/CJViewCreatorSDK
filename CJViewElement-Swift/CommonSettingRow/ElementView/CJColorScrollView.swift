@@ -41,7 +41,7 @@ public struct CJColorScrollView: View {
 //                            ForEach(0..<items.count, id:\.self) { index in
 //                                let item = items[index].data
                     ForEach(Array(colorModels.enumerated()), id: \.offset) { index, model in
-                        CJColorIcon(colorModel: model, isSelected: currentColorModel.id == model.id)
+                        CJColorIcon(colorModel: model, isSelected: model.matchesColorPreset(currentColorModel))
                             .onTapGesture {
                                 selectColor(index, colorModel: model)
                             }
