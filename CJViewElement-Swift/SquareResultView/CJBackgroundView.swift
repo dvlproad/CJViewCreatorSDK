@@ -9,12 +9,20 @@ import SwiftUI
 
 public struct CJBackgroundView: View {
     @Binding var backgroundModel: CJBoxDecorationModel
+    @Binding var dealUpdateUI: Int
     
     public init(backgroundModel: Binding<CJBoxDecorationModel>) {
         self._backgroundModel = backgroundModel
+        self._dealUpdateUI = .constant(0)
+    }
+    
+    public init(backgroundModel: Binding<CJBoxDecorationModel>, dealUpdateUI: Binding<Int>) {
+        self._backgroundModel = backgroundModel
+        self._dealUpdateUI = dealUpdateUI
     }
     
     public var body: some View {
+        let _ = dealUpdateUI
         GeometryReader { geometry in
             ZStack(alignment: .center) {
                 if let backgroundImageModel = backgroundModel.imageModel {

@@ -11,9 +11,7 @@ import WidgetKit
 import CJViewElement_Swift
 
 struct CJSquareView: View {
-    @Binding var backgroundModel: CJBoxDecorationModel
     @Binding var anyComponentModel: CJAllComponentConfigModel
-    @Binding var borderModel: CJBorderDataModel
     var widgetFamily: WidgetFamily
     @Binding var dealUpdateUI: Int  // 为了不对model中的属性加修饰词，所以额外使用此变量
  
@@ -26,9 +24,7 @@ struct CJSquareView: View {
                 let designSize = widgetFamily.designSize
                 
                 CJSquareSubView(
-                    backgroundModel: $backgroundModel,
                     anyComponentModel: $anyComponentModel,
-                    borderModel: $borderModel,
                     widgetFamily: widgetFamily,
                     dealUpdateUI: $dealUpdateUI
                 )
