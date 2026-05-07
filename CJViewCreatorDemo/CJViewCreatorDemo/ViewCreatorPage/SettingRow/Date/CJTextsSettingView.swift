@@ -59,7 +59,7 @@ struct CJTextsSettingView: View {
 //            .frame(height: 45)
 //            .padding(.horizontal, widgetDetailPadding)
             
-            CJTextListRow(minCount: 1, maxCount: 3, items: $dateChooseModels, currentIndex: currentIndex, valueChangeBlock: { newItems, currentSelectedIndex, oldCount, newCount  in
+            CJTextListRow(title: title, minCount: 1, maxCount: 3, items: $dateChooseModels, currentIndex: currentIndex, valueChangeBlock: { newItems, currentSelectedIndex, oldCount, newCount  in
                 dateChooseModels = newItems
                 currentIndex = currentSelectedIndex
 //                currentTextDateModel = newItems[currentSelectedIndex]

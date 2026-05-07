@@ -32,6 +32,7 @@ struct CJTextListRow: View {
     //@Binding var shouldUpdateUI: Bool
     @EnvironmentObject var uiUpdateObserver: UIUpdateModel
     
+    let title: String
     let minCount: Int
     let maxCount: Int
     @Binding var items: [CJTextComponentConfigModel]
@@ -57,7 +58,7 @@ struct CJTextListRow: View {
         VStack(alignment: .leading, spacing: 0) {
             // 标题栏
             HStack(alignment: .center, spacing: 0) {
-                Text("我的文字")
+                Text(title)
                     .foregroundColor(Color(hex: "#333333"))
                     .font(.system(size: 15))
                 Text("(\(items.count)/\(maxCount))")
