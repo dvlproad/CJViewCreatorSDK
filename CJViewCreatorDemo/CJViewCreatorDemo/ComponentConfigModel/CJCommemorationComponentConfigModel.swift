@@ -100,6 +100,34 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         self.layout.countdownLayoutModel.text = countdownDaysString
         
         self.layout.dayUnitLayoutModel.text = "天"
+        updateChildTextComponents(referDate: referDate, isForDesktop: isForDesktop)
+    }
+
+    private func updateChildTextComponents(referDate: Date, isForDesktop: Bool) {
+        guard let childComponents else {
+            return
+        }
+
+        for child in childComponents {
+            guard let textComponent = child as? CJTextComponentConfigModel else {
+                continue
+            }
+
+            switch textComponent.data.textType {
+            case .some(.title):
+                textComponent.data.text = self.layout.titleLayoutModel.text
+            case .some(.date_yyyyMMdd):
+                textComponent.data.text = self.layout.dateLayoutModel.text
+            case .some(.date_countdown):
+                textComponent.data.text = self.layout.countdownLayoutModel.text
+            case .some(.date_unit):
+                textComponent.data.text = self.layout.dayUnitLayoutModel.text
+            case nil:
+                break
+            }
+
+            textComponent.updateData(referDate: referDate, isForDesktop: isForDesktop)
+        }
     }
 }
 
