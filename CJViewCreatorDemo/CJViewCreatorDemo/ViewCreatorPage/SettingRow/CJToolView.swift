@@ -107,7 +107,6 @@ struct CJToolView: View {
                                 minCount: 1,
                                 maxCount: 3,
                                 dateChooseModels: Binding(get: { singleTextComponents }, set: { singleTextComponents = $0 }),
-                                commemorationComponents: commemorationComponents,
                                 onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
                                     // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。
                                     // 2.    添加：将 newTextDateModels 中 id 不在 components 中的项添加到 components。

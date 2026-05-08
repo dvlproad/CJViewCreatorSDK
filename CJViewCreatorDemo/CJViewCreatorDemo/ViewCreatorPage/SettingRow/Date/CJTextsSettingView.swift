@@ -16,7 +16,6 @@ struct CJTextsSettingView: View {
     var minCount: Int
     var maxCount: Int
     @Binding var dateChooseModels: [CJTextComponentConfigModel]
-    var commemorationComponents: [CJCommemorationComponentConfigModel] = []
     @State var currentIndex = -1
     @State private var originalTextLayouts: [String: CJTextLayoutModel] = [:]
     @State private var dateSettingModels: [String: CJCommemorationDataModel] = [:]
@@ -197,11 +196,6 @@ struct CJTextsSettingView: View {
     private func applyDateSettingModel(_ dateModel: CJCommemorationDataModel, to sourceModel: CJTextComponentConfigModel) {
         let referDate = Date()
 
-        if let commemorationModel = commemorationComponent(containing: sourceModel) {
-            applyDateSettingFields(dateModel, to: commemorationModel.data)
-            commemorationModel.updateData(referDate: referDate, isForDesktop: false)
-        }
-
         let relatedModels = textModelsInSameGroup(as: sourceModel)
         let targetModels = relatedModels.isEmpty ? [sourceModel] : relatedModels
 
@@ -211,10 +205,6 @@ struct CJTextsSettingView: View {
     }
 
     private func dateSettingModel(for textModel: CJTextComponentConfigModel) -> CJCommemorationDataModel {
-        if let commemorationModel = commemorationComponent(containing: textModel) {
-            return commemorationModel.data
-        }
-
         if let dateSettingModel = dateSettingModels[textModel.id] {
             return dateSettingModel
         }
@@ -226,7 +216,7 @@ struct CJTextsSettingView: View {
 
     private func captureDateSettingModelsIfNeeded(_ models: [CJTextComponentConfigModel]) {
         for model in models where model.data.textType == .date_yyyyMMdd {
-            if dateSettingModels[model.id] == nil, commemorationComponent(containing: model) == nil {
+            if dateSettingModels[model.id] == nil {
                 dateSettingModels[model.id] = Self.commemorationDataModel(from: model.data)
             }
         }
@@ -239,21 +229,6 @@ struct CJTextsSettingView: View {
             cycleType: .year,
             shouldContainToday: false
         )
-    }
-
-    private func applyDateSettingFields(_ dateModel: CJCommemorationDataModel, to targetModel: CJCommemorationDataModel) {
-        targetModel.date = dateModel.date
-        targetModel.cycleType = dateModel.cycleType
-        targetModel.includeTodayIsOn = dateModel.includeTodayIsOn
-        targetModel.dateStringIsLunarType = dateModel.dateStringIsLunarType
-    }
-
-    private func commemorationComponent(containing textModel: CJTextComponentConfigModel) -> CJCommemorationComponentConfigModel? {
-        return commemorationComponents.first { component in
-            component.childComponents?.contains(where: { child in
-                (child as? CJTextComponentConfigModel)?.id == textModel.id
-            }) ?? false
-        }
     }
 
     private func textModelsInSameGroup(as sourceModel: CJTextComponentConfigModel) -> [CJTextComponentConfigModel] {
