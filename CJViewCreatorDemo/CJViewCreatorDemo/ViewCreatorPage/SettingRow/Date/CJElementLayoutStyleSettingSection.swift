@@ -119,6 +119,7 @@ struct CJElementLayoutStyleSettingSection: View {
                 }
             }
         }
+        .background(Color.purple.opacity(0.8))
     }
 
     private var currentOption: CJElementLayoutStyleSettingOption? {
