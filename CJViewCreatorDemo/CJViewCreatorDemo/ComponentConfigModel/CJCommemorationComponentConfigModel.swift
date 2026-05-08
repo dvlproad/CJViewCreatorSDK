@@ -100,14 +100,12 @@ public class CJCommemorationComponentConfigModel: CJBaseComponentConfigModel<CJC
         self.layout.countdownLayoutModel.text = countdownDaysString
         
         self.layout.dayUnitLayoutModel.text = "天"
-        updateChildTextComponents(referDate: referDate, isForDesktop: isForDesktop)
+        if let childComponents {
+            updateChildTextComponents(childComponents, referDate: referDate, isForDesktop: isForDesktop)
+        }
     }
 
-    private func updateChildTextComponents(referDate: Date, isForDesktop: Bool) {
-        guard let childComponents else {
-            return
-        }
-
+    private func updateChildTextComponents(_ childComponents: [any CJBaseComponentConfigModelProtocol], referDate: Date, isForDesktop: Bool) {
         for child in childComponents {
             guard let textComponent = child as? CJTextComponentConfigModel else {
                 continue
@@ -373,4 +371,3 @@ public class CJDateModel: CJBaseModel {
         try container.encodeIfPresent(dateStringIsLunarType, forKey: .dateStringIsLunarType)
     }
 }
-
