@@ -28,6 +28,7 @@
 #import "CQDMSectionDataModel.h"
 #import "CJUIKitBaseCollectionHomeViewController.h"
 #import "CJUIKitCollectionViewCell.h"
+#import "CJUIKitCollectionViewHeader.h"
 #import "CJUIKitBaseScrollViewController.h"
 #import "CJUIKitBaseTabBarViewController.h"
 #import "CQDMTabBarModel.h"
@@ -39,7 +40,7 @@
 #import "CQDMSectionDataModel+CJDealTextModel.h"
 #import "CJValidateStringBigTableViewCell.h"
 #import "CJValidateStringTableViewCell.h"
-#import "UIImage+CQDemoKit.h"
+#import "NSError+CQTSErrorString.h"
 
 FOUNDATION_EXPORT double CQDemoKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char CQDemoKitVersionString[];

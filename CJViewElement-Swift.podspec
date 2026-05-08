@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.name         = "CJViewElement-Swift"
   s.version      = "0.0.1"
   s.summary      = "Swift/OC帮助类"
-  s.homepage     = "https://github.com/dvlproad/CJUIKit.git"
+  s.homepage     = "https://github.com/dvlproad/CJViewCreatorSDK.git"
   s.license      = "MIT"
   s.author       = "dvlproad"
 
