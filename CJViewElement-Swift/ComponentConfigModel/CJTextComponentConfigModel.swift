@@ -7,6 +7,14 @@
 
 import Foundation
 
+// MARK: 文本类型枚举
+public enum CJTextType: String, CaseIterable, Codable {
+    case title = "title"
+    case date_yyyyMMdd = "date_yyyyMMdd"
+    case date_countdown = "date_countdown"
+    case date_unit = "date_unit"
+}
+
 // MARK: 组件完整类
 public class CJTextComponentConfigModel: CJBaseComponentConfigModel<CJTextDataModel, CJTextLayoutModel> {
     required public init() {
@@ -166,10 +174,11 @@ public class CJTextLayoutModel: CJBaseLayoutModel {
 // MARK: 组件Data数据类
 public class CJTextDataModel: CJBaseModel {
     public var text: String = ""
+    public var textType: CJTextType?
     
     // MARK: - Equatable
     public static func == (lhs: CJTextDataModel, rhs: CJTextDataModel) -> Bool {
-        return lhs.text == rhs.text
+        return lhs.text == rhs.text && lhs.textType == rhs.textType
     }
     
     // MARK: Init
@@ -177,13 +186,15 @@ public class CJTextDataModel: CJBaseModel {
         
     }
     
-    public init(text: String) {
+    public init(text: String, textType: CJTextType? = nil) {
         self.text = text
+        self.textType = textType
     }
     
     // MARK: - Codable
     private enum CodingKeys: String, CodingKey {
         case text
+        case textType
     }
     
     required public init(from decoder: Decoder) throws {
@@ -191,10 +202,12 @@ public class CJTextDataModel: CJBaseModel {
         let text = try container.decodeIfPresent(String.self, forKey: .text) ?? "文本获取失败了"
         
         self.text = text
+        self.textType = try container.decodeIfPresent(CJTextType.self, forKey: .textType)
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(text, forKey: .text)
+        try container.encodeIfPresent(textType, forKey: .textType)
     }
 }
