@@ -298,7 +298,29 @@ public extension View {
                 )
     }
     
+    /// 按布局模型渲染完整文本视图。
+    ///
+    /// 默认流程为：内容尺寸/样式 -> 位置偏移。
+    /// 如果只是普通展示，直接使用该方法即可。
     public func layout(_ layout: CJTextLayoutModel) -> some View {
+        return self.layout(layout) { content in
+            content
+        }
+    }
+    
+    /// 按布局模型渲染文本视图，并允许在“内容盒子”和“位置偏移”之间插入额外修饰。
+    ///
+    /// 这个插入点主要用于 `.addGR(...)` 这类编辑态能力：
+    /// - `layout` 需要先把 Text 处理成 layout.width/layout.height 的内容盒子；
+    /// - `.addGR(...)` 需要加在内容盒子上，边框才会贴合真实视图边界；
+    /// - 最后再执行 left/top 偏移，避免手势边框拿到 offset 之后的错误布局区域。
+    ///
+    /// 如果把 `.addGR(...)` 写在 `.layout(...)` 前面，它拿到的只是原始 Text 的尺寸；
+    /// 如果写在 `.layout(...)` 后面，它又会被 offset 后的布局影响，边框位置可能不准。
+    public func layout<DecoratedContent: View>(
+        _ layout: CJTextLayoutModel,
+        @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
+    ) -> some View {
         var foregroundColor: Color = Color(hex: layout.foregroundColor)
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil && !layout.backgroundColor!.isEmpty {
@@ -315,7 +337,7 @@ public extension View {
 //            .border(layout.background.border?.borderColor() != nil  ? layout.background.border!.borderColor()! : Color.clear, width: layout.background.border?.width ?? 0)
 //            .cornerRadius(layout.background.borderRadius ?? 0)
 //            .position(x: layout.left + layout.width / 2, y: layout.top + layout.height / 2)
-        return self.frame(width: layout.width, height: layout.height, alignment: layout.textAlignment.toAlignment)
+        let content = self.frame(width: layout.width, height: layout.height, alignment: layout.textAlignment.toAlignment)
             .foregroundColor(foregroundColor)
 //            .background(
 //                    RoundedRectangle(cornerRadius: layout.background.borderRadius ?? 0)
@@ -326,6 +348,8 @@ public extension View {
 //                        )
 //                )
             .background(backgroundColor: backgroundColor, background: layout.background)
+
+        return decorateContent(AnyView(content))
 //            .position(x: layout.left + layout.width / 2, y: layout.top + layout.height / 2)
             .offset(x: layout.left, y: layout.top) // 使用偏移动态调整位置
 //            .overlay(content: {
@@ -339,7 +363,23 @@ public extension View {
         
     }
     
+    /// 按布局模型渲染带渐变遮罩的完整文本视图。
+    ///
+    /// 默认流程为：内容尺寸/渐变样式 -> 位置偏移。
     public func layout(_ layout: CJTextLayoutModel, overlayView: LinearGradient) -> some View {
+        return self.layout(layout, overlayView: overlayView) { content in
+            content
+        }
+    }
+    
+    /// 按布局模型渲染带渐变遮罩的文本视图，并允许在“内容盒子”和“位置偏移”之间插入额外修饰。
+    ///
+    /// 用法和普通文本的 `layout(_:decorateContent:)` 一致，只是内容盒子里多了渐变遮罩处理。
+    public func layout<DecoratedContent: View>(
+        _ layout: CJTextLayoutModel,
+        overlayView: LinearGradient,
+        @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
+    ) -> some View {
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil {
             backgroundColor = Color(hex: layout.backgroundColor!)
@@ -362,7 +402,7 @@ public extension View {
 
         
         // 文本及其叠加效果
-        return baseText
+        let content = baseText
             .foregroundColor(nil) // 文字无色
             .overlay(
                 overlayView
@@ -370,8 +410,10 @@ public extension View {
                     .mask(baseText.foregroundColor(.black)) // 使用同样的 Text 做遮罩
             )
             .background(backgroundColor: backgroundColor, background: layout.background)
+
+        return decorateContent(AnyView(content))
 //            .position(x: textFrame.midX, y: textFrame.midY)
-            .offset(x: textFrame.minX, y: textFrame.minY) // 使用偏移动态调整位置
+            .offset(x: layout.left, y: layout.top) // 使用偏移动态调整位置
     }
     
     //    func property(_ property: CJBasePropertyModel) -> some View {

@@ -30,6 +30,9 @@ struct CJSquareSubView: View {
                 dealUpdateUI: $dealUpdateUI
             )
             .frame(width: geometry.size.width, height: geometry.size.height)
+            // 边框只是覆盖在画布最上层的视觉元素，不能参与点击/拖拽命中。
+            // 否则会挡住下面文本的 addGR 手势，导致选中文本后无法拖动。
+            .allowsHitTesting(false)
         })
         .onAppear() {
             

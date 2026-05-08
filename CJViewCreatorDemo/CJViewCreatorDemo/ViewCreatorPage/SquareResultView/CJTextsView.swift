@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import CJViewElement_Swift
-//import CJViewGR_Swift
+import CJViewGR_Swift
 
 struct CJTextsView: View {
     @Binding var anyComponentModel: CJAllComponentConfigModel
@@ -25,53 +25,33 @@ struct CJTextsView: View {
             
             // 在 ForEach 中使用 index 来获取绑定
             ForEach(0..<updatedTextModels.count, id: \.self) { index in
-//                let textModel = textModels[index]x
+                let textModel = updatedTextModels[index]
                 //                Text(textModel.text)
-                let textView = CJTextView(text: $textModels[index].data.text, layoutModel: $textModels[index].layout)
-                if updatedTextModels[index].isEditing {
-                    textView
-                        .overlay(content: {
-//                            CJGRCornerView(zoom: 1)
-                            Rectangle()
-                                .stroke(Color.cyan, lineWidth: updatedTextModels[index].isEditing ? 1 : 0)  // 添加蓝色的边框
-                                .padding(0)
-                            
-                                .offset(x: textModels[index].layout.left, y: textModels[index].layout.top)
-                        })
-//                        .addGR()
-                } else {
-                    textView
-                }
-//                    .overlay(content: {
-//                        Color.yellow
-//                    })
-                
-//                Text("Hello, World!")
-//                            .padding()
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 10)
-//                                    .stroke(Color.red, lineWidth: 5) // 第一个边框
-//                            )
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: 10)
-//                                    .stroke(Color.blue, lineWidth: 2) // 第二个边框，叠加在第一个之上
-//                            )
-//                
-//                Text("hello my world")
-//                    .overlay(content: {
-//                        Color.yellow
-//                    })
-//                    .overlay(content: {
-//                        CJGRCornerView(zoom: 0.50)
-//                    })
-//                    .addGRButtons(onDelete:{
-//                        
-//                    }, onUpdate: {
-//                        
-//                    }, onMinimize: {
-//                        
-//                    })
+                CJTextView(text: $textModels[index].data.text,
+                           layoutModel: $textModels[index].layout) { content in
+                    // 根据当前文本状态使用不同的 decorateContent。
+                    // 普通态不额外装饰，编辑态把 addGR 插入到 layout 内部正确阶段。
+                    if textModel.isEditing {
+                        content.addGR(
+                            showCornerButton: textModel.isEditing,
+                            onDelete: {
 
+                            },
+                            onUpdate: {
+
+                            },
+                            onMinimize: nil,
+                            onSelect: {
+                                
+                            },
+                            minScale: 0.4,
+                            maxScale: 4.0
+                        )
+                    } else {
+                        content
+                    }
+                }
+                .zIndex(textModel.isEditing ? 1 : 0) // 如果多个元素重叠，正在编辑的那个排到上层，避免边框或手势被其他文本挡住。
             }
         })
         .onAppear {

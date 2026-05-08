@@ -4,7 +4,7 @@
     "contents": "countdown_middle_3_123",
     "components": [
         {
-            "id": "normal_single_text",
+            "id": "normal_single_text_1",
             "componentType": "normal_single_text",
             "data": {
                 "text": "我是单行文本"
