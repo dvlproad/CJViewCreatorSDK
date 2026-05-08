@@ -7,7 +7,8 @@
 
 import Foundation
 import SwiftUI
-import CQDemoKit
+import CJDataVientianeSDK_Swift
+import CJViewElement_Swift
 
 struct CJDateChooseRow: View {
     //@Binding var shouldUpdateUI: Bool
@@ -23,8 +24,6 @@ struct CJDateChooseRow: View {
     var onChangeOfDateStringIsLunarType: ((_ isLunar: Bool) -> ())
     var isValidateHandler: ((Date) -> (Bool, String))?
     var actionClosure: ((CJSheetActionType) -> Void)
-    
-    @State var isPresentedDatePicker = false
     
     var body: some View {
         let dateString = dateFormaterHandle(date)
@@ -46,9 +45,23 @@ struct CJDateChooseRow: View {
         .frame(height: 42)
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            
-            isPresentedDatePicker = true
-            CJUIKitToastUtil.showMessage("请完善选择日期的弹窗操作")
+
+            actionClosure(.datePicker(CJDatePickerRequest(
+                id: UUID(),
+                title: title,
+                date: date,
+                dateStringIsLunarType: dateStringIsLunarType,
+                isPickerSupportLunar: isPickerSupportLunar,
+                onChangeOfDate: { newDate in
+                    date = newDate
+                    onChangeOfDate(newDate)
+                },
+                onChangeOfDateStringIsLunarType: { isLunar in
+                    dateStringIsLunarType = isLunar
+                    onChangeOfDateStringIsLunarType(isLunar)
+                },
+                isValidateHandler: isValidateHandler
+            )))
         }
 //        .withGlobalOverlay() // 添加全局的 DatePickerOverlay
     }

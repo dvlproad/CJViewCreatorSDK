@@ -14,8 +14,10 @@ struct CJToolView: View {
     @State var refreshID = UUID()
     @StateObject private var keyboardObserver = KeyboardObserver()
 //    @State var popMenus: [(model: MenuPickerModel, view: AnyView)] = []
+    @State private var popMenus: [CJPopupMenu] = []
     
 //    var completeBlock: (([CJCommemorationComponentConfigModel]) -> Void)? = nil
+    var sheetActionClosure: ((CJSheetActionType) -> Void)? = nil
     var onChangeOfElementModel: ((_ newElementModel: CQWidgetModel) -> Void)
     
     var body: some View {
@@ -72,6 +74,7 @@ struct CJToolView: View {
                                 actionClosure: { actionType in
 //                                    viewModel.actionClosure(actionType)
 //                                    popMenus.append(<#T##Element#>)
+                                    handleSheetAction(actionType)
                                 }
                             )
                             //.background(Color.red.opacity(0.8))
@@ -104,6 +107,7 @@ struct CJToolView: View {
                                 minCount: 1,
                                 maxCount: 3,
                                 dateChooseModels: Binding(get: { singleTextComponents }, set: { singleTextComponents = $0 }),
+                                commemorationComponents: commemorationComponents,
                                 onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
                                     // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。
                                     // 2.    添加：将 newTextDateModels 中 id 不在 components 中的项添加到 components。
@@ -142,6 +146,7 @@ struct CJToolView: View {
                                 actionClosure: { actionType in
 //                                    viewModel.actionClosure(actionType)
 //                                    popMenus.append(<#T##Element#>)
+                                    handleSheetAction(actionType)
                                 }
                             )
                             .background(Color.blue.opacity(0.3))
@@ -273,7 +278,15 @@ struct CJToolView: View {
                 
                 refreshID = UUID()
             }
-        }.onAppear() {
+        }
+        .overlay(alignment: .topLeading) {
+            ZStack(alignment: .topLeading) {
+                ForEach(popMenus) { menu in
+                    menu.view
+                }
+            }
+        }
+        .onAppear() {
             getAnyComponents()
         }
     }
@@ -307,9 +320,77 @@ struct CJToolView: View {
 //        })
 //    }
 //    
+    private func handleSheetAction(_ actionType: CJSheetActionType) {
+        if let sheetActionClosure {
+            sheetActionClosure(actionType)
+            return
+        }
+
+        switch actionType {
+        case .actionSheet(let id, let sheet):
+            popMenus.append(CJPopupMenu(id: id, view: sheet))
+        case .removeActionSheet(let id):
+            removeMenu(id: id)
+        case .datePicker(let request):
+            showDatePicker(request)
+        }
+    }
+
+    private func showDatePicker(_ request: CJDatePickerRequest) {
+        let menu = CJPopupMenu(
+            id: request.id,
+            view: AnyView(
+                CJPopupContainer(onDismiss: {
+                    removeMenu(id: request.id)
+                }) {
+                    CJDefaultDatePickerSheet(request: request) {
+                        removeMenu(id: request.id)
+                    }
+                }
+            )
+        )
+        popMenus.append(menu)
+    }
+
+    private func removeMenu(id: UUID) {
+        popMenus.removeAll { $0.id == id }
+    }
+
     func dismissMenu() {
 //        popMenus.forEach({ $0.model.dismiss() })
 //        popMenus.removeAll()
+        popMenus.removeAll()
+    }
+}
+
+private struct CJPopupMenu: Identifiable {
+    let id: UUID
+    let view: AnyView
+}
+
+private struct CJPopupContainer<Content: View>: View {
+    var onDismiss: () -> Void
+    let content: Content
+
+    init(onDismiss: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.onDismiss = onDismiss
+        self.content = content()
+    }
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            Color.black.opacity(0.35)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    onDismiss()
+                }
+
+            content
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .padding(.horizontal, 12)
+                .padding(.bottom, 12)
+        }
     }
 }
 
