@@ -12,13 +12,14 @@ import CJViewElement_Swift
 struct CJSquareSubView: View {
     @Binding var anyComponentModel: CJAllComponentConfigModel
     var widgetFamily: WidgetFamily
-    @Binding var dealUpdateUI: Int  // 为了不对model中的属性加修饰词，所以额外使用此变量
+    @Binding var dealUpdateUI: Int  // 工具区修改模型后，通知预览区刷新。
+    @Binding var toolUpdateUI: Int  // 预览区手势修改模型后，通知工具区刷新。
 
     var body: some View {
         GeometryReader(content: { geometry in
             CJBackgroundView(backgroundModel: $anyComponentModel.backgroundModel, dealUpdateUI: $dealUpdateUI)
             
-            CJTextsView(anyComponentModel: $anyComponentModel, dealUpdateUI: $dealUpdateUI)
+            CJTextsView(anyComponentModel: $anyComponentModel, dealUpdateUI: $dealUpdateUI, toolUpdateUI: $toolUpdateUI)
 
             CJBorderView(
                 borderModel: $anyComponentModel.borderModel,

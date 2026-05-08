@@ -5,13 +5,23 @@ PODS:
     - CJViewElement-Swift/CommonSettingRow (= 0.0.1)
     - CJViewElement-Swift/ComponentConfigModel (= 0.0.1)
     - CJViewElement-Swift/Extension (= 0.0.1)
+    - CJViewElement-Swift/LayoutInputView (= 0.0.1)
     - CJViewElement-Swift/Model (= 0.0.1)
     - CJViewElement-Swift/SquareResultView (= 0.0.1)
-  - CJViewElement-Swift/CommonSettingRow (0.0.1)
-  - CJViewElement-Swift/ComponentConfigModel (0.0.1)
+  - CJViewElement-Swift/CommonSettingRow (0.0.1):
+    - CJViewElement-Swift/ComponentConfigModel
+    - CJViewElement-Swift/LayoutInputView
+  - CJViewElement-Swift/ComponentConfigModel (0.0.1):
+    - CJViewElement-Swift/Model
   - CJViewElement-Swift/Extension (0.0.1)
-  - CJViewElement-Swift/Model (0.0.1)
-  - CJViewElement-Swift/SquareResultView (0.0.1)
+  - CJViewElement-Swift/LayoutInputView (0.0.1)
+  - CJViewElement-Swift/Model (0.0.1):
+    - CJViewElement-Swift/Extension
+  - CJViewElement-Swift/SquareResultView (0.0.1):
+    - CJViewElement-Swift/ComponentConfigModel
+  - CJViewGR-Swift (0.0.1):
+    - CJViewGR-Swift/Extension (= 0.0.1)
+  - CJViewGR-Swift/Extension (0.0.1)
   - CQDemoKit/BaseUIKit (0.7.1):
     - Masonry
   - CQDemoKit/BaseUtil (0.7.1)
@@ -70,6 +80,7 @@ DEPENDENCIES:
   - CJBaseUIKit/UIColor (~> 0.8.0)
   - CJDataVientianeSDK-Swift/Date (~> 0.0.1)
   - CJViewElement-Swift (from `../`)
+  - CJViewGR-Swift (~> 0.0.1)
   - CQDemoKit/BaseVC (~> 0.7.1)
   - SDWebImage (= 5.19.7)
   - SDWebImageSwiftUI (= 3.1.1)
@@ -80,6 +91,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - CJBaseUIKit
     - CJDataVientianeSDK-Swift
+    - CJViewGR-Swift
     - CQDemoKit
     - libwebp
     - Masonry
@@ -95,7 +107,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CJBaseUIKit: 1aae41e618536f39628c79a7461f48e6979b8a5e
   CJDataVientianeSDK-Swift: 202f7c52e557f037c8aa1f0d9e8b131631a4b600
-  CJViewElement-Swift: c8ff58ffe0946ddeb1ce7f3df5991c5bb6fd5d34
+  CJViewElement-Swift: 84e952d5151a5bacb11cc248a9bb83058951105d
+  CJViewGR-Swift: 22a6cb1bba996a2d7e0853dc537a4d4b74c2b36b
   CQDemoKit: d3c8f63f39f685299711194a65bb2f6ec11bc947
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -104,6 +117,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 59e37098e419d678dd186c417daaf94e56a18ded
+PODFILE CHECKSUM: 9f051f2dbe22130d8aaf9169430ed4153ad4e724
 
 COCOAPODS: 1.16.2

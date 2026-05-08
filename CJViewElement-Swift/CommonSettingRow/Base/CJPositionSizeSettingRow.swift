@@ -42,11 +42,13 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
             .padding(.top, 0)
             .padding(.bottom, 4)
             
-            PositionSizeInputView(
+            CJLayoutInputView(
                 left: Binding(get: { currentLayout.left }, set: { currentLayout.left = $0 }),
                 top: Binding(get: { currentLayout.top }, set: { currentLayout.top = $0 }),
                 width: Binding(get: { currentLayout.width }, set: { currentLayout.width = $0 }),
                 height: Binding(get: { currentLayout.height }, set: { currentLayout.height = $0 }),
+                scale: Binding(get: { currentLayout.scale }, set: { currentLayout.scale = $0 }),
+                rotationDegrees: Binding(get: { currentLayout.rotationDegrees }, set: { currentLayout.rotationDegrees = $0 }),
                 onChange: {
                     onChange?(currentLayout)
                 }

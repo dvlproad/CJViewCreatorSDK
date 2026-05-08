@@ -11,31 +11,48 @@
   },
   "swift_versions": "5.0",
   "source": {
-    "git": "https://github.com/dvlproad/CJUIKit.git",
+    "git": "https://github.com/dvlproad/CJViewCreatorSDK.git",
     "tag": "CJViewElement-Swift_0.1.1"
   },
   "frameworks": "UIKit",
   "requires_arc": true,
   "subspecs": [
     {
+      "name": "LayoutInputView",
+      "source_files": "CJViewElement-Swift/LayoutInputView/**/*.{swift}"
+    },
+    {
       "name": "Extension",
       "source_files": "CJViewElement-Swift/Extension/**/*.{swift}"
     },
     {
       "name": "Model",
-      "source_files": "CJViewElement-Swift/ElementModel/**/*.{swift}"
-    },
-    {
-      "name": "CommonSettingRow",
-      "source_files": "CJViewElement-Swift/CommonSettingRow/**/*.{swift}"
-    },
-    {
-      "name": "SquareResultView",
-      "source_files": "CJViewElement-Swift/SquareResultView/**/*.{swift}"
+      "source_files": "CJViewElement-Swift/ElementModel/**/*.{swift}",
+      "dependencies": {
+        "CJViewElement-Swift/Extension": []
+      }
     },
     {
       "name": "ComponentConfigModel",
-      "source_files": "CJViewElement-Swift/ComponentConfigModel/**/*.{swift}"
+      "source_files": "CJViewElement-Swift/ComponentConfigModel/**/*.{swift}",
+      "dependencies": {
+        "CJViewElement-Swift/Model": []
+      }
+    },
+    {
+      "name": "CommonSettingRow",
+      "source_files": "CJViewElement-Swift/CommonSettingRow/**/*.{swift}",
+      "dependencies": {
+        "CJViewElement-Swift/ComponentConfigModel": [],
+        "CJViewElement-Swift/LayoutInputView": []
+      }
+    },
+    {
+      "name": "SquareResultView",
+      "source_files": "CJViewElement-Swift/SquareResultView/**/*.{swift}",
+      "dependencies": {
+        "CJViewElement-Swift/ComponentConfigModel": []
+      }
     }
   ],
   "swift_version": "5.0"

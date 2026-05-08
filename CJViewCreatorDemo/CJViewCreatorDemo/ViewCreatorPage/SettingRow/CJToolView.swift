@@ -11,6 +11,7 @@ import CJViewElement_Swift
 
 struct CJToolView: View {
     @Binding var model: CQWidgetModel
+    @Binding var toolUpdateUI: Int
     @State var refreshID = UUID()
     @StateObject private var keyboardObserver = KeyboardObserver()
 //    @State var popMenus: [(model: MenuPickerModel, view: AnyView)] = []
@@ -35,6 +36,7 @@ struct CJToolView: View {
                                 title: "我是新的日期标题",
                                 minCount: 1,
                                 maxCount: 3,
+                                toolUpdateUI: toolUpdateUI,
                                 dateChooseModels: Binding(get: { commemorationComponents }, set: { commemorationComponents = $0 }),
                                 onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
                                     // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。
@@ -106,6 +108,7 @@ struct CJToolView: View {
                                 title: "我是文字列表操作视图",
                                 minCount: 1,
                                 maxCount: 3,
+                                toolUpdateUI: toolUpdateUI,
                                 dateChooseModels: Binding(get: { singleTextComponents }, set: { singleTextComponents = $0 }),
                                 onChangeOfDateChooseModels: { newTextDateModels, isCountUpdate in
                                     // 1.    删除：从 components 中移除 id 不在 newTextDateModels 中的项。

@@ -13,14 +13,18 @@ struct PositionSizeTestView: View {
     @State private var top: CGFloat = 20
     @State private var width: CGFloat = 200
     @State private var height: CGFloat = 100
+    @State private var scale: CGFloat = 1
+    @State private var rotationDegrees: CGFloat = 0
     
     var body: some View {
         VStack(spacing: 20) {
-            PositionSizeInputView(
+            CJLayoutInputView(
                 left: $left,
                 top: $top,
                 width: $width,
-                height: $height
+                height: $height,
+                scale: $scale,
+                rotationDegrees: $rotationDegrees
             )
             .withCornerRadius(10.0, horizontalPadding: 10.0)
             .padding(.horizontal, 10)
@@ -29,6 +33,8 @@ struct PositionSizeTestView: View {
             Text("预览视图")
                 .frame(width: width, height: height)
                 .background(Color.blue.opacity(0.3))
+                .scaleEffect(scale)
+                .rotationEffect(.degrees(rotationDegrees))
                 .position(x: left + width / 2, y: top + height / 2)
                 .border(Color.blue, width: 1)
             
@@ -40,6 +46,8 @@ struct PositionSizeTestView: View {
                 Text("top: \(Int(top))")
                 Text("width: \(Int(width))")
                 Text("height: \(Int(height))")
+                Text("scale: \(scale)")
+                Text("rotation: \(Int(rotationDegrees))")
             }
             .font(.caption)
             .foregroundColor(.gray)
@@ -47,6 +55,6 @@ struct PositionSizeTestView: View {
             
             Spacer()
         }
-        .navigationTitle("PositionSizeInputView 测试")
+        .navigationTitle("CJLayoutInputView 测试")
     }
 }

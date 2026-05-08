@@ -47,6 +47,7 @@ struct CJDatesSettingView: View {
     var title: String
     var minCount: Int
     var maxCount: Int
+    var toolUpdateUI: Int = 0
     @Binding var dateChooseModels: [CJCommemorationComponentConfigModel]
     @State var currentIndex = -1
     @StateObject private var currentTextRoleModel = CJSegmentedModel(selectedIndex: 0)
@@ -153,12 +154,23 @@ struct CJDatesSettingView: View {
                         dateSettingViewUpdateObserver.updateListeners()
                     }
                 )
-                .id("date-text-layout-style-\(currentComponent.id)-\(currentRole.rawValue)")
+                // 预览区手势结束后只刷新当前布局设置区，保留日期列表 currentIndex 和文字角色分段选中态。
+                .id("date-text-layout-style-\(currentComponent.id)-\(currentRole.rawValue)-\(toolUpdateUI)")
             }
             
         }
         .onAppear {
+            restoreCurrentIndexFromEditingStateIfNeeded()
             captureOriginalLayoutsIfNeeded(dateChooseModels)
+        }
+    }
+
+    private func restoreCurrentIndexFromEditingStateIfNeeded() {
+        guard currentIndex < 0 || !dateChooseModels.indices.contains(currentIndex) else {
+            return
+        }
+        if let editingIndex = dateChooseModels.firstIndex(where: { $0.isEditing }) {
+            currentIndex = editingIndex
         }
     }
 
@@ -181,7 +193,7 @@ struct CJDatesSettingView: View {
                     }
                 ),
                 onChangeOfPositionSize: { newLayout in
-                    applyPositionSize(from: newLayout, to: currentLayout)
+                    applyGeometryLayout(from: newLayout, to: currentLayout)
                     syncChildTextLayout(for: role, in: component)
                     self.updateUI()
                 },
@@ -227,11 +239,13 @@ struct CJDatesSettingView: View {
         }
     }
 
-    private func applyPositionSize(from sourceLayout: CJTextLayoutModel, to targetLayout: CJTextLayoutModel) {
+    private func applyGeometryLayout(from sourceLayout: CJTextLayoutModel, to targetLayout: CJTextLayoutModel) {
         targetLayout.left = sourceLayout.left
         targetLayout.top = sourceLayout.top
         targetLayout.width = sourceLayout.width
         targetLayout.height = sourceLayout.height
+        targetLayout.scale = sourceLayout.scale
+        targetLayout.rotationDegrees = sourceLayout.rotationDegrees
     }
 
     private func syncChildTextLayout(for role: DateTextRole, in component: CJCommemorationComponentConfigModel) {

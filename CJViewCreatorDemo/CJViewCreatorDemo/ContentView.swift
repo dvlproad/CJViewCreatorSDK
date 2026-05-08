@@ -42,7 +42,7 @@ struct ContentView: View {
                 }
                 
                 NavigationLink(destination: PositionSizeTestView()) {
-                    Text("PositionSizeInputView 测试")
+                    Text("CJLayoutInputView 测试")
                 }
                 
 

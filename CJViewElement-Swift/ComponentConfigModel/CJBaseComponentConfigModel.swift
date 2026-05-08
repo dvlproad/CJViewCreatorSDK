@@ -303,7 +303,7 @@ public extension View {
     /// 默认流程为：内容尺寸/样式 -> 位置偏移。
     /// 如果只是普通展示，直接使用该方法即可。
     public func layout(_ layout: CJTextLayoutModel) -> some View {
-        return self.layout(layout) { content in
+        return self.layout(layout, appliesPersistentRotation: true) { content in
             content
         }
     }
@@ -321,15 +321,19 @@ public extension View {
         _ layout: CJTextLayoutModel,
         @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
     ) -> some View {
+        self.layout(layout, appliesPersistentRotation: false, decorateContent: decorateContent)
+    }
+
+    private func layout<DecoratedContent: View>(
+        _ layout: CJTextLayoutModel,
+        appliesPersistentRotation: Bool,
+        @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
+    ) -> some View {
         var foregroundColor: Color = Color(hex: layout.foregroundColor)
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil && !layout.backgroundColor!.isEmpty {
             backgroundColor = Color(hex: layout.backgroundColor!)
         }
-        
-        let backgroundImage: UIImage? = layout.background.imageModel?.image
-        
-        
         //🚑:当 SwiftUI 中的视图设置了 cornerRadius 并且同时设置了边框（border），有时会导致圆角的四个角显示出缺口。原因是 border 会遵循视图的边框，而 cornerRadius 仅作用于视图本身，但不会自动适配到边框的内缩区域。
 //        return self.frame(width: layout.width, height: layout.height, alignment: layout.textAlignment.toAlignment)
 //            .foregroundColor(foregroundColor)
@@ -337,6 +341,7 @@ public extension View {
 //            .border(layout.background.border?.borderColor() != nil  ? layout.background.border!.borderColor()! : Color.clear, width: layout.background.border?.width ?? 0)
 //            .cornerRadius(layout.background.borderRadius ?? 0)
 //            .position(x: layout.left + layout.width / 2, y: layout.top + layout.height / 2)
+
         let content = self.frame(width: layout.width, height: layout.height, alignment: layout.textAlignment.toAlignment)
             .foregroundColor(foregroundColor)
 //            .background(
@@ -350,24 +355,15 @@ public extension View {
             .background(backgroundColor: backgroundColor, background: layout.background)
 
         return decorateContent(AnyView(content))
-//            .position(x: layout.left + layout.width / 2, y: layout.top + layout.height / 2)
-            .offset(x: layout.left, y: layout.top) // 使用偏移动态调整位置
-//            .overlay(content: {
-//                Rectangle()
-//                    .stroke(Color.black, lineWidth: layout.left == 23 ? 1 : 0)  // 添加蓝色的边框
-//                    .padding(-1)
-//                    .offset(x: layout.left, y: layout.top) // 如果必须在 offset 后设置 overlay，需要手动调整 overlay 的偏移量
-//            })
-            
-        
-        
+            .rotationEffect(.degrees(appliesPersistentRotation ? layout.rotationDegrees : 0))
+            .offset(x: layout.left, y: layout.top)
     }
     
     /// 按布局模型渲染带渐变遮罩的完整文本视图。
     ///
     /// 默认流程为：内容尺寸/渐变样式 -> 位置偏移。
     public func layout(_ layout: CJTextLayoutModel, overlayView: LinearGradient) -> some View {
-        return self.layout(layout, overlayView: overlayView) { content in
+        return self.layout(layout, overlayView: overlayView, appliesPersistentRotation: true) { content in
             content
         }
     }
@@ -380,14 +376,19 @@ public extension View {
         overlayView: LinearGradient,
         @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
     ) -> some View {
+        self.layout(layout, overlayView: overlayView, appliesPersistentRotation: false, decorateContent: decorateContent)
+    }
+
+    private func layout<DecoratedContent: View>(
+        _ layout: CJTextLayoutModel,
+        overlayView: LinearGradient,
+        appliesPersistentRotation: Bool,
+        @ViewBuilder decorateContent: (AnyView) -> DecoratedContent
+    ) -> some View {
         var backgroundColor: Color = Color.clear
         if layout.backgroundColor != nil {
             backgroundColor = Color(hex: layout.backgroundColor!)
         }
-        
-        let backgroundImage: UIImage? = layout.background.imageModel?.image
-        
-        
         // 提取布局属性
         let textFrame = CGRect(x: layout.left,
                                y: layout.top,
@@ -395,12 +396,10 @@ public extension View {
                                height: layout.height)
 
         let baseText = self
-            .font(.custom(layout.font.name, fixedSize: layout.fontSize))
+            .font(.custom(layout.font.name, fixedSize: layout.scaledFontSize))
             .frame(width: textFrame.width, height: textFrame.height, alignment: layout.textAlignment.toAlignment)
-//            .foregroundColor(Color(hex: layout.foregroundColor))
             .cornerRadius(layout.borderCornerRadius)
 
-        
         // 文本及其叠加效果
         let content = baseText
             .foregroundColor(nil) // 文字无色
@@ -412,21 +411,27 @@ public extension View {
             .background(backgroundColor: backgroundColor, background: layout.background)
 
         return decorateContent(AnyView(content))
-//            .position(x: textFrame.midX, y: textFrame.midY)
-            .offset(x: layout.left, y: layout.top) // 使用偏移动态调整位置
+            .rotationEffect(.degrees(appliesPersistentRotation ? layout.rotationDegrees : 0))
+            .offset(x: layout.left, y: layout.top)
     }
     
     //    func property(_ property: CJBasePropertyModel) -> some View {
     public func property(_ property: CJTextLayoutModel) -> some View {
         var font: Font
         if property.font.name.count == 0 {
-            font = .system(size: property.fontSize, weight: property.fontWeight.toFontWeight)
+            font = .system(size: property.scaledFontSize, weight: property.fontWeight.toFontWeight)
         } else {
-            font = .custom(property.font.name, fixedSize: property.fontSize)
+            font = .custom(property.font.name, fixedSize: property.scaledFontSize)
         }
         
         return self
             .font(font)
             .lineLimit(property.lineLimit)
+    }
+}
+
+private extension CJTextLayoutModel {
+    var scaledFontSize: CGFloat {
+        fontSize * max(scale, 0.01)
     }
 }

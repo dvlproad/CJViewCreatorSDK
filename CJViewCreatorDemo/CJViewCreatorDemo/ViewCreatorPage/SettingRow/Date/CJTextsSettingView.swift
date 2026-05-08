@@ -16,6 +16,7 @@ struct CJTextsSettingView: View {
     var title: String
     var minCount: Int
     var maxCount: Int
+    var toolUpdateUI: Int = 0
     @Binding var dateChooseModels: [CJTextComponentConfigModel]
     @State var currentIndex = -1
     @State private var originalTextLayouts: [String: CJTextLayoutModel] = [:]
@@ -164,6 +165,8 @@ struct CJTextsSettingView: View {
                                 model.layout.top = newLayout.top
                                 model.layout.width = newLayout.width
                                 model.layout.height = newLayout.height
+                                model.layout.scale = newLayout.scale
+                                model.layout.rotationDegrees = newLayout.rotationDegrees
                                 self.updateUI()
                             },
                             onChangeOfFontModel: { newFontModel in
@@ -181,14 +184,26 @@ struct CJTextsSettingView: View {
                     onChangeOfSegment: { _, _ in
                     }
                 )
-                .id("text-layout-style-\(model.id)")
+                // 预览区拖动/缩放只需要让布局设置区重新读取 layout。
+                // 不要重建整个 CJTextsSettingView，否则列表 currentIndex 会丢失，拖动结束后工具区选中态会消失。
+                .id("text-layout-style-\(model.id)-\(toolUpdateUI)")
                 
             }
             
         }
         .onAppear {
+            restoreCurrentIndexFromEditingStateIfNeeded()
             captureOriginalModelsIfNeeded(dateChooseModels)
             captureDateSettingValuesIfNeeded(dateChooseModels)
+        }
+    }
+
+    private func restoreCurrentIndexFromEditingStateIfNeeded() {
+        guard currentIndex < 0 || !dateChooseModels.indices.contains(currentIndex) else {
+            return
+        }
+        if let editingIndex = dateChooseModels.firstIndex(where: { $0.isEditing }) {
+            currentIndex = editingIndex
         }
     }
 

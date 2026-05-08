@@ -47,7 +47,10 @@ target 'CJViewCreatorDemo' do
     pod 'CQDemoKit',                  '~> 0.7.1',          :subspecs => ['BaseVC']
     pod 'CJBaseUIKit',                '~> 0.8.0',          :subspecs => ['UIColor']
     pod 'CJDataVientianeSDK-Swift',   '~> 0.0.1',          :subspecs => ['Date']
+    
 #    pod 'CJViewGR-Swift',             :path => '../../CJGRKit'
+    pod 'CJViewGR-Swift',             '~> 0.0.1'
+    
     pod 'CJViewElement-Swift',        :path => '../'
 #    pod 'SDWebImage',         '~> 5.20.0'
     pod 'SDWebImage', '5.19.7'

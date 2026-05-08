@@ -19,7 +19,7 @@ struct TestHubView: View {
             }
             
             NavigationLink(destination: PositionSizeTestView()) {
-                Label("PositionSizeInputView 测试", systemImage: "arrow.up.left.and.arrow.down.right")
+                Label("CJLayoutInputView 测试", systemImage: "arrow.up.left.and.arrow.down.right")
             }
         }
         .navigationTitle("测试汇总")

@@ -14,13 +14,13 @@ public struct CJTextView: View {
     // 注意：它不是普通的外层修饰。layout 内部会先生成 width/height 后的内容盒子，
     // 再调用 decorateContent，最后才做 left/top 偏移。
     // 这样 `.addGR(...)` 的边框可以贴合真实内容边界，同时不会被 offset 影响位置。
-    private let decorateContent: (AnyView) -> AnyView
+    private let decorateContent: ((AnyView) -> AnyView)?
     
     // 普通展示不需要额外装饰，直接走默认 layout 流程。
     public init(text: Binding<String>, layoutModel: Binding<CJTextLayoutModel>) {
-        self.init(text: text, layoutModel: layoutModel) { content in
-            content
-        }
+        self._text = text
+        self._layoutModel = layoutModel
+        self.decorateContent = nil
     }
 
     // 编辑态展示可以在这里插入 `.addGR(...)` 等能力。
@@ -48,13 +48,23 @@ public struct CJTextView: View {
 //            })
         
         if let overlayView = layoutModel.overlay?.colorModel?.linearGradientColor {
-            textView
-                // 渐变文本也要通过 layout 的装饰闭包插入编辑态能力，避免边框尺寸或位置不准。
-                .layout(layoutModel, overlayView: overlayView, decorateContent: decorateContent)
+            if let decorateContent {
+                textView
+                    // 渐变文本也要通过 layout 的装饰闭包插入编辑态能力，避免边框尺寸或位置不准。
+                    .layout(layoutModel, overlayView: overlayView, decorateContent: decorateContent)
+            } else {
+                textView
+                    .layout(layoutModel, overlayView: overlayView)
+            }
         } else {
-            textView
-                // 普通文本同样把装饰交给 layout 内部处理，而不是在 CJTextView 外层直接叠加。
-                .layout(layoutModel, decorateContent: decorateContent)
+            if let decorateContent {
+                textView
+                    // 普通文本同样把装饰交给 layout 内部处理，而不是在 CJTextView 外层直接叠加。
+                    .layout(layoutModel, decorateContent: decorateContent)
+            } else {
+                textView
+                    .layout(layoutModel)
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ public class CJBaseLayoutModel: CJBaseModel {
     public var top: CGFloat
     public var width: CGFloat
     public var height: CGFloat
+    public var scale: CGFloat
+    public var rotationDegrees: CGFloat
     public var backgroundColor: String?
     public var borderCornerRadius: CGFloat = 0
     
@@ -19,7 +21,7 @@ public class CJBaseLayoutModel: CJBaseModel {
     
     // MARK: - Equatable
     public static func == (lhs: CJBaseLayoutModel, rhs: CJBaseLayoutModel) -> Bool {
-        return lhs.left == rhs.left && lhs.top == rhs.top && lhs.width == rhs.width && lhs.height == rhs.height && lhs.backgroundColor == rhs.backgroundColor && lhs.background == rhs.background && lhs.borderCornerRadius == rhs.borderCornerRadius
+        return lhs.left == rhs.left && lhs.top == rhs.top && lhs.width == rhs.width && lhs.height == rhs.height && lhs.scale == rhs.scale && lhs.rotationDegrees == rhs.rotationDegrees && lhs.backgroundColor == rhs.backgroundColor && lhs.background == rhs.background && lhs.borderCornerRadius == rhs.borderCornerRadius
     }
     
     // MARK: - Init
@@ -28,6 +30,8 @@ public class CJBaseLayoutModel: CJBaseModel {
         self.top = 0
         self.width = 0
         self.height = 0
+        self.scale = 1
+        self.rotationDegrees = 0
         self.background = CJBoxDecorationModel()
     }
     
@@ -35,6 +39,8 @@ public class CJBaseLayoutModel: CJBaseModel {
          top: CGFloat,
          width: CGFloat,
          height: CGFloat,
+         scale: CGFloat = 1,
+         rotationDegrees: CGFloat = 0,
          backgroundColor: String? = nil,
          borderCornerRadius: CGFloat = 0,
          background: CJBoxDecorationModel = CJBoxDecorationModel()
@@ -43,6 +49,8 @@ public class CJBaseLayoutModel: CJBaseModel {
         self.top = top
         self.width = width
         self.height = height
+        self.scale = scale
+        self.rotationDegrees = rotationDegrees
         self.backgroundColor = backgroundColor
         self.borderCornerRadius = borderCornerRadius
         self.background = background
@@ -55,6 +63,8 @@ public class CJBaseLayoutModel: CJBaseModel {
         copy.top = top
         copy.width = width
         copy.height = height
+        copy.scale = scale
+        copy.rotationDegrees = rotationDegrees
         copy.backgroundColor = backgroundColor
         copy.borderCornerRadius = borderCornerRadius
         copy.background = background.copy()
@@ -65,6 +75,7 @@ public class CJBaseLayoutModel: CJBaseModel {
     enum CodingKeys: String, CodingKey {
         case left = "left" // JSON 中的 "left" 映射到类的 "x"
         case top, width, height
+        case scale, rotationDegrees
         case backgroundColor
         case background
         case borderCornerRadius
@@ -77,6 +88,8 @@ public class CJBaseLayoutModel: CJBaseModel {
         top = try container.decodeCGFloatIfPresent(forKey: .top) ?? 0.0
         width = try container.decodeCGFloatIfPresent(forKey: .width) ?? 0.0
         height = try container.decodeCGFloatIfPresent(forKey: .height) ?? 0.0
+        scale = try container.decodeCGFloatIfPresent(forKey: .scale) ?? 1.0
+        rotationDegrees = try container.decodeCGFloatIfPresent(forKey: .rotationDegrees) ?? 0.0
         backgroundColor = try container.decodeIfPresent(String.self, forKey: .backgroundColor)
         borderCornerRadius = try container.decodeCGFloatIfPresent(forKey: .borderCornerRadius) ?? 0
         background = try container.decodeIfPresent(CJBoxDecorationModel.self, forKey: .background) ?? CJBoxDecorationModel()
@@ -89,6 +102,8 @@ public class CJBaseLayoutModel: CJBaseModel {
         try container.encode(top, forKey: .top)
         try container.encode(width, forKey: .width)
         try container.encode(height, forKey: .height)
+        try container.encode(scale, forKey: .scale)
+        try container.encode(rotationDegrees, forKey: .rotationDegrees)
         try container.encode(backgroundColor, forKey: .backgroundColor)
         try container.encode(borderCornerRadius, forKey: .borderCornerRadius)
         try container.encode(background, forKey: .background)
