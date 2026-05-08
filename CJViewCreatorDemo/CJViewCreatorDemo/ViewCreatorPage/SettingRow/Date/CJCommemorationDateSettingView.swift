@@ -10,9 +10,9 @@ import SwiftUI
 import CJViewElement_Swift
 
 
-struct CJCommemorationDateSettingView: View {
-    @Binding var commemorationDateModel: CJCommemorationDataModel
-    var onChangeOfDateChooseModel: ((_ newCommemorationDateModel: CJCommemorationDataModel ) -> Void)
+struct CJCommemorationDateSettingView<DateModel: CJCommemorationDateModel>: View {
+    @Binding var commemorationDateModel: DateModel
+    var onChangeOfDateChooseModel: ((_ newCommemorationDateModel: DateModel ) -> Void)
     var actionClosure: ((CJSheetActionType) -> Void)
     
     //@Binding var shouldUpdateDateSettingView: Bool
@@ -69,4 +69,3 @@ struct CJCommemorationDateSettingView: View {
         }
     }
 }
-

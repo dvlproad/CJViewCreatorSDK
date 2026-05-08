@@ -18,8 +18,8 @@ struct CJTextsSettingView: View {
     @Binding var dateChooseModels: [CJTextComponentConfigModel]
     @State var currentIndex = -1
     @State private var originalTextLayouts: [String: CJTextLayoutModel] = [:]
-    @State private var dateSettingModels: [String: CJCommemorationDataModel] = [:]
-//    @State var currentTextDateModel: CJCommemorationDataModel
+    @State private var dateSettingModels: [String: CJCommemorationDateModel] = [:]
+//    @State var currentTextDateModel: CJCommemorationDateModel
 //    @State var currentTextDateModel: CJTextComponentConfigModel
     var onChangeOfDateChooseModels: ((_ newTextDateModels: [CJTextComponentConfigModel], _ isCountUpdate: Bool) -> Void)
     var actionClosure: ((CJSheetActionType) -> Void)
@@ -83,7 +83,7 @@ struct CJTextsSettingView: View {
 //                let bindingText: Binding<String> = Binding(get: { currentTextDateModel.title }, set: { currentTextDateModel.title = $0 })
                 
                 if currentTextDateModel.textType == .date_yyyyMMdd {
-                    let bindDateModel: Binding<CJCommemorationDataModel> = Binding(
+                    let bindDateModel: Binding<CJCommemorationDateModel> = Binding(
                         get: {
                             dateSettingModel(for: model)
                         },
@@ -193,7 +193,7 @@ struct CJTextsSettingView: View {
         }
     }
 
-    private func applyDateSettingModel(_ dateModel: CJCommemorationDataModel, to sourceModel: CJTextComponentConfigModel) {
+    private func applyDateSettingModel(_ dateModel: CJCommemorationDateModel, to sourceModel: CJTextComponentConfigModel) {
         let referDate = Date()
 
         let relatedModels = textModelsInSameGroup(as: sourceModel)
@@ -204,12 +204,12 @@ struct CJTextsSettingView: View {
         }
     }
 
-    private func dateSettingModel(for textModel: CJTextComponentConfigModel) -> CJCommemorationDataModel {
+    private func dateSettingModel(for textModel: CJTextComponentConfigModel) -> CJCommemorationDateModel {
         if let dateSettingModel = dateSettingModels[textModel.id] {
             return dateSettingModel
         }
 
-        let dateSettingModel = Self.commemorationDataModel(from: textModel.data)
+        let dateSettingModel = Self.commemorationDateModel(from: textModel.data)
         dateSettingModels[textModel.id] = dateSettingModel
         return dateSettingModel
     }
@@ -217,18 +217,17 @@ struct CJTextsSettingView: View {
     private func captureDateSettingModelsIfNeeded(_ models: [CJTextComponentConfigModel]) {
         for model in models where model.data.textType == .date_yyyyMMdd {
             if dateSettingModels[model.id] == nil {
-                dateSettingModels[model.id] = Self.commemorationDataModel(from: model.data)
+                dateSettingModels[model.id] = Self.commemorationDateModel(from: model.data)
             }
         }
     }
 
-    private static func commemorationDataModel(from textDataModel: CJTextDataModel) -> CJCommemorationDataModel {
-        return CJCommemorationDataModel(
-            title: "",
-            date: date(from: textDataModel.text) ?? Date(),
-            cycleType: .year,
-            shouldContainToday: false
-        )
+    private static func commemorationDateModel(from textDataModel: CJTextDataModel) -> CJCommemorationDateModel {
+        let dateModel = CJCommemorationDateModel()
+        dateModel.date = date(from: textDataModel.text) ?? Date()
+        dateModel.cycleType = .year
+        dateModel.includeTodayIsOn = false
+        return dateModel
     }
 
     private func textModelsInSameGroup(as sourceModel: CJTextComponentConfigModel) -> [CJTextComponentConfigModel] {
@@ -248,7 +247,7 @@ struct CJTextsSettingView: View {
         return parts.dropLast().joined(separator: "_")
     }
 
-    private func applyCommemorationPreviewText(from dateModel: CJCommemorationDataModel, to textModel: CJTextComponentConfigModel, referDate: Date) {
+    private func applyCommemorationPreviewText(from dateModel: CJCommemorationDateModel, to textModel: CJTextComponentConfigModel, referDate: Date) {
         switch textModel.data.textType {
         case .some(.date_yyyyMMdd):
             textModel.data.text = dateModel.getNextRepeatDateString(referDate: referDate)
@@ -307,8 +306,8 @@ struct CJTextsSettingView_Previews: PreviewProvider {
     }
     
     /// 这个函数负责构建 dataAndLayoutModels 数组
-    private static func createDataAndLayoutModels() -> [CJCommemorationDataModel] {
-        let dataAndLayoutModels: [CJCommemorationDataModel] = CCAllComponentConfigModel.getDefaultDataByLayoutId("").commemorationComponents
+    private static func createDataAndLayoutModels() -> [CJCommemorationDateModel] {
+        let dataAndLayoutModels: [CJCommemorationDateModel] = CCAllComponentConfigModel.getDefaultDataByLayoutId("").commemorationComponents.map { $0.data }
         return dataAndLayoutModels
     }
 }
