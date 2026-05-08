@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CJDataVientianeSDK_Swift
 import CJViewElement_Swift
 
 struct CJTextsSettingView: View {
@@ -18,8 +19,8 @@ struct CJTextsSettingView: View {
     @Binding var dateChooseModels: [CJTextComponentConfigModel]
     @State var currentIndex = -1
     @State private var originalTextLayouts: [String: CJTextLayoutModel] = [:]
-    @State private var dateSettingModels: [String: CJCommemorationDateModel] = [:]
-//    @State var currentTextDateModel: CJCommemorationDateModel
+    @State private var dateSettingDates: [String: Date] = [:]
+    @State private var dateStringIsLunarTypes: [String: Bool] = [:]
 //    @State var currentTextDateModel: CJTextComponentConfigModel
     var onChangeOfDateChooseModels: ((_ newTextDateModels: [CJTextComponentConfigModel], _ isCountUpdate: Bool) -> Void)
     var actionClosure: ((CJSheetActionType) -> Void)
@@ -83,22 +84,45 @@ struct CJTextsSettingView: View {
 //                let bindingText: Binding<String> = Binding(get: { currentTextDateModel.title }, set: { currentTextDateModel.title = $0 })
                 
                 if currentTextDateModel.textType == .date_yyyyMMdd {
-                    let bindDateModel: Binding<CJCommemorationDateModel> = Binding(
-                        get: {
-                            dateSettingModel(for: model)
-                        },
-                        set: { newDateModel in
-                            dateSettingModels[model.id] = newDateModel
-                            applyDateSettingModel(newDateModel, to: model)
+                    let date: Binding<Date> = Binding(
+                        get: { dateSettingDates[model.id] ?? Self.date(from: currentTextDateModel.text) ?? Date() },
+                        set: { newDate in
+                            dateSettingDates[model.id] = newDate
+                            currentTextDateModel.text = Self.dateString(from: newDate, isLunar: dateStringIsLunarTypes[model.id] ?? false)
                         }
                     )
-                    CJCommemorationDateSettingView(commemorationDateModel: bindDateModel, onChangeOfDateChooseModel: { newDateModel in
-                        dateSettingModels[model.id] = newDateModel
-                        applyDateSettingModel(newDateModel, to: model)
-                        self.updateUI()
-                    }, actionClosure: { actionType in
-                        self.actionClosure(actionType)
-                    })
+                    let dateStringIsLunarType: Binding<Bool> = Binding(
+                        get: { dateStringIsLunarTypes[model.id] ?? false },
+                        set: { isLunar in
+                            dateStringIsLunarTypes[model.id] = isLunar
+                            let currentDate = dateSettingDates[model.id] ?? Self.date(from: currentTextDateModel.text) ?? Date()
+                            currentTextDateModel.text = Self.dateString(from: currentDate, isLunar: isLunar)
+                        }
+                    )
+                    CJDateChooseRow(
+                        title: "日期",
+                        date: date,
+                        dateStringIsLunarType: dateStringIsLunarType,
+                        dateFormaterHandle: { date in
+                            Self.dateString(from: date, isLunar: dateStringIsLunarTypes[model.id] ?? false)
+                        },
+                        isPickerSupportLunar: true,
+                        onChangeOfDate: { newDate in
+                            currentTextDateModel.text = Self.dateString(from: newDate, isLunar: dateStringIsLunarTypes[model.id] ?? false)
+                            self.updateUI()
+                        },
+                        onChangeOfDateStringIsLunarType: { isLunar in
+                            let currentDate = dateSettingDates[model.id] ?? Self.date(from: currentTextDateModel.text) ?? Date()
+                            currentTextDateModel.text = Self.dateString(from: currentDate, isLunar: isLunar)
+                            self.updateUI()
+                        },
+                        isValidateHandler: { _ in
+                            return (true, "")
+                        },
+                        actionClosure: { actionType in
+                            self.actionClosure(actionType)
+                        }
+                    )
                     .environmentObject(dateSettingViewUpdateObserver)
                 } else {
                     CJTextInputView(
@@ -120,18 +144,6 @@ struct CJTextsSettingView: View {
                     //.background(Color.yellow.opacity(0.8))
                 }
 
-//                let bindDateModel: Binding<CJTextDataModel> = Binding(get: { dateChooseModels[currentIndex].data }, set: { dateChooseModels[currentIndex].data = $0 })
-//                CJCommemorationDateSettingView(commemorationDateModel: bindDateModel, onChangeOfDateChooseModel: { newCommemorationDateModel in
-//                    currentTextDateModel = newCommemorationDateModel
-//                    self.updateUI()
-//                }, actionClosure: { actionType in
-//                    self.actionClosure(actionType)
-//                })
-//                .environmentObject(dateSettingViewUpdateObserver)
-                
-                
-               
-                
                 // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 CJPositionSizeSettingRow(
                     title: "位置与尺寸",
@@ -181,7 +193,7 @@ struct CJTextsSettingView: View {
         }
         .onAppear {
             captureOriginalModelsIfNeeded(dateChooseModels)
-            captureDateSettingModelsIfNeeded(dateChooseModels)
+            captureDateSettingValuesIfNeeded(dateChooseModels)
         }
     }
 
@@ -193,70 +205,14 @@ struct CJTextsSettingView: View {
         }
     }
 
-    private func applyDateSettingModel(_ dateModel: CJCommemorationDateModel, to sourceModel: CJTextComponentConfigModel) {
-        let referDate = Date()
-
-        let relatedModels = textModelsInSameGroup(as: sourceModel)
-        let targetModels = relatedModels.isEmpty ? [sourceModel] : relatedModels
-
-        for textModel in targetModels {
-            applyCommemorationPreviewText(from: dateModel, to: textModel, referDate: referDate)
-        }
-    }
-
-    private func dateSettingModel(for textModel: CJTextComponentConfigModel) -> CJCommemorationDateModel {
-        if let dateSettingModel = dateSettingModels[textModel.id] {
-            return dateSettingModel
-        }
-
-        let dateSettingModel = Self.commemorationDateModel(from: textModel.data)
-        dateSettingModels[textModel.id] = dateSettingModel
-        return dateSettingModel
-    }
-
-    private func captureDateSettingModelsIfNeeded(_ models: [CJTextComponentConfigModel]) {
+    private func captureDateSettingValuesIfNeeded(_ models: [CJTextComponentConfigModel]) {
         for model in models where model.data.textType == .date_yyyyMMdd {
-            if dateSettingModels[model.id] == nil {
-                dateSettingModels[model.id] = Self.commemorationDateModel(from: model.data)
+            if dateSettingDates[model.id] == nil {
+                dateSettingDates[model.id] = Self.date(from: model.data.text) ?? Date()
             }
-        }
-    }
-
-    private static func commemorationDateModel(from textDataModel: CJTextDataModel) -> CJCommemorationDateModel {
-        let dateModel = CJCommemorationDateModel()
-        dateModel.date = date(from: textDataModel.text) ?? Date()
-        dateModel.cycleType = .year
-        dateModel.includeTodayIsOn = false
-        return dateModel
-    }
-
-    private func textModelsInSameGroup(as sourceModel: CJTextComponentConfigModel) -> [CJTextComponentConfigModel] {
-        guard let sourceGroupKey = Self.groupKey(from: sourceModel.id) else {
-            return []
-        }
-
-        return dateChooseModels.filter { Self.groupKey(from: $0.id) == sourceGroupKey }
-    }
-
-    private static func groupKey(from id: String) -> String? {
-        let parts = id.split(separator: "_")
-        guard parts.count > 1, parts.last.flatMap({ Int($0) }) != nil else {
-            return nil
-        }
-
-        return parts.dropLast().joined(separator: "_")
-    }
-
-    private func applyCommemorationPreviewText(from dateModel: CJCommemorationDateModel, to textModel: CJTextComponentConfigModel, referDate: Date) {
-        switch textModel.data.textType {
-        case .some(.date_yyyyMMdd):
-            textModel.data.text = dateModel.getNextRepeatDateString(referDate: referDate)
-        case .some(.date_countdown):
-            textModel.data.text = dateModel.stringForPreviewCountdownDays(referDate: referDate)
-        case .some(.date_unit):
-            textModel.data.text = "天"
-        case .some(.title), nil:
-            break
+            if dateStringIsLunarTypes[model.id] == nil {
+                dateStringIsLunarTypes[model.id] = false
+            }
         }
     }
 
@@ -267,6 +223,14 @@ struct CJTextsSettingView: View {
             }
         }
         return nil
+    }
+
+    private static func dateString(from date: Date, isLunar: Bool) -> String {
+        if isLunar {
+            let lunarTuple = date.lunarTuple()
+            return "\(lunarTuple.lunarYear)\(lunarTuple.stemBranch).\(lunarTuple.monthString)月.\(lunarTuple.dayString)"
+        }
+        return date.format("yyyy/MM/dd")
     }
 
     private static func dateFormatter(format: String) -> DateFormatter {
