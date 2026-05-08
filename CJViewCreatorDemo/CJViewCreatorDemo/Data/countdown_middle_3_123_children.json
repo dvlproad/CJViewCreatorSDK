@@ -47,6 +47,49 @@
             }
         },
         {
+            "id": "normal_single_text_2",
+            "componentType": "normal_single_text",
+            "data": {
+                "textType": "date_yyyyMMdd",
+                "text": "2025-05-21"
+            },
+            "layout": {
+                "left": 83,
+                "top": 119,
+                "width": 130,
+                "height": 30,
+                "lineLimit": 1,
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "font": {
+                    "name": "AlimamaShuHeiTi-Bold",
+                    "egImage": "fontImage_1"
+                },
+                "foregroundColor": "#FF00FF",
+                "backgroundColor": "#33FFFFFF",
+                "background": {
+                    "colorModel": {
+                        "startPoint": "topLeading",
+                        "endPoint": "bottomTrailing",
+                        "colorStrings": ["#33FFFFFF"]
+                    },
+                    "imageModel": {
+                        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStQVL1IzigsXoa5l82KX2BJ0UXnu-l6OkJa0Lpu3KsYqCwf6ESZBBLmobeKSAErXyKelr_bw&s",
+                        "imagePath": "colorPalette"
+                    },
+                    "borderRadius": 15.0,
+                    "border": {
+                        "color": "#FF00FF",
+                        "width": 2.0
+                    }
+                },
+                
+                "textAlignment": "center",
+                "multilineTextAlignment": "center",
+                "minimumScaleFactor": 0.4
+            }
+        },
+        {
             "id": "countdown_middle_3_1",
             "componentType": "commemoration",
             "data": {

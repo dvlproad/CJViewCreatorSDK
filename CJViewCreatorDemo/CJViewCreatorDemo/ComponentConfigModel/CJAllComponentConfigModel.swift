@@ -208,15 +208,15 @@ class CJAllComponentConfigModel: CJBaseModel {
 //                commemComponent.updateData(referDate: Date(), isForDesktop: false)
                 commemorationComponents.append(commemComponent)
                 
-                if let children = commemComponent.childComponents {
-                    for index in 0 ..< (children.count) {
-                        let child = children[index]
-                        if child.componentType == .normal_single_text,
-                                  let realChildComponent = child as? CJTextComponentConfigModel {
-                            singleTextComponents.append(realChildComponent)
-                        }
-                    }
-                }
+//                if let children = commemComponent.childComponents {
+//                    for index in 0 ..< (children.count) {
+//                        let child = children[index]
+//                        if child.componentType == .normal_single_text,
+//                                  let realChildComponent = child as? CJTextComponentConfigModel {
+//                            singleTextComponents.append(realChildComponent)
+//                        }
+//                    }
+//                }
 //                singleTextComponents.append(
 //                    CJTextComponentConfigModel(
 //                        id: "",
