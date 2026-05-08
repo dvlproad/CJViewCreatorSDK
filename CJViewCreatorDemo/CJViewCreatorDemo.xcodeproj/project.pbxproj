@@ -57,6 +57,7 @@
 		977EFD042D186B6B00AFCEAC /* CJDateListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EFCFD2D186B6B00AFCEAC /* CJDateListRow.swift */; };
 		977EFD052D186B6B00AFCEAC /* CJDateChooseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EFCFE2D186B6B00AFCEAC /* CJDateChooseRow.swift */; };
 		977EFD082D18743000AFCEAC /* CJCommemorationDateSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977EFD072D18743000AFCEAC /* CJCommemorationDateSettingView.swift */; };
+		97D3000A2FA6000000000001 /* CJElementLayoutStyleSettingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3000B2FA6000000000001 /* CJElementLayoutStyleSettingSection.swift */; };
 		97A100022FA5000000000001 /* CJDefaultDatePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A100012FA5000000000001 /* CJDefaultDatePickerSheet.swift */; };
 		9785B0622D0EF3AE00CFE0F4 /* CJViewCreatorDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9785B0612D0EF3AE00CFE0F4 /* CJViewCreatorDemoApp.swift */; };
 		9785B0642D0EF3AE00CFE0F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9785B0632D0EF3AE00CFE0F4 /* ContentView.swift */; };
@@ -131,6 +132,7 @@
 		977EFCFD2D186B6B00AFCEAC /* CJDateListRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CJDateListRow.swift; sourceTree = "<group>"; };
 		977EFCFE2D186B6B00AFCEAC /* CJDateChooseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CJDateChooseRow.swift; sourceTree = "<group>"; };
 		977EFD072D18743000AFCEAC /* CJCommemorationDateSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJCommemorationDateSettingView.swift; sourceTree = "<group>"; };
+		97D3000B2FA6000000000001 /* CJElementLayoutStyleSettingSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CJElementLayoutStyleSettingSection.swift; sourceTree = "<group>"; };
 		97A100012FA5000000000001 /* CJDefaultDatePickerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJDefaultDatePickerSheet.swift; sourceTree = "<group>"; };
 		9785B05E2D0EF3AE00CFE0F4 /* CJViewCreatorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CJViewCreatorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9785B0612D0EF3AE00CFE0F4 /* CJViewCreatorDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJViewCreatorDemoApp.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				977EFCF92D186B6B00AFCEAC /* CJDatesSettingView.swift */,
 				977EFD072D18743000AFCEAC /* CJCommemorationDateSettingView.swift */,
 				97D235352D1C406D0002F2F3 /* CJTextsSettingView.swift */,
+				97D3000B2FA6000000000001 /* CJElementLayoutStyleSettingSection.swift */,
 				977EFCFD2D186B6B00AFCEAC /* CJDateListRow.swift */,
 				97D235332D1C3F210002F2F3 /* CJTextListRow.swift */,
 				977EFCEB2D186A9100AFCEAC /* CJSheetActionType.swift */,
@@ -563,6 +566,7 @@
 				977EFCF32D186A9100AFCEAC /* CJSheetActionType.swift in Sources */,
 				977EFD052D186B6B00AFCEAC /* CJDateChooseRow.swift in Sources */,
 				97D235362D1C406D0002F2F3 /* CJTextsSettingView.swift in Sources */,
+				97D3000A2FA6000000000001 /* CJElementLayoutStyleSettingSection.swift in Sources */,
 				9778BD0E2FA3B59E00201441 /* PositionSizeTestView.swift in Sources */,
 				977EFD042D186B6B00AFCEAC /* CJDateListRow.swift in Sources */,
 				977EFD022D186B6B00AFCEAC /* CJSegmentedSettingRow.swift in Sources */,

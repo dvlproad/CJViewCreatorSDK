@@ -144,49 +144,44 @@ struct CJTextsSettingView: View {
                     //.background(Color.yellow.opacity(0.8))
                 }
 
-                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
-                CJPositionSizeSettingRow(
-                    title: "位置与尺寸",
-                    originalLayout: originalTextLayouts[model.id] ?? model.layout.copy(),
-                    currentLayout: model.layout,
-                    onChange: { newLayout in
-                        model.layout.left = newLayout.left
-                        model.layout.top = newLayout.top
-                        model.layout.width = newLayout.width
-                        model.layout.height = newLayout.height
-                        self.updateUI()
-                    }
-                )
-                .id("position-\(model.id)")
-                //.background(Color.red.opacity(0.8))
-                
-                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
-                CJFontSettingRow(
-                    models: TSRowDataUtil.fontModels(),
-                    currentFontModel: Binding(
-                        get: { model.layout.font },
-                        set: { newFontModel in
-                            model.layout.font = newFontModel.copy()
-                        }
-                    ),
-                    onChangeOfFontModel: { newFontModel in
-                        model.layout.font = newFontModel.copy()
-                        self.updateUI()
-                    }
-                )
-                .id("font-\(model.id)")
-                //.background(Color.green.opacity(0.8))
-                
-                // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 let referenceTextColorModel = originalTextLayouts[model.id]?.textColorModel() ?? model.layout.textColorModel()
-                CJTextColorSettingRow(models: TSRowDataUtil.fontColorData(), originalTextColorModel: referenceTextColorModel, currentTextColorModel: model.layout.textColorModel(), onChangeOfTextColorModel: { newTextColorModel in
-                    model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel.copy())
-                    self.updateUI()
-                })
-                .id("textColor-\(model.id)")
-                //.background(Color.cyan.opacity(0.8))
-                
-                
+                CJElementLayoutStyleSettingSection(
+                    segmentedControlModel: CJSegmentedModel(selectedIndex: 0),
+                    options: [
+                        CJElementLayoutStyleSettingOption.text(
+                            originalLayout: originalTextLayouts[model.id] ?? model.layout.copy(),
+                            currentLayout: model.layout,
+                            originalTextColorModel: referenceTextColorModel,
+                            currentTextColorModel: model.layout.textColorModel(),
+                            currentFontModel: Binding(
+                                get: { model.layout.font },
+                                set: { newFontModel in
+                                    model.layout.font = newFontModel.copy()
+                                }
+                            ),
+                            onChangeOfPositionSize: { newLayout in
+                                model.layout.left = newLayout.left
+                                model.layout.top = newLayout.top
+                                model.layout.width = newLayout.width
+                                model.layout.height = newLayout.height
+                                self.updateUI()
+                            },
+                            onChangeOfFontModel: { newFontModel in
+                                model.layout.font = newFontModel.copy()
+                                self.updateUI()
+                            },
+                            onChangeOfTextColorModel: { newTextColorModel in
+                                model.layout.overlay = CJBoxDecorationModel(colorModel: newTextColorModel.copy())
+                                self.updateUI()
+                            }
+                        )
+                    ],
+                    fontModels: TSRowDataUtil.fontModels(),
+                    textColorModels: TSRowDataUtil.fontColorData(),
+                    onChangeOfSegment: { _, _ in
+                    }
+                )
+                .id("text-layout-style-\(model.id)")
                 
             }
             
