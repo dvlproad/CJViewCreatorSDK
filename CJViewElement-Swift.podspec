@@ -6,19 +6,22 @@ Pod::Spec.new do |s|
   # pod的owner操作：https://www.jianshu.com/p/a9b8c2a1f3cf
   s.name         = "CJViewElement-Swift"
   s.version      = "0.0.1"
-  s.summary      = "Swift/OC帮助类"
+  s.summary      = "视图绘制库（类似无边记，常用于组件APP里的组件详情页）"
   s.homepage     = "https://github.com/dvlproad/CJViewCreatorSDK.git"
   s.license      = "MIT"
   s.author       = "dvlproad"
 
   s.description  = <<-DESC
-                   A longer description of CJViewElement-Swift in Markdown format.
+                 视图绘制库（类似无边记，常用于组件APP里的组件详情页），可按需独立引入：
+                 • CJViewElement-Swift/LayoutInputView - 布局调整的设置视图
+                 • CJViewElement-Swift/Extension - 需要用到的基础的扩展（Color等)
+                 • CJViewElement-Swift/Model - 底层视图数据模型
+                 • CJViewElement-Swift/ComponentConfigModel - 组件视图配置模型
+                 • CJViewElement-Swift/CommonSettingRow - 视图设置图（类似组件APP里的组件详情页的底部设置图）
+                 • CJViewElement-Swift/SquareResultView - 预览图（类似组件APP里的组件详情页的顶部预览图）
 
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
-                   DESC
+                 每个子库可独立引入，详见各子库描述。
+                 DESC
 
   # s.social_media_url   = "http://twitter.com/dvlproad"
 
@@ -43,17 +46,19 @@ Pod::Spec.new do |s|
     ss.source_files = "CJViewElement-Swift/LayoutInputView/**/*.{swift}"
   end
   
-  # 基础的帮助类
+  # 需要用到的基础的扩展（Color等)
   s.subspec 'Extension' do |ss|
     ss.source_files = "CJViewElement-Swift/Extension/**/*.{swift}"
   end
   
+  # 底层视图数据模型
   s.subspec 'Model' do |ss|
     ss.source_files = "CJViewElement-Swift/ElementModel/**/*.{swift}"
     
     ss.dependency "CJViewElement-Swift/Extension" # 需要使用 CJColorExtension.swift
   end
   
+  # 组件视图配置模型
   s.subspec 'ComponentConfigModel' do |ss|
     ss.source_files = "CJViewElement-Swift/ComponentConfigModel/**/*.{swift}"
 
@@ -65,6 +70,7 @@ Pod::Spec.new do |s|
 #    ss.source_files = "CJViewElement-Swift/ElementView/**/*.{swift}"
 #  end
 
+  # 视图设置图（类似组件APP里的组件详情页的底部设置图）
   s.subspec 'CommonSettingRow' do |ss|
     ss.source_files = "CJViewElement-Swift/CommonSettingRow/**/*.{swift}"
     
@@ -72,6 +78,7 @@ Pod::Spec.new do |s|
     ss.dependency "CJViewElement-Swift/LayoutInputView"
   end
   
+  # 预览图（类似组件APP里的组件详情页的顶部预览图）
   s.subspec 'SquareResultView' do |ss|
     ss.source_files = "CJViewElement-Swift/SquareResultView/**/*.{swift}"
     
