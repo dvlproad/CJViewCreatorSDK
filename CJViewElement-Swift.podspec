@@ -33,6 +33,13 @@ Pod::Spec.new do |s|
   # s.resources = "CJBaseUtil/**/*.{png}"
   s.frameworks = 'UIKit'
 
+  s.resource_bundles = {
+      'CJViewElement-Swift' => [
+          'CJViewElement-Swift/Resources/CJViewElement-Swift.xcassets',
+          'CJViewElement-Swift/Resources/Images/**/*.webp'
+      ]
+  }
+
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
 
@@ -46,7 +53,7 @@ Pod::Spec.new do |s|
     ss.source_files = "CJViewElement-Swift/LayoutInputView/**/*.{swift}"
   end
   
-  # 需要用到的基础的扩展（Color等)
+  # 需要用到的基础的扩展（Color、Image等)
   s.subspec 'Extension' do |ss|
     ss.source_files = "CJViewElement-Swift/Extension/**/*.{swift}"
   end

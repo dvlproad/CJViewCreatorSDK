@@ -22,7 +22,7 @@ public struct CJSettingTitleRow: View {
                 onTapRecover?()
             }, label: {
                 if showRecoverIcon {
-                    Image("recover")
+                    Image("recover", bundle: .cjViewElement)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 12, height: 12)

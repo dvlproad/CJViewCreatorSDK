@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  
   # 组件视图配置模型
   s.subspec 'ComponentConfigModel' do |ss|
     ss.source_files = "CQViewElement-Swift/ComponentConfigModel/**/*.{swift}"
@@ -42,13 +41,6 @@ Pod::Spec.new do |s|
     ss.dependency "CJViewElement-Swift/ComponentConfigModel"
     ss.dependency "CJDataVientianeSDK-Swift/Date"#,   :path => '../../../../CJDataVientianeSDK'
   end
-  
-  s.resource_bundles = {
-      'CQViewElement-Swift' => [
-          'CQViewElement-Swift/Resources/Font/*.ttf',
-          'CQViewElement-Swift/Resources/Images/**/*.webp'
-      ]
-  }
 
   # 视图设置图（类似组件APP里的组件详情页的底部设置图）
   s.subspec 'SettingRow' do |ss|

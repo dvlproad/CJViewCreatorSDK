@@ -62,7 +62,7 @@ public struct CJTextInputView: View {
                     Button(action: {
                         text = ""   // 清空文本
                     }, label: {
-                        Image("field_close_gray")
+                        Image("field_close_gray", bundle: .cjViewElement)
                             .resizable()
                             .frame(width: 15, height: 15)
                     })

@@ -15,6 +15,12 @@
     "tag": "CJViewElement-Swift_0.1.0"
   },
   "frameworks": "UIKit",
+  "resource_bundles": {
+    "CJViewElement-Swift": [
+      "CJViewElement-Swift/Resources/CJViewElement-Swift.xcassets",
+      "CJViewElement-Swift/Resources/Images/**/*.webp"
+    ]
+  },
   "requires_arc": true,
   "subspecs": [
     {

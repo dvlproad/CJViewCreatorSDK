@@ -103,7 +103,7 @@ public struct CJBorderIcon: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 38, height: 38)
             if isSelected {
-                Image("check")
+                Image("check", bundle: .cjViewElement)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 14, height: 10)

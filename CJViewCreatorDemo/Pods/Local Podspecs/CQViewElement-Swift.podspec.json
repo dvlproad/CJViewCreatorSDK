@@ -16,11 +16,6 @@
   },
   "frameworks": "UIKit",
   "requires_arc": true,
-  "resource_bundles": {
-    "CQViewElement-Swift": [
-      "CQViewElement-Swift/Resources/**/*.{ttf,webp}"
-    ]
-  },
   "subspecs": [
     {
       "name": "ComponentConfigModel",

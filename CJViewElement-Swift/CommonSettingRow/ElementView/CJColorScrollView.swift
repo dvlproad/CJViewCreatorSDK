@@ -107,7 +107,7 @@ public struct CJColorIcon: View {
                 .cornerRadius(15)
             
             if isSelected {
-                Image("check")
+                Image("check", bundle: .cjViewElement)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 14, height: 10)

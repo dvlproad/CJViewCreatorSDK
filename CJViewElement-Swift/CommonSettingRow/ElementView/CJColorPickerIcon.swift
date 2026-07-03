@@ -18,7 +18,7 @@ public struct CJColorPickerIcon: View {
                 .frame(width: 30,height: 30)
                 .offset(x: -4)
                 .overlay(
-                    Image("colorPalette")
+                    Image("colorPalette", bundle: .cjViewElement)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: showPalette ? 30 : 0, height: showPalette ? 30 : 0)

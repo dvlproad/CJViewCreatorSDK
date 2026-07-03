@@ -117,7 +117,7 @@ public extension View {
                     Text(valueString)
                         .font(.system(size: 13.5, weight: .regular))
                         .foregroundColor(Color(hex: "#999999"))
-                    Image("arrow_right")
+                    Image("arrow_right", bundle: .cjViewElement)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 6, height: 10, alignment: .center)
