@@ -4,6 +4,7 @@ ${BUILT_PRODUCTS_DIR}/CJDataVientianeSDK-Swift/CJDataVientianeSDK_Swift.framewor
 ${BUILT_PRODUCTS_DIR}/CJViewElement-Swift/CJViewElement_Swift.framework
 ${BUILT_PRODUCTS_DIR}/CJViewGR-Swift/CJViewGR_Swift.framework
 ${BUILT_PRODUCTS_DIR}/CQDemoKit/CQDemoKit.framework
+${BUILT_PRODUCTS_DIR}/CQViewElement-Swift/CQViewElement_Swift.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI/SDWebImageSwiftUI.framework

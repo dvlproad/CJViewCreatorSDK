@@ -235,7 +235,7 @@ struct CJDateListRow_Previews: PreviewProvider {
 
     /// 这个函数负责构建 dataAndLayoutModels 数组
     private static func createDataAndLayoutModels() -> [CJCommemorationComponentConfigModel] {
-        let dataAndLayoutModels: [CJCommemorationComponentConfigModel] = CJAllComponentConfigModel.getDefaultDataByLayoutId("").commemorationComponents
+        let dataAndLayoutModels: [CJCommemorationComponentConfigModel] = CQWidgetModel.getDefaultDataByLayoutId("").commemorationComponents
         return dataAndLayoutModels
     }
 }

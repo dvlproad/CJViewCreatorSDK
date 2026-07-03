@@ -1,0 +1,6 @@
+framework module CQViewElement_Swift {
+  umbrella header "CQViewElement-Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

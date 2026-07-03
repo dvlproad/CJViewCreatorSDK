@@ -51,6 +51,7 @@ target 'CJViewCreatorDemo' do
 #    pod 'CJViewGR-Swift',             :path => '../../CJGRKit'
     pod 'CJViewGR-Swift',             '~> 0.0.1'
     
+    pod 'CQViewElement-Swift',        :path => '../'
     pod 'CJViewElement-Swift',        :path => '../'
 #    pod 'SDWebImage',         '~> 5.20.0'
     pod 'SDWebImage', '5.19.7'

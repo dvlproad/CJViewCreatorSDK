@@ -47,6 +47,19 @@ PODS:
     - CQDemoKit/BaseUtil
     - CQDemoKit/BaseVC/Base
   - CQDemoKit/Helper (0.8.0)
+  - CQViewElement-Swift (0.0.1):
+    - CQViewElement-Swift/ComponentConfigModel (= 0.0.1)
+    - CQViewElement-Swift/SettingRow (= 0.0.1)
+    - CQViewElement-Swift/SquareResultView (= 0.0.1)
+  - CQViewElement-Swift/ComponentConfigModel (0.0.1):
+    - CJDataVientianeSDK-Swift/Date
+    - CJViewElement-Swift/ComponentConfigModel
+  - CQViewElement-Swift/SettingRow (0.0.1):
+    - CQDemoKit/BaseUtil
+    - CQViewElement-Swift/ComponentConfigModel
+  - CQViewElement-Swift/SquareResultView (0.0.1):
+    - CJViewGR-Swift
+    - CQViewElement-Swift/ComponentConfigModel
   - libwebp (1.3.2):
     - libwebp/demux (= 1.3.2)
     - libwebp/mux (= 1.3.2)
@@ -76,6 +89,7 @@ DEPENDENCIES:
   - CJViewElement-Swift (from `../`)
   - CJViewGR-Swift (~> 0.0.1)
   - CQDemoKit/BaseVC (~> 0.8.0)
+  - CQViewElement-Swift (from `../`)
   - SDWebImage (= 5.19.7)
   - SDWebImageSwiftUI (= 3.1.1)
   - SDWebImageWebPCoder (= 0.14.6)
@@ -97,13 +111,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   CJViewElement-Swift:
     :path: "../"
+  CQViewElement-Swift:
+    :path: "../"
 
 SPEC CHECKSUMS:
   CJBaseUIKit: 1aae41e618536f39628c79a7461f48e6979b8a5e
   CJDataVientianeSDK-Swift: 202f7c52e557f037c8aa1f0d9e8b131631a4b600
-  CJViewElement-Swift: cdf6133b6da27afce33b8aa5ce76c39e99dabdc0
+  CJViewElement-Swift: f85765407a38be86cac496ad8beb462a559effd6
   CJViewGR-Swift: 22a6cb1bba996a2d7e0853dc537a4d4b74c2b36b
   CQDemoKit: 1fea1039a960befe72d4452ff17827e2828b9501
+  CQViewElement-Swift: 735f6be120c2426bf04eebaba12d8a4edc1f4044
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 8a6b7b160b4d710e2a22b6900e25301075c34cb3
@@ -111,6 +128,6 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: a4c2bd0480d7d9511bca3db3b705a182b3cb0c68
+PODFILE CHECKSUM: bf279431c6482e0bc97e94729b781e39d0e35b69
 
 COCOAPODS: 1.16.2

@@ -8,17 +8,42 @@ import SwiftUI
 import WidgetKit
 import CJViewElement_Swift
 
-class CQWidgetModel {
-    var anyComponentModel: CJAllComponentConfigModel = CJAllComponentConfigModel()
+public class CQWidgetModel {
+    public var anyComponentModel: CJAllComponentConfigModel = CJAllComponentConfigModel()
     // 其他会员、广告等属性...
     
-    convenience init() {
-        let layoutId = "countdown_middle_3_123_children"
-        self.init(layoutId)
+    public init(_ layoutId: String) {
+        self.anyComponentModel = CQWidgetModel.getDefaultDataByLayoutId(layoutId)
     }
     
-    init(_ layoutId: String) {
-        self.anyComponentModel = CJAllComponentConfigModel.getDefaultDataByLayoutId(layoutId)
+    static func getDefaultDataByLayoutId(_ layoutId: String) -> CJAllComponentConfigModel {
+        //let jsonFileName: String = "countdown_middle_3_123_children"
+        let jsonFileName = layoutId
+        
+        /*
+        if let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: "ts_text_data_model") {
+            do {
+                let dataModel: CJTextDataModel = try JSONDecoder().decode(CJTextDataModel.self, from: jsonString.data)
+                debugPrint("CJTextDataModel ✅\n\(dataModel)")
+            } catch {
+                debugPrint("CJTextDataModel error: \(error))")
+            }
+        }
+        
+        if let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: "ts_text_layout_model") {
+            do {
+                let layoutModel: CJTextLayoutModel = try JSONDecoder().decode(CJTextLayoutModel.self, from: jsonString.data)
+                debugPrint("CJTextLayoutModel ✅\n\(layoutModel)")
+            } catch {
+                debugPrint("CJTextLayoutModel error: \(error)")
+            }
+        }
+        */
+        
+        guard let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: jsonFileName) else { return CJAllComponentConfigModel() }
+        let model: CJAllComponentConfigModel = CJAllComponentConfigModel.fromJson(jsonString)
+  
+        return model
     }
 }
 

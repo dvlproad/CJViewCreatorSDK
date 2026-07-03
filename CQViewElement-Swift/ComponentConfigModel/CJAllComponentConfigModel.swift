@@ -56,7 +56,7 @@ public struct CJElementCollectUtil {
 }
 
 
-class CJAllComponentConfigModel: CJBaseModel {
+public class CJAllComponentConfigModel: CJBaseModel {
     var id: String = ""
     var components: [any CJBaseComponentConfigModelProtocol] = []
     
@@ -74,7 +74,7 @@ class CJAllComponentConfigModel: CJBaseModel {
     }
     
     // MARK: - Equatable
-    static func == (lhs: CJAllComponentConfigModel, rhs: CJAllComponentConfigModel) -> Bool {
+    public static func == (lhs: CJAllComponentConfigModel, rhs: CJAllComponentConfigModel) -> Bool {
         guard lhs.id == rhs.id else { return false }
         
         guard lhs.components.count == rhs.components.count else { return false }
@@ -126,39 +126,8 @@ class CJAllComponentConfigModel: CJBaseModel {
     }
     
     // MARK: - Init
-    required init() {
+    required public init() {
         
-    }
-    
-    
-    static func getDefaultDataByLayoutId(_ layoutId: String) -> CJAllComponentConfigModel {
-        //let jsonFileName: String = "countdown_middle_3_123_children"
-        let jsonFileName = layoutId
-        
-        /*
-        if let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: "ts_text_data_model") {
-            do {
-                let dataModel: CJTextDataModel = try JSONDecoder().decode(CJTextDataModel.self, from: jsonString.data)
-                debugPrint("CJTextDataModel ✅\n\(dataModel)")
-            } catch {
-                debugPrint("CJTextDataModel error: \(error))")
-            }
-        }
-        
-        if let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: "ts_text_layout_model") {
-            do {
-                let layoutModel: CJTextLayoutModel = try JSONDecoder().decode(CJTextLayoutModel.self, from: jsonString.data)
-                debugPrint("CJTextLayoutModel ✅\n\(layoutModel)")
-            } catch {
-                debugPrint("CJTextLayoutModel error: \(error)")
-            }
-        }
-        */
-        
-        guard let jsonString = TSRowDataUtil.loadJSONFromFile(jsonFileName: jsonFileName) else { return CJAllComponentConfigModel() }
-        let model: CJAllComponentConfigModel = CJAllComponentConfigModel.fromJson(jsonString)
-  
-        return model
     }
     
     
@@ -340,7 +309,7 @@ class CJAllComponentConfigModel: CJBaseModel {
         case components
     }
     
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         CJAllComponentConfigModel.registerAllComponentType() // 避免 registeredComponentTypes 为设置
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
@@ -443,7 +412,7 @@ class CJAllComponentConfigModel: CJBaseModel {
         self.components = components
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
 

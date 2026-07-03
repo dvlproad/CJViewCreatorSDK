@@ -35,7 +35,7 @@ struct CJDateChooseRow: View {
             Text(dateString).foregroundColor(Color(hex: "#666666"))
                 .font(.system(size: 13.5, weight: .regular))
             
-            Image(.arrowRight)
+            Image("arrow_right")
                 .resizable()
                 .frame(width: 6, height: 10.5)
             

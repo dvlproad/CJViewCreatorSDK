@@ -8,15 +8,27 @@
 
 import SwiftUI
 import WidgetKit
-import CJViewElement_Swift
+//import CJViewElement_Swift
 
-struct CJSquareView: View {
+public struct CJSquareView: View {
     @Binding var anyComponentModel: CJAllComponentConfigModel
     var widgetFamily: WidgetFamily
     @Binding var dealUpdateUI: Int  // 工具区修改模型后，通知预览区刷新。
     @Binding var toolUpdateUI: Int  // 预览区手势修改模型后，通知工具区刷新。
- 
-    var body: some View {
+
+    public init(
+        anyComponentModel: Binding<CJAllComponentConfigModel>,
+        widgetFamily: WidgetFamily,
+        dealUpdateUI: Binding<Int>,
+        toolUpdateUI: Binding<Int>
+    ) {
+        self._anyComponentModel = anyComponentModel
+        self.widgetFamily = widgetFamily
+        self._dealUpdateUI = dealUpdateUI
+        self._toolUpdateUI = toolUpdateUI
+    }
+
+    public var body: some View {
         ZStack {
             Color.red // 背景色
                 .edgesIgnoringSafeArea(.all)

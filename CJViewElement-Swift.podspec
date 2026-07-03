@@ -63,7 +63,6 @@ Pod::Spec.new do |s|
     ss.source_files = "CJViewElement-Swift/ComponentConfigModel/**/*.{swift}"
 
     ss.dependency "CJViewElement-Swift/Model"
-#    ss.dependency "CJDataVientianeSDK_Swift"#,   :path => '../../../../CJDataVientianeSDK'
   end
   
 #  s.subspec 'View' do |ss|

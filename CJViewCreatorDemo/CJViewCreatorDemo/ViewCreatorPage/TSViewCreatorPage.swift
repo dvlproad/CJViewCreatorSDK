@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 import CJViewElement_Swift
-
+import CQViewElement_Swift
 
 struct TSViewCreatorPage: View {
     @State var model: CQWidgetModel = CQWidgetModel("countdown_middle_3_123_children")

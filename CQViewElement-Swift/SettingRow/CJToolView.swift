@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 import CJViewElement_Swift
 
-struct CJToolView: View {
+public struct CJToolView: View {
     @Binding var model: CQWidgetModel
     @Binding var toolUpdateUI: Int
     @State var refreshID = UUID()
@@ -20,8 +20,20 @@ struct CJToolView: View {
 //    var completeBlock: (([CJCommemorationComponentConfigModel]) -> Void)? = nil
     var sheetActionClosure: ((CJSheetActionType) -> Void)? = nil
     var onChangeOfElementModel: ((_ newElementModel: CQWidgetModel) -> Void)
-    
-    var body: some View {
+
+    public init(
+        model: Binding<CQWidgetModel>,
+        toolUpdateUI: Binding<Int>,
+        sheetActionClosure: ((CJSheetActionType) -> Void)? = nil,
+        onChangeOfElementModel: @escaping ((_ newElementModel: CQWidgetModel) -> Void)
+    ) {
+        self._model = model
+        self._toolUpdateUI = toolUpdateUI
+        self.sheetActionClosure = sheetActionClosure
+        self.onChangeOfElementModel = onChangeOfElementModel
+    }
+
+    public var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 ZStack(alignment: .topLeading) {
