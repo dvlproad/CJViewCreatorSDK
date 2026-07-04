@@ -9,19 +9,30 @@
 import SwiftUI
 
 public struct CJBackgroundSettingRow: View {
+    var title: String
+    var subTitle: String?
+    
     public let models: [CJTextColorDataModel]
     @Binding var currentBackgroundModel: CJBoxDecorationModel
-    
-    @State var selectedIndex: Int?
     public var onChangeOfBackgroundModel: ((_ newBackgroundModel: CJBoxDecorationModel) -> Void)
     
+    //@State var selectedIndex: Int?
     @State private var originalBackgroundModel: CJBoxDecorationModel?
-    public init(models: [CJTextColorDataModel], currentBackgroundModel: Binding<CJBoxDecorationModel>, onChangeOfBackgroundModel: @escaping (_: CJBoxDecorationModel) -> Void) {
+    public init(
+        title: String,
+        subTitle: String? = nil,
+        models: [CJTextColorDataModel],
+        currentBackgroundModel: Binding<CJBoxDecorationModel>,
+        onChangeOfBackgroundModel: @escaping (_: CJBoxDecorationModel) -> Void
+    ) {
+        self.title = title
+        self.subTitle = subTitle
+        
         self.models = models
         self._currentBackgroundModel = currentBackgroundModel
         self._originalBackgroundModel = State(initialValue: currentBackgroundModel.wrappedValue.copy())
         
-//        self.selectedIndex = selectedIndex
+        //self.selectedIndex = selectedIndex
         self.onChangeOfBackgroundModel = onChangeOfBackgroundModel
     }
     
@@ -29,21 +40,22 @@ public struct CJBackgroundSettingRow: View {
     public var body: some View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
-                CJSettingTitleRow(title: "背景颜色", showRecoverIcon: .constant(true)) {
+                CJSettingTitleRow(title: title, subTitle: subTitle, showRecoverIcon: .constant(currentBackgroundModel != originalBackgroundModel)) {
                     guard let originalBackgroundModel = originalBackgroundModel else {
                         return
                     }
                     currentBackgroundModel = originalBackgroundModel.copy()
-                    selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
+                    //selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
                     onChangeOfBackgroundModel(currentBackgroundModel.copy())
-                }.padding(.leading, 21)
+                }
+                .padding(.leading, 21)
                 
                 backgroundScrollView
             }
             .frame(width: UIScreen.main.bounds.width, height: 80)
         }
         .onAppear(perform: {
-            selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
+            //selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
         })
     }
     
@@ -63,7 +75,7 @@ public struct CJBackgroundSettingRow: View {
                 }
             ),
             onChangeOfColorModel: { newColorModel in
-                selectedIndex = models.firstMatchingColorIndex(newColorModel)
+                //selectedIndex = models.firstMatchingColorIndex(newColorModel)
                 onChangeOfBackgroundModel(currentBackgroundModel.copy())
             }
         )

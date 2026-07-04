@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
     let title: String
-    let originalLayout: LayoutType   // let 保证不会被意外修改
+    @State private var originalLayout: LayoutType
     @State var currentLayout: LayoutType
     var onChange: ((LayoutType) -> Void)?
     
@@ -20,9 +20,7 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
         onChange: ((LayoutType) -> Void)? = nil
     ) {
         self.title = title
-        // 保存 originalLayout 的独立副本（深拷贝）
-        self.originalLayout = originalLayout.copy() as! LayoutType
-        // currentLayout 也初始化为副本，避免和外部共享引用
+        self._originalLayout = State(initialValue: originalLayout.copy() as! LayoutType)
         self._currentLayout = State(initialValue: currentLayout.copy() as! LayoutType)
         self.onChange = onChange
     }
@@ -31,9 +29,8 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
         VStack(alignment: .leading, spacing: 0) {
             CJSettingTitleRow(
                 title: title,
-                showRecoverIcon: .constant(true),
+                showRecoverIcon: .constant(currentLayout != originalLayout),
                 onTapRecover: {
-                    // 恢复时从 originalLayout 重新拷贝，确保是全新对象
                     currentLayout = originalLayout.copy() as! LayoutType
                     onChange?(currentLayout)
                 }

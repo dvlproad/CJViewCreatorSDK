@@ -27,7 +27,7 @@ public struct CJBorderSettingRow: View {
     public var body: some View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
-                CJSettingTitleRow(title: "边框", showRecoverIcon: .constant(true)) {
+                CJSettingTitleRow(title: "边框", showRecoverIcon: .constant(currentBorderModel != originalBorderModel)) {
                     guard let originalBorderModel = originalBorderModel else {
                         return
                     }

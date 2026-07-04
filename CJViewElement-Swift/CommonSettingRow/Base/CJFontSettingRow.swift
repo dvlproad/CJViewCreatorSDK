@@ -27,7 +27,7 @@ public struct CJFontSettingRow: View {
     public var body: some View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
-                CJSettingTitleRow(title: "字体", showRecoverIcon: .constant(true)) {
+                CJSettingTitleRow(title: "字体", showRecoverIcon: .constant(currentFontModel != originalFontModel)) {
                     guard let originalFontModel = originalFontModel else {
                         return
                     }

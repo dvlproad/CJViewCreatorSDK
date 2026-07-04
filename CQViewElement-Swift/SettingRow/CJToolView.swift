@@ -83,6 +83,7 @@ public struct CJToolView: View {
                                         return false
                                     }
                                     model.anyComponentModel.components.append(contentsOf: itemsToAdd.map { $0 })
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 },
                                 actionClosure: { actionType in
@@ -155,6 +156,7 @@ public struct CJToolView: View {
                                         return false
                                     }
                                     model.anyComponentModel.components.append(contentsOf: itemsToAdd.map { $0 })
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 },
                                 actionClosure: { actionType in
@@ -169,6 +171,7 @@ public struct CJToolView: View {
                         // 背景颜色(橙色)
                         if backgroundTextComponents.count > 0 {
                             CJBackgroundSettingRow(
+                                title: "背景颜色",
                                 models: TSRowDataUtil.backgroundColorData(),
                                 currentBackgroundModel: Binding(
                                     get: { model.anyComponentModel.backgroundModel },
@@ -178,12 +181,7 @@ public struct CJToolView: View {
                                 ),
                                 onChangeOfBackgroundModel: { newBackgroundModel in
                                     model.anyComponentModel.backgroundModel = newBackgroundModel
-                                    
-    //                                let randomColorString = Color.randomColor.toHex()!
-    //                                model.backgroundModel.colorModel?.colorStrings = [randomColorString]
-    //                                model.backgroundModel.colorModel = CJTextColorDataModel(solidColorString: randomColorString)
-                                    //model.backgroundModel = CJBoxDecorationModel(colorModel: CJTextColorDataModel(solidColorString: randomColorString))
-                                    
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 }
                             )
@@ -221,6 +219,7 @@ public struct CJToolView: View {
                                     for showingModel in showingModels {
                                         showingModel.layout.font = newFontModel.copy()
                                     }
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 }
                             )
@@ -250,6 +249,7 @@ public struct CJToolView: View {
                                             }
                                         }
                                     }
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 }
                             )
@@ -268,6 +268,7 @@ public struct CJToolView: View {
                                 ),
                                 onChangeOfBorderModel: { newBorderModel in
                                     model.anyComponentModel.borderModel = newBorderModel
+                                    toolUpdateUI += 1
                                     onChangeOfElementModel(model)
                                 }
                             )

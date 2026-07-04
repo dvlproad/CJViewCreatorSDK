@@ -14,6 +14,10 @@ struct TestHubView: View {
                 Label("View 扩展测试", systemImage: "square.stack.3d.up.fill")
             }
             
+            NavigationLink(destination: TSSettingTitleRowView()) {
+                Label("CJSettingTitleRow 测试", systemImage: "rectangle.and.pencil.and.ellipsis")
+            }
+            
             NavigationLink(destination: TSTextInputView()) {
                 Label("CJTextInputView 测试", systemImage: "text.cursor")
             }

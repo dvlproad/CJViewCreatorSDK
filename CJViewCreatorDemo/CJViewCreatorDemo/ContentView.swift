@@ -37,6 +37,10 @@ struct ContentView: View {
                     Text("View 扩展测试")
                 }
                 
+                NavigationLink(destination: TSSettingTitleRowView()) {
+                    Label("CJSettingTitleRow 测试", systemImage: "rectangle.and.pencil.and.ellipsis")
+                }
+                
                 NavigationLink(destination: TSTextInputView()) {
                     Text("CJTextInputView 测试")
                 }

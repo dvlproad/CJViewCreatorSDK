@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   # pod的本地索引文件：~/Library/Caches/CocoaPods/search_index.json
   # pod的owner操作：https://www.jianshu.com/p/a9b8c2a1f3cf
   s.name         = "CJViewElement-Swift"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "视图绘制库（类似无边记，常用于组件APP里的组件详情页）"
   s.homepage     = "https://github.com/dvlproad/CJViewCreatorSDK.git"
   s.license      = "MIT"
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "17.0"
   s.swift_version = '5.0'
 
-  s.source       = { :git => "https://github.com/dvlproad/CJViewCreatorSDK.git", :tag => "CJViewElement-Swift_0.1.0" }
+  s.source       = { :git => "https://github.com/dvlproad/CJViewCreatorSDK.git", :tag => "CJViewElement-Swift_0.0.2" }
   # s.source_files  = "CJBaseUtil/*.{h,m}"
   # s.resources = "CJBaseUtil/**/*.{png}"
   s.frameworks = 'UIKit'

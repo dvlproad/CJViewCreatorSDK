@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct CJTextColorSettingRow: View {
     public let models: [CJTextColorDataModel]
-    public let originalTextColorModel: CJTextColorDataModel
+    @State private var originalTextColorModel: CJTextColorDataModel = CJTextColorDataModel()
     @State var currentTextColorModel: CJTextColorDataModel = CJTextColorDataModel()
     @State var paletteSelectedColor: Color = .clear  // 调色板上选中的颜色
     
@@ -19,7 +19,7 @@ public struct CJTextColorSettingRow: View {
     
     public init(models: [CJTextColorDataModel], originalTextColorModel: CJTextColorDataModel, currentTextColorModel: CJTextColorDataModel, onChangeOfTextColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
         self.models = models
-        self.originalTextColorModel = originalTextColorModel.copy()
+        self._originalTextColorModel = State(initialValue: originalTextColorModel.copy())
         self._currentTextColorModel = State(initialValue: currentTextColorModel.copy())
 //        self.paletteSelectedColor = paletteSelectedColor
 //        self.selectedIndex = selectedIndex
@@ -30,7 +30,7 @@ public struct CJTextColorSettingRow: View {
     public var body: some View {
         ZStack{
             VStack(alignment: .center, spacing: 0) {
-                CJSettingTitleRow(title: "字体颜色", showRecoverIcon: .constant(true)) {
+                CJSettingTitleRow(title: "字体颜色", showRecoverIcon: .constant(currentTextColorModel != originalTextColorModel)) {
                     currentTextColorModel = originalTextColorModel.copy()
                     onChangeOfTextColorModel(currentTextColorModel.copy())
                 }.padding(.leading, 21)
