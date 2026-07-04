@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 public struct CJBorderScrollView: View {
+    public var contentPadding: EdgeInsets
+    
     public var borderModels: [CJBorderDataModel]
     @Binding public var currentBorderModel: CJBorderDataModel
     public var onChangeOfBorderModel: ((_ newBorderModel: CJBorderDataModel) -> Void)
@@ -17,7 +19,13 @@ public struct CJBorderScrollView: View {
     @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
-    public init(borderModels: [CJBorderDataModel], currentBorderModel: Binding<CJBorderDataModel>, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
+    public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+        borderModels: [CJBorderDataModel],
+        currentBorderModel: Binding<CJBorderDataModel>,
+        onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void
+    ) {
+        self.contentPadding = contentPadding
         self.borderModels = borderModels
         self._currentBorderModel = currentBorderModel
         if let borderColorString = currentBorderModel.wrappedValue.borderColorString, !borderColorString.isEmpty {
@@ -44,7 +52,8 @@ public struct CJBorderScrollView: View {
                             .id(index)
                     }
                 }
-                .padding(.horizontal, 21)
+                .padding(.leading, contentPadding.leading)
+                .padding(.trailing, contentPadding.trailing)
                 .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in

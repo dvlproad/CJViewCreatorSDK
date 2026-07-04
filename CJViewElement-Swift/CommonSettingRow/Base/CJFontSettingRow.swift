@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct CJFontSettingRow: View {
+    var contentPadding: EdgeInsets
+    
     public let models: [CJFontDataModel]
     @Binding var currentFontModel: CJFontDataModel
     
@@ -15,7 +17,13 @@ public struct CJFontSettingRow: View {
     public var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
     @State private var originalFontModel: CJFontDataModel?
-    public init(models: [CJFontDataModel], currentFontModel: Binding<CJFontDataModel>, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
+    public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+        models: [CJFontDataModel],
+        currentFontModel: Binding<CJFontDataModel>,
+        onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void
+    ) {
+        self.contentPadding = contentPadding
         self.models = models
         self._currentFontModel = currentFontModel
         self._originalFontModel = State(initialValue: currentFontModel.wrappedValue.copy())
@@ -33,7 +41,8 @@ public struct CJFontSettingRow: View {
                     }
                     currentFontModel = originalFontModel.copy()
                     onChangeOfFontModel(currentFontModel.copy())
-                }.padding(.leading, 21)
+                }
+                .padding(.leading, contentPadding.leading)
                 
                 fontScrollView
             }
@@ -51,13 +60,18 @@ public struct CJFontSettingRow: View {
             fontModels.append(fontModel)
         }
         
-        return CJFontScrollView(fontModels: fontModels, currentFontModel: $currentFontModel, onChangeOfFontModel: { newFontModel in
-            currentFontModel = newFontModel.copy()
+        return CJFontScrollView(
+            contentPadding: contentPadding,
+            fontModels: fontModels,
+            currentFontModel: $currentFontModel,
+            onChangeOfFontModel: { newFontModel in
+                currentFontModel = newFontModel.copy()
             
-            selectedIndex = models.firstIndex(where: { $0.id == newFontModel.id }) ?? -1
-            
-            onChangeOfFontModel(currentFontModel.copy())
-        })
+                selectedIndex = models.firstIndex(where: { $0.id == currentFontModel.id }) ?? -1
+                
+                onChangeOfFontModel(currentFontModel.copy())
+            }
+        )
     }
     
     // MARK: Event

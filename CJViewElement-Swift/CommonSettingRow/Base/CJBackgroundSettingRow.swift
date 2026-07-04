@@ -9,6 +9,8 @@
 import SwiftUI
 
 public struct CJBackgroundSettingRow: View {
+    var contentPadding: EdgeInsets
+    
     var title: String
     var subTitle: String?
     
@@ -19,12 +21,15 @@ public struct CJBackgroundSettingRow: View {
     //@State var selectedIndex: Int?
     @State private var originalBackgroundModel: CJBoxDecorationModel?
     public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
         title: String,
         subTitle: String? = nil,
         models: [CJTextColorDataModel],
         currentBackgroundModel: Binding<CJBoxDecorationModel>,
         onChangeOfBackgroundModel: @escaping (_: CJBoxDecorationModel) -> Void
     ) {
+        self.contentPadding = contentPadding
+        
         self.title = title
         self.subTitle = subTitle
         
@@ -48,7 +53,7 @@ public struct CJBackgroundSettingRow: View {
                     //selectedIndex = models.firstMatchingColorIndex(currentBackgroundModel.colorModel)
                     onChangeOfBackgroundModel(currentBackgroundModel.copy())
                 }
-                .padding(.leading, 21)
+                .padding(.leading, contentPadding.leading)
                 
                 backgroundScrollView
             }
@@ -67,6 +72,7 @@ public struct CJBackgroundSettingRow: View {
         }
         
         return CJColorScrollView(
+            contentPadding: contentPadding,
             colorModels: colorModels,
             currentColorModel: Binding(
                 get: { currentBackgroundModel.colorModel ?? CJTextColorDataModel() },

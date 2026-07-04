@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 public struct CJColorScrollView: View {
+    public var contentPadding: EdgeInsets
+    
     public var colorModels: [CJTextColorDataModel]
     @Binding public var currentColorModel: CJTextColorDataModel
     public var onChangeOfColorModel: ((_ newColorModel: CJTextColorDataModel) -> Void)
@@ -17,7 +19,13 @@ public struct CJColorScrollView: View {
     @State var showPalette: Bool = false
     @State var selectedIndex: Int?
     
-    public init(colorModels: [CJTextColorDataModel], currentColorModel: Binding<CJTextColorDataModel>, onChangeOfColorModel: @escaping (_: CJTextColorDataModel) -> Void) {
+    public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+        colorModels: [CJTextColorDataModel],
+        currentColorModel: Binding<CJTextColorDataModel>,
+        onChangeOfColorModel: @escaping (_: CJTextColorDataModel) -> Void
+    ) {
+        self.contentPadding = contentPadding
         self.colorModels = colorModels
         self._currentColorModel = currentColorModel
         if currentColorModel.wrappedValue.colorStrings.count == 2 {
@@ -48,7 +56,8 @@ public struct CJColorScrollView: View {
                             .id(index)
                     }
                 }
-                .padding(.horizontal, 21)
+                .padding(.leading, contentPadding.leading)
+                .padding(.trailing, contentPadding.trailing)
                 .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in

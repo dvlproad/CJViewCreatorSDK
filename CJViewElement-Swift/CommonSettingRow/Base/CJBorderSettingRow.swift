@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct CJBorderSettingRow: View {
+    var contentPadding: EdgeInsets
+    
     public let models: [CJBorderDataModel]
     @Binding var currentBorderModel: CJBorderDataModel
     
@@ -15,7 +17,13 @@ public struct CJBorderSettingRow: View {
     public var onChangeOfBorderModel: ((_ newBorderModel: CJBorderDataModel) -> Void)
     
     @State private var originalBorderModel: CJBorderDataModel?
-    public init(models: [CJBorderDataModel], currentBorderModel: Binding<CJBorderDataModel>, onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void) {
+    public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+        models: [CJBorderDataModel],
+        currentBorderModel: Binding<CJBorderDataModel>,
+        onChangeOfBorderModel: @escaping (_: CJBorderDataModel) -> Void
+    ) {
+        self.contentPadding = contentPadding
         self.models = models
         self._currentBorderModel = currentBorderModel
         self._originalBorderModel = State(initialValue: currentBorderModel.wrappedValue.copy())
@@ -34,7 +42,8 @@ public struct CJBorderSettingRow: View {
                     currentBorderModel = originalBorderModel.copy()
                     selectedIndex = models.firstIndex(where: { $0.id == currentBorderModel.id }) ?? -1
                     onChangeOfBorderModel(currentBorderModel.copy())
-                }.padding(.leading, 21)
+                }
+                .padding(.leading, contentPadding.leading)
                 
                 borderScrollView
             }
@@ -52,13 +61,18 @@ public struct CJBorderSettingRow: View {
             borderModels.append(borderModel)
         }
         
-        return CJBorderScrollView(borderModels: borderModels, currentBorderModel: $currentBorderModel, onChangeOfBorderModel: { newBorderModel in
-            currentBorderModel = newBorderModel.copy()
-            
-            selectedIndex = models.firstIndex(where: { $0.id == newBorderModel.id }) ?? -1
-            
-            onChangeOfBorderModel(currentBorderModel.copy())
-        })
+        return CJBorderScrollView(
+            contentPadding: contentPadding,
+            borderModels: borderModels,
+            currentBorderModel: $currentBorderModel,
+            onChangeOfBorderModel: { newBorderModel in
+                currentBorderModel = newBorderModel.copy()
+                
+                selectedIndex = models.firstIndex(where: { $0.id == currentBorderModel.id }) ?? -1
+                
+                onChangeOfBorderModel(currentBorderModel.copy())
+            }
+        )
     }
     
     // MARK: Event

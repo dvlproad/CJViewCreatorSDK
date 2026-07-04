@@ -8,17 +8,21 @@
 import SwiftUI
 
 public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
+    var contentPadding: EdgeInsets
+    
     let title: String
     @State private var originalLayout: LayoutType
     @State var currentLayout: LayoutType
     var onChange: ((LayoutType) -> Void)?
     
     public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
         title: String = "位置与尺寸",
         originalLayout: LayoutType,
         currentLayout: LayoutType,
         onChange: ((LayoutType) -> Void)? = nil
     ) {
+        self.contentPadding = contentPadding
         self.title = title
         self._originalLayout = State(initialValue: originalLayout.copy() as! LayoutType)
         self._currentLayout = State(initialValue: currentLayout.copy() as! LayoutType)
@@ -35,7 +39,7 @@ public struct CJPositionSizeSettingRow<LayoutType: CJBaseLayoutModel>: View {
                     onChange?(currentLayout)
                 }
             )
-            .padding(.leading, 21)
+            .padding(.leading, contentPadding.leading)
             .padding(.top, 0)
             .padding(.bottom, 4)
             

@@ -171,6 +171,7 @@ public struct CJToolView: View {
                         // 背景颜色(橙色)
                         if backgroundTextComponents.count > 0 {
                             CJBackgroundSettingRow(
+                                contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
                                 title: "背景颜色",
                                 models: TSRowDataUtil.backgroundColorData(),
                                 currentBackgroundModel: Binding(
@@ -204,6 +205,7 @@ public struct CJToolView: View {
                                 }
                             }()
                             CJFontSettingRow(
+                                contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
                                 models: TSRowDataUtil.fontModels(),
                                 currentFontModel: Binding(
                                     get: { referenceTextComponent?.layout.font ?? CJFontDataModel() },
@@ -259,6 +261,7 @@ public struct CJToolView: View {
                         // 边框(粉红色)
                         if borderComponents.count > 0 {
                             CJBorderSettingRow(
+                                contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
                                 models: TSRowDataUtil.backgroundBorderData(),
                                 currentBorderModel: Binding(
                                     get: { model.anyComponentModel.borderModel },

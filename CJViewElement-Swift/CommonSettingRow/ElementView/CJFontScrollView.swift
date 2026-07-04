@@ -9,13 +9,21 @@ import Foundation
 import SwiftUI
 
 public struct CJFontScrollView: View {
+    var contentPadding: EdgeInsets
+    
     var fontModels: [CJFontDataModel]
     @Binding var currentFontModel: CJFontDataModel
     var onChangeOfFontModel: ((_ newFontModel: CJFontDataModel) -> Void)
     
     @State var selectedIndex: Int?
     
-    public init(fontModels: [CJFontDataModel], currentFontModel: Binding<CJFontDataModel>, onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void) {
+    public init(
+        contentPadding: EdgeInsets = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0),
+        fontModels: [CJFontDataModel],
+        currentFontModel: Binding<CJFontDataModel>,
+        onChangeOfFontModel: @escaping (_: CJFontDataModel) -> Void
+    ) {
+        self.contentPadding = contentPadding
         self.fontModels = fontModels
         self._currentFontModel = currentFontModel
         self.onChangeOfFontModel = onChangeOfFontModel
@@ -36,7 +44,8 @@ public struct CJFontScrollView: View {
                             .id(index)
                     }
                 }
-                .padding(.horizontal, 21)
+                .padding(.leading, contentPadding.leading)
+                .padding(.trailing, contentPadding.trailing)
                 .frame(height: 40)
             }
             .onChange(of: selectedIndex) { oldValue, newValue in

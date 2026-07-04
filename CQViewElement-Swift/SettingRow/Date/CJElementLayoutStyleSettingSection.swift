@@ -95,6 +95,7 @@ struct CJElementLayoutStyleSettingSection: View {
             if let currentOption = currentOption {
                 // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                 CJPositionSizeSettingRow(
+                    contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
                     title: "位置与尺寸",
                     originalLayout: currentOption.positionSizeSetting.originalLayout,
                     currentLayout: currentOption.positionSizeSetting.currentLayout,
@@ -104,6 +105,7 @@ struct CJElementLayoutStyleSettingSection: View {
                 if let textStyleSetting = currentOption.textStyleSetting {
                     // CJFontSettingRow 已改为符合 Setting Row 设计原则的方式，CJPositionSizeSettingRow 和 CJTextColorSettingRow 还是旧的，暂时不改，当做旧方式的代码示例
                     CJFontSettingRow(
+                        contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
                         models: fontModels,
                         currentFontModel: textStyleSetting.currentFontModel,
                         onChangeOfFontModel: textStyleSetting.onChangeOfFontModel

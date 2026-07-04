@@ -63,13 +63,18 @@ public struct CJTextColorSettingRow: View {
             colorModels.append(colorModel)
         }
         
-        return CJColorScrollView(colorModels: colorModels, currentColorModel: $currentTextColorModel, onChangeOfColorModel: { newColorModel in
-            currentTextColorModel = newColorModel.copy()
-            
-            selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1
-            
-            onChangeOfTextColorModel(currentTextColorModel.copy())
-        })
+        return CJColorScrollView(
+            contentPadding: EdgeInsets(top: 0, leading: 21, bottom: 0, trailing: 21),
+            colorModels: colorModels,
+            currentColorModel: $currentTextColorModel,
+            onChangeOfColorModel: { newColorModel in
+                currentTextColorModel = newColorModel.copy()
+                
+                selectedIndex = models.firstIndex(where: { $0.id == newColorModel.id }) ?? -1
+                
+                onChangeOfTextColorModel(currentTextColorModel.copy())
+            }
+        )
     }
     
     // MARK: Event
