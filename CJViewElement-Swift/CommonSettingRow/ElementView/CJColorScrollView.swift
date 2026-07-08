@@ -121,6 +121,14 @@ public struct CJColorIcon: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 14, height: 10)
             }
+            
+            // 如果是白色，加个边框，解决背景是白色会看不到的问题
+            if let solidColorString = colorModel.colorStrings.first,
+               solidColorString.contains("FFFFFF") {
+                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    .stroke(Color(hex: "#EEEEEE").opacity(1), lineWidth: 1)
+                    .frame(width: 30, height: 30)
+            }
         }
     }
 }
