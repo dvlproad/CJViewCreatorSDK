@@ -1,6 +1,6 @@
 {
   "name": "CJViewElement-Swift",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "summary": "视图绘制库（类似无边记，常用于组件APP里的组件详情页）",
   "homepage": "https://github.com/dvlproad/CJViewCreatorSDK.git",
   "license": "MIT",
@@ -12,7 +12,7 @@
   "swift_versions": "5.0",
   "source": {
     "git": "https://github.com/dvlproad/CJViewCreatorSDK.git",
-    "tag": "CJViewElement-Swift_0.1.0"
+    "tag": "CJViewElement-Swift_0.0.3"
   },
   "frameworks": "UIKit",
   "resource_bundles": {

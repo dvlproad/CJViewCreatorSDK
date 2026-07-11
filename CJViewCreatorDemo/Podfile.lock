@@ -1,23 +1,23 @@
 PODS:
   - CJBaseUIKit/UIColor (0.8.0)
   - CJDataVientianeSDK-Swift/Date (0.0.1)
-  - CJViewElement-Swift (0.0.1):
-    - CJViewElement-Swift/CommonSettingRow (= 0.0.1)
-    - CJViewElement-Swift/ComponentConfigModel (= 0.0.1)
-    - CJViewElement-Swift/Extension (= 0.0.1)
-    - CJViewElement-Swift/LayoutInputView (= 0.0.1)
-    - CJViewElement-Swift/Model (= 0.0.1)
-    - CJViewElement-Swift/SquareResultView (= 0.0.1)
-  - CJViewElement-Swift/CommonSettingRow (0.0.1):
+  - CJViewElement-Swift (0.0.3):
+    - CJViewElement-Swift/CommonSettingRow (= 0.0.3)
+    - CJViewElement-Swift/ComponentConfigModel (= 0.0.3)
+    - CJViewElement-Swift/Extension (= 0.0.3)
+    - CJViewElement-Swift/LayoutInputView (= 0.0.3)
+    - CJViewElement-Swift/Model (= 0.0.3)
+    - CJViewElement-Swift/SquareResultView (= 0.0.3)
+  - CJViewElement-Swift/CommonSettingRow (0.0.3):
     - CJViewElement-Swift/ComponentConfigModel
     - CJViewElement-Swift/LayoutInputView
-  - CJViewElement-Swift/ComponentConfigModel (0.0.1):
+  - CJViewElement-Swift/ComponentConfigModel (0.0.3):
     - CJViewElement-Swift/Model
-  - CJViewElement-Swift/Extension (0.0.1)
-  - CJViewElement-Swift/LayoutInputView (0.0.1)
-  - CJViewElement-Swift/Model (0.0.1):
+  - CJViewElement-Swift/Extension (0.0.3)
+  - CJViewElement-Swift/LayoutInputView (0.0.3)
+  - CJViewElement-Swift/Model (0.0.3):
     - CJViewElement-Swift/Extension
-  - CJViewElement-Swift/SquareResultView (0.0.1):
+  - CJViewElement-Swift/SquareResultView (0.0.3):
     - CJViewElement-Swift/ComponentConfigModel
   - CJViewGR-Swift (0.0.1):
     - CJViewGR-Swift/Extension (= 0.0.1)
@@ -117,7 +117,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CJBaseUIKit: 1aae41e618536f39628c79a7461f48e6979b8a5e
   CJDataVientianeSDK-Swift: 202f7c52e557f037c8aa1f0d9e8b131631a4b600
-  CJViewElement-Swift: c79ebd21ff51b4cd98ba30804adb78549379ef1d
+  CJViewElement-Swift: 9beb4fd24610740aa1b480d92d2e7540e7b8a554
   CJViewGR-Swift: 22a6cb1bba996a2d7e0853dc537a4d4b74c2b36b
   CQDemoKit: 1fea1039a960befe72d4452ff17827e2828b9501
   CQViewElement-Swift: c487c446fec567991e67fc607b225eaa7045134e
